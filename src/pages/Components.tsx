@@ -2,12 +2,20 @@
 import React, { useState } from 'react';
 import Footer from '@/components/Footer';
 import { Search } from 'lucide-react';
+import { TiltCard } from '@/components/ui/tilt-card';
+import { Spotlight } from '@/components/ui/spotlight';
+import { GlassCard } from '@/components/ui/glass-card';
+import { Magnetic } from '@/components/ui/magnetic';
+import { Sparkles } from '@/components/ui/sparkles';
+import { GradientBorder } from '@/components/ui/gradient-border';
+import { RevealImage } from '@/components/ui/reveal-image';
+import { Button } from '@/components/ui/button';
 
 const Components = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [activeCategory, setActiveCategory] = useState('All');
 
-  // Example component categories
+  // Component categories
   const categories = [
     'All',
     'Buttons',
@@ -17,16 +25,20 @@ const Components = () => {
     'Modals',
     'Layout',
     'Feedback',
-    'Loaders'
+    'Loaders',
+    'Effects'
   ];
 
-  // Example components
+  // Example components with our new additions
   const allComponents = [
     { name: 'Button', category: 'Buttons', description: 'Standard button with multiple variants', isNew: false },
     { name: 'Gradient Button', category: 'Buttons', description: 'Buttons with beautiful gradient backgrounds', isNew: true },
     { name: 'Icon Button', category: 'Buttons', description: 'Compact buttons with icons', isNew: false },
+    { name: 'Magnetic Button', category: 'Buttons', description: 'Button that follows cursor with magnetic effect', isNew: true },
     { name: 'Card', category: 'Cards', description: 'Standard card component with header, body, and footer', isNew: false },
     { name: '3D Card', category: 'Cards', description: 'Interactive card with 3D tilt effect', isNew: true },
+    { name: 'Glass Card', category: 'Cards', description: 'Modern glassmorphism card with blur effect', isNew: true },
+    { name: 'Gradient Border Card', category: 'Cards', description: 'Card with animated gradient border', isNew: true },
     { name: 'Profile Card', category: 'Cards', description: 'Specialized card for user profiles', isNew: false },
     { name: 'Navbar', category: 'Navigation', description: 'Responsive navigation bar', isNew: false },
     { name: 'Tabs', category: 'Navigation', description: 'Tabbed interface for content organization', isNew: false },
@@ -40,6 +52,9 @@ const Components = () => {
     { name: 'Toast', category: 'Feedback', description: 'Non-disruptive notifications', isNew: false },
     { name: 'Spinner', category: 'Loaders', description: 'Animated loading spinner', isNew: false },
     { name: 'Progress Bar', category: 'Loaders', description: 'Visual indicator of progress', isNew: false },
+    { name: 'Reveal Image', category: 'Effects', description: 'Image with reveal animation and parallax effect', isNew: true },
+    { name: 'Spotlight Effect', category: 'Effects', description: 'Interactive spotlight that follows the cursor', isNew: true },
+    { name: 'Text Sparkles', category: 'Effects', description: 'Text with animated sparkle effect', isNew: true },
   ];
 
   // Filter components by search query and active category
@@ -120,6 +135,62 @@ const Components = () => {
             
             {/* Component grid */}
             <div className="lg:w-3/4">
+              {/* Featured components showcase */}
+              <div className="mb-12">
+                <h2 className="text-2xl font-semibold text-white mb-6">Featured Components</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  {/* Spotlight showcase */}
+                  <Spotlight className="h-72 rounded-2xl border border-white/10">
+                    <div className="flex flex-col items-center justify-center h-full">
+                      <h3 className="text-xl font-bold">Spotlight Effect</h3>
+                      <p className="text-center text-gray-400 mt-2">
+                        Move your cursor to see the spotlight follow it
+                      </p>
+                    </div>
+                  </Spotlight>
+                  
+                  {/* 3D Tilt Card showcase */}
+                  <TiltCard className="h-72 bg-gradient-to-br from-neon-purple/20 to-neon-cyan/20 border border-white/10 p-8">
+                    <div className="flex flex-col items-center justify-center h-full">
+                      <h3 className="text-xl font-bold">3D Tilt Effect</h3>
+                      <p className="text-center text-gray-400 mt-2">
+                        Move your cursor to see the tilt effect
+                      </p>
+                    </div>
+                  </TiltCard>
+
+                  {/* Gradient Border showcase */}
+                  <GradientBorder className="h-72">
+                    <div className="flex flex-col items-center justify-center h-full w-full p-4">
+                      <h3 className="text-xl font-bold">Gradient Border</h3>
+                      <p className="text-center text-gray-400 mt-2">
+                        Animated gradient border effect
+                      </p>
+                    </div>
+                  </GradientBorder>
+
+                  {/* Glass Card showcase with sparkles */}
+                  <GlassCard className="h-72 flex items-center justify-center">
+                    <Sparkles className="text-center p-8">
+                      <h3 className="text-xl font-bold">Sparkle Text Effect</h3>
+                      <p className="text-gray-400 mt-2">
+                        Text with animated sparkle effects
+                      </p>
+                    </Sparkles>
+                  </GlassCard>
+
+                  {/* Magnetic Button showcase */}
+                  <div className="col-span-1 md:col-span-2 flex justify-center items-center">
+                    <Magnetic>
+                      <Button variant="ghost" className="bg-gradient-to-r from-neon-purple to-neon-cyan text-white border border-white/20 px-8 py-6 text-xl">
+                        Magnetic Button - Hover me
+                      </Button>
+                    </Magnetic>
+                  </div>
+                </div>
+              </div>
+
+              {/* Component grid */}
               <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
                 {filteredComponents.length > 0 ? (
                   filteredComponents.map((component, index) => (
