@@ -67,6 +67,27 @@ const TiltCard = React.forwardRef<HTMLDivElement, TiltCardProps>(
       glareY.set(100)
     }
     
+    // Create string values for background gradient to avoid using MotionValues directly in the JSX
+    const [gradientPosition, setGradientPosition] = React.useState<string>(`100% 100%`)
+    
+    // Update the gradient position string whenever the spring values change
+    React.useEffect(() => {
+      const unsubscribeX = glareXSpring.on("change", (latestX) => {
+        const latestY = glareYSpring.get()
+        setGradientPosition(`${latestX}% ${latestY}%`)
+      })
+      
+      const unsubscribeY = glareYSpring.on("change", (latestY) => {
+        const latestX = glareXSpring.get()
+        setGradientPosition(`${latestX}% ${latestY}%`)
+      })
+      
+      return () => {
+        unsubscribeX()
+        unsubscribeY()
+      }
+    }, [glareXSpring, glareYSpring])
+    
     return (
       <motion.div 
         ref={ref}
@@ -83,10 +104,10 @@ const TiltCard = React.forwardRef<HTMLDivElement, TiltCardProps>(
         {...props}
       >
         {glareAmount > 0 && (
-          <motion.div
+          <div
             className="pointer-events-none absolute inset-0 z-10"
             style={{
-              background: `radial-gradient(circle at ${glareXSpring.get()}% ${glareYSpring.get()}%, ${glareColor} 0%, transparent 80%)`,
+              background: `radial-gradient(circle at ${gradientPosition}, ${glareColor} 0%, transparent 80%)`,
               opacity: glareAmount,
             }}
           />
