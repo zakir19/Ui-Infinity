@@ -53,7 +53,8 @@ const GradientBorder = React.forwardRef<HTMLDivElement, GradientBorderProps>(
         </div>
         
         {/* CSS for the animation */}
-        <style jsx>{`
+        <style>
+          {`
           @property --gradient-angle {
             syntax: "<angle>";
             initial-value: 0deg;
@@ -73,7 +74,8 @@ const GradientBorder = React.forwardRef<HTMLDivElement, GradientBorderProps>(
               background-position: 0% 50%;
             }
           }
-        `}</style>
+          `}
+        </style>
       </div>
     )
   }

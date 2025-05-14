@@ -2,10 +2,10 @@
 "use client"
 
 import * as React from "react"
-import { motion, useAnimationControls, useMotionValue } from "framer-motion"
+import { motion, useAnimationControls, useMotionValue, HTMLMotionProps } from "framer-motion"
 import { cn } from "@/lib/utils"
 
-interface MagneticProps extends React.HTMLAttributes<HTMLDivElement> {
+interface MagneticProps extends Omit<HTMLMotionProps<"div">, "ref"> {
   strength?: number
   children: React.ReactNode
 }

@@ -2,11 +2,11 @@
 "use client"
 
 import * as React from "react"
-import { motion, useScroll, useSpring, useTransform } from "framer-motion"
+import { motion, useScroll, useSpring, useTransform, HTMLMotionProps } from "framer-motion"
 import { AspectRatio } from "@/components/ui/aspect-ratio"
 import { cn } from "@/lib/utils"
 
-interface RevealImageProps extends React.HTMLAttributes<HTMLDivElement> {
+interface RevealImageProps extends Omit<HTMLMotionProps<"div">, "ref"> {
   src: string
   alt: string
   aspectRatio?: number
