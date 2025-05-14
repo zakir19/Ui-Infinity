@@ -96,8 +96,8 @@ const TiltCard = React.forwardRef<HTMLDivElement, TiltCardProps>(
         onMouseLeave={onMouseLeave}
         style={{
           transformStyle: "preserve-3d",
-          rotateX: rotateX,
-          rotateY: rotateY,
+          rotateX,
+          rotateY,
           borderRadius: `${borderRadius}px`,
         }}
         whileHover={{ scale }}

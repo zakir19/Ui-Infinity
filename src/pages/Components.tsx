@@ -26,7 +26,6 @@ const Components = () => {
     'Modals',
     'Layout',
     'Feedback',
-    'Loaders',
     'Effects'
   ];
 
@@ -34,11 +33,36 @@ const Components = () => {
   const handleCategoryClick = (category: string) => {
     setActiveCategory(category);
     
-    // Navigate to specific category page if implemented
-    if (category === 'Buttons') {
-      navigate('/buttons');
+    // Navigate to specific category page
+    switch(category) {
+      case 'Buttons':
+        navigate('/buttons');
+        break;
+      case 'Cards':
+        navigate('/cards');
+        break;
+      case 'Navigation':
+        navigate('/navigation');
+        break;
+      case 'Forms':
+        navigate('/forms');
+        break;
+      case 'Modals':
+        navigate('/modals');
+        break;
+      case 'Layout':
+        navigate('/layout');
+        break;
+      case 'Feedback':
+        navigate('/feedback');
+        break;
+      case 'Effects':
+        navigate('/effects');
+        break;
+      default:
+        // If 'All' or any other category, stay on current page
+        break;
     }
-    // Add more category routes as they are implemented
   };
 
   // Example components with our new additions
@@ -156,6 +180,53 @@ const Components = () => {
             <div className="lg:w-3/4">
               {/* Featured components showcase */}
               <div className="mb-12">
+                <h2 className="text-2xl font-semibold text-white mb-6">Featured Categories</h2>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+                  <CategoryCard
+                    title="Buttons"
+                    description="Interactive UI elements for actions"
+                    onClick={() => navigate('/buttons')}
+                  />
+                  <CategoryCard
+                    title="Cards"
+                    description="Content containers with flexible layouts"
+                    onClick={() => navigate('/cards')}
+                  />
+                  <CategoryCard
+                    title="Navigation"
+                    description="Menus, tabs, and other navigational elements"
+                    onClick={() => navigate('/navigation')}
+                  />
+                  <CategoryCard
+                    title="Forms"
+                    description="Input controls and data collection elements"
+                    onClick={() => navigate('/forms')}
+                  />
+                  <CategoryCard
+                    title="Modals"
+                    description="Dialog boxes and popup interfaces"
+                    onClick={() => navigate('/modals')}
+                  />
+                  <CategoryCard
+                    title="Layout"
+                    description="Structural components for page organization"
+                    onClick={() => navigate('/layout')}
+                  />
+                  <CategoryCard
+                    title="Feedback"
+                    description="Status indicators and notifications"
+                    onClick={() => navigate('/feedback')}
+                  />
+                  <CategoryCard
+                    title="Effects"
+                    description="Visual interactions and animations"
+                    onClick={() => navigate('/effects')}
+                  />
+                </div>
+              </div>
+
+              {/* Featured components showcase */}
+              <div className="mb-12">
                 <h2 className="text-2xl font-semibold text-white mb-6">Featured Components</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   {/* Spotlight showcase */}
@@ -208,26 +279,6 @@ const Components = () => {
                   </div>
                 </div>
               </div>
-
-              {/* Component cards */}
-              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-                {filteredComponents.length > 0 ? (
-                  filteredComponents.map((component, index) => (
-                    <ComponentItem
-                      key={index}
-                      name={component.name}
-                      description={component.description}
-                      isNew={component.isNew}
-                    />
-                  ))
-                ) : (
-                  <div className="col-span-full text-center py-12">
-                    <p className="text-gray-400 text-lg">
-                      No components found. Try a different search term or category.
-                    </p>
-                  </div>
-                )}
-              </div>
             </div>
           </div>
         </div>
@@ -256,31 +307,30 @@ const ResourceLink = ({ href, children }: { href: string, children: React.ReactN
   </li>
 );
 
-const ComponentItem = ({ name, description, isNew }: { name: string, description: string, isNew: boolean }) => (
-  <div className="glass-morphism rounded-xl overflow-hidden hover:border-neon-purple/30 transition-colors">
-    {/* Component preview */}
-    <div className="h-32 bg-black/20 flex items-center justify-center">
-      <div className="w-10 h-10 rounded-full bg-neon-purple/20 flex items-center justify-center text-neon-purple">
-        {name.charAt(0)}
+const CategoryCard = ({ 
+  title, 
+  description,
+  onClick
+}: { 
+  title: string; 
+  description: string;
+  onClick: () => void;
+}) => (
+  <motion.div 
+    className="glass-morphism rounded-xl overflow-hidden border border-white/10 hover:border-neon-purple/30 transition-colors cursor-pointer"
+    onClick={onClick}
+    whileHover={{ scale: 1.03 }}
+    transition={{ type: "spring", stiffness: 400, damping: 17 }}
+  >
+    {/* Category info */}
+    <div className="p-6 flex flex-col items-center text-center">
+      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-neon-purple/20 to-neon-cyan/20 flex items-center justify-center text-neon-purple mb-4">
+        {title.charAt(0)}
       </div>
+      <h3 className="text-white font-medium mb-1">{title}</h3>
+      <p className="text-gray-400 text-sm">{description}</p>
     </div>
-    
-    {/* Component info */}
-    <div className="p-4">
-      <div className="flex items-center justify-between mb-2">
-        <h3 className="text-white font-medium">{name}</h3>
-        {isNew && (
-          <span className="bg-neon-purple/80 text-white text-xs px-2 py-0.5 rounded-full">
-            New
-          </span>
-        )}
-      </div>
-      <p className="text-gray-400 text-sm mb-3">{description}</p>
-      <button className="text-neon-purple hover:text-neon-cyan text-sm font-medium transition-colors">
-        View Details →
-      </button>
-    </div>
-  </div>
+  </motion.div>
 );
 
 export default Components;
