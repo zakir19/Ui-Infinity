@@ -75,8 +75,8 @@ const TiltCard = React.forwardRef<HTMLDivElement, TiltCardProps>(
         onMouseLeave={onMouseLeave}
         style={{
           transformStyle: "preserve-3d",
-          rotateX,
-          rotateY,
+          rotateX: rotateX,
+          rotateY: rotateY,
           borderRadius: `${borderRadius}px`,
         }}
         whileHover={{ scale }}
@@ -86,7 +86,7 @@ const TiltCard = React.forwardRef<HTMLDivElement, TiltCardProps>(
           <motion.div
             className="pointer-events-none absolute inset-0 z-10"
             style={{
-              background: `radial-gradient(circle at ${glareXSpring}% ${glareYSpring}%, ${glareColor} 0%, transparent 80%)`,
+              background: `radial-gradient(circle at ${glareXSpring.get()}% ${glareYSpring.get()}%, ${glareColor} 0%, transparent 80%)`,
               opacity: glareAmount,
             }}
           />

@@ -2,7 +2,7 @@
 "use client"
 
 import * as React from "react"
-import { motion, MotionValue, useAnimationFrame, useMotionValue, useTransform } from "framer-motion"
+import { motion, MotionValue, useAnimationFrame, useMotionValue, useTransform, HTMLMotionProps } from "framer-motion"
 import { cn } from "@/lib/utils"
 
 interface SparklesProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -48,29 +48,36 @@ const Sparkles = React.forwardRef<HTMLDivElement, SparklesProps>(
       <div ref={ref} className={cn("relative inline-block", className)} {...props}>
         {/* Sparkles container - absolute positioned over content */}
         <div className="pointer-events-none absolute inset-0 -z-10">
-          {sparkles.map((sparkle, i) => (
-            <motion.div
-              key={i}
-              className="absolute rounded-full"
-              style={{
-                x: `${sparkle.x}%`,
-                y: `${sparkle.y}%`,
-                scale: useTransform(
-                  t, 
-                  [0, 0.5, 1], 
-                  [0, sparkle.size, 0]
-                ),
-                opacity: useTransform(
-                  t,
-                  [0, 0.2, 0.8, 1],
-                  [0, 1, 1, 0]
-                ),
-                backgroundColor: color,
-                width: size,
-                height: size,
-              }}
-            />
-          ))}
+          {sparkles.map((sparkle, i) => {
+            // Create transforms for this specific sparkle
+            const scaleTransform = useTransform(
+              t, 
+              [0, 0.5, 1], 
+              [0, sparkle.size, 0]
+            )
+            
+            const opacityTransform = useTransform(
+              t,
+              [0, 0.2, 0.8, 1],
+              [0, 1, 1, 0]
+            )
+            
+            return (
+              <motion.div
+                key={i}
+                className="absolute rounded-full"
+                style={{
+                  x: `${sparkle.x}%`,
+                  y: `${sparkle.y}%`,
+                  scale: scaleTransform,
+                  opacity: opacityTransform,
+                  backgroundColor: color,
+                  width: size,
+                  height: size,
+                }}
+              />
+            )
+          })}
         </div>
         {/* The actual content */}
         {props.children}
