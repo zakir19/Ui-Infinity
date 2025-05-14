@@ -14,7 +14,7 @@ const Footer = () => {
                 <div className="absolute inset-0 bg-neon-purple rounded-full opacity-70"></div>
                 <div className="absolute inset-0 flex items-center justify-center text-white font-bold">U</div>
               </div>
-              <span className="text-xl font-bold text-white">Aceternity UI</span>
+              <span className="text-xl font-bold text-white">UIinfinity</span>
             </div>
             <p className="text-gray-400">
               Beautiful UI components with smooth animations and 3D effects.
@@ -74,7 +74,7 @@ const Footer = () => {
         </div>
         
         <div className="mt-12 pt-6 border-t border-gray-800 text-center text-gray-500 text-sm">
-          © {new Date().getFullYear()} Aceternity UI. All rights reserved.
+          © {new Date().getFullYear()} UIinfinity. All rights reserved.
         </div>
       </div>
     </footer>

@@ -192,7 +192,7 @@ const Index = () => {
               Ready to Build Something Amazing?
             </h2>
             <p className="text-gray-400 text-lg mb-8">
-              Get started with Aceternity UI today and transform your projects.
+              Get started with  UIinfinity today and transform your projects.
             </p>
             
             <div className="flex flex-wrap gap-4 justify-center">
