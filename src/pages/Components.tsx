@@ -1,5 +1,5 @@
-
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Footer from '@/components/Footer';
 import { Search } from 'lucide-react';
 import { TiltCard } from '@/components/ui/tilt-card';
@@ -8,10 +8,11 @@ import { GlassCard } from '@/components/ui/glass-card';
 import { Magnetic } from '@/components/ui/magnetic';
 import { Sparkles } from '@/components/ui/sparkles';
 import { GradientBorder } from '@/components/ui/gradient-border';
-import { RevealImage } from '@/components/ui/reveal-image';
 import { Button } from '@/components/ui/button';
+import { motion } from 'framer-motion';
 
 const Components = () => {
+  const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
   const [activeCategory, setActiveCategory] = useState('All');
 
@@ -28,6 +29,17 @@ const Components = () => {
     'Loaders',
     'Effects'
   ];
+
+  // Handle category click
+  const handleCategoryClick = (category: string) => {
+    setActiveCategory(category);
+    
+    // Navigate to specific category page if implemented
+    if (category === 'Buttons') {
+      navigate('/buttons');
+    }
+    // Add more category routes as they are implemented
+  };
 
   // Example components with our new additions
   const allComponents = [
@@ -107,14 +119,21 @@ const Components = () => {
                   {categories.map((category) => (
                     <li key={category}>
                       <button
-                        onClick={() => setActiveCategory(category)}
+                        onClick={() => handleCategoryClick(category)}
                         className={`w-full text-left px-3 py-2 rounded-md transition-colors ${
                           activeCategory === category
                             ? 'bg-neon-purple/20 text-neon-purple'
                             : 'hover:bg-white/5 text-gray-400 hover:text-white'
                         }`}
                       >
-                        {category}
+                        <motion.span
+                          initial={{ x: 0 }}
+                          whileHover={{ x: 4 }}
+                          transition={{ type: "spring", stiffness: 300 }}
+                          className="inline-block"
+                        >
+                          {category}
+                        </motion.span>
                       </button>
                     </li>
                   ))}
@@ -190,7 +209,7 @@ const Components = () => {
                 </div>
               </div>
 
-              {/* Component grid */}
+              {/* Component cards */}
               <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
                 {filteredComponents.length > 0 ? (
                   filteredComponents.map((component, index) => (
@@ -225,7 +244,14 @@ const ResourceLink = ({ href, children }: { href: string, children: React.ReactN
       href={href} 
       className="block px-3 py-2 text-gray-400 hover:text-neon-purple transition-colors"
     >
-      {children}
+      <motion.span
+        initial={{ x: 0 }}
+        whileHover={{ x: 4 }}
+        transition={{ type: "spring", stiffness: 300 }}
+        className="inline-block"
+      >
+        {children}
+      </motion.span>
     </a>
   </li>
 );

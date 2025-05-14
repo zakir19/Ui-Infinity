@@ -2,11 +2,11 @@
 "use client"
 
 import * as React from "react"
-import { motion, useMotionValue, useSpring, useTransform, HTMLMotionProps } from "framer-motion"
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion"
 
 import { cn } from "@/lib/utils"
 
-interface TiltCardProps extends Omit<HTMLMotionProps<"div">, "ref"> {
+interface TiltCardProps extends React.HTMLAttributes<HTMLDivElement> {
   as?: React.ElementType
   tiltAmount?: number
   glareAmount?: number
