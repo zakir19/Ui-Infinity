@@ -31,7 +31,6 @@ const TiltCard = React.forwardRef<HTMLDivElement, TiltCardProps>(
     const y = useMotionValue(0)
     const glareX = useMotionValue(100)
     const glareY = useMotionValue(100)
-    const rotate = useMotionValue(0)
     
     const springConfig = { damping: 20, stiffness: 300 }
     const rotateX = useSpring(useTransform(y, [-100, 100], [tiltAmount, -tiltAmount]), springConfig)

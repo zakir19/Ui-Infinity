@@ -3,9 +3,17 @@ import React, { useEffect } from 'react';
 import HeroSection from '@/components/HeroSection';
 import ComponentCard from '@/components/ComponentCard';
 import Footer from '@/components/Footer';
+import ButtonPreview from '@/components/previews/ButtonPreview';
+import CardPreview from '@/components/previews/CardPreview';
+import ModalPreview from '@/components/previews/ModalPreview';
+import FormPreview from '@/components/previews/FormPreview';
+import NavigationPreview from '@/components/previews/NavigationPreview';
+import LayoutPreview from '@/components/previews/LayoutPreview';
+import FeedbackPreview from '@/components/previews/FeedbackPreview';
+import EffectPreview from '@/components/previews/EffectPreview';
 
 const Index = () => {
-  // This would be replaced with real GSAP code in production
+  // This would be replaced with real GSAP animations in production
   useEffect(() => {
     // Simulate GSAP animations with CSS animations
     const animatedElements = document.querySelectorAll('.animate-on-scroll');
@@ -35,37 +43,53 @@ const Index = () => {
     {
       title: 'Animated Buttons',
       description: 'Beautiful buttons with hover effects and animations.',
-      tag: 'Popular'
+      tag: 'Popular',
+      linkTo: '/buttons',
+      previewElement: <ButtonPreview />
     },
     {
       title: '3D Cards',
       description: 'Interactive cards with 3D tilt effects and smooth transitions.',
-      tag: 'New'
+      tag: 'New',
+      linkTo: '/cards',
+      previewElement: <CardPreview />
     },
     {
       title: 'Modals',
       description: 'Animated modals with customizable entrances and exits.',
-      tag: 'Updated'
+      tag: 'Updated',
+      linkTo: '/modals',
+      previewElement: <ModalPreview />
     },
     {
       title: 'Tooltips & Popovers',
-      description: 'Informative tooltips with smooth fade transitions.'
+      description: 'Informative tooltips with smooth fade transitions.',
+      linkTo: '/feedback',
+      previewElement: <FeedbackPreview />
     },
     {
       title: 'Form Inputs',
-      description: 'Stylish form controls with validation feedback.'
+      description: 'Stylish form controls with validation feedback.',
+      linkTo: '/forms',
+      previewElement: <FormPreview />
     },
     {
       title: 'Navigation',
-      description: 'Responsive navigation bars and menus.'
+      description: 'Responsive navigation bars and menus.',
+      linkTo: '/navigation',
+      previewElement: <NavigationPreview />
     },
     {
-      title: 'Loaders',
-      description: 'Beautiful loading indicators and spinners.'
+      title: 'Layouts',
+      description: 'Structural components for page organization.',
+      linkTo: '/layout',
+      previewElement: <LayoutPreview />
     },
     {
-      title: 'Accordions & Tabs',
-      description: 'Collapsible content sections with smooth animations.'
+      title: 'Effects',
+      description: 'Visual interactions and animations.',
+      linkTo: '/effects',
+      previewElement: <EffectPreview />
     },
   ];
 
@@ -192,7 +216,7 @@ const Index = () => {
               Ready to Build Something Amazing?
             </h2>
             <p className="text-gray-400 text-lg mb-8">
-              Get started with  UIinfinity today and transform your projects.
+              Get started with UIinfinity today and transform your projects.
             </p>
             
             <div className="flex flex-wrap gap-4 justify-center">

@@ -1,5 +1,6 @@
 
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 interface ComponentCardProps {
   title: string;
@@ -7,6 +8,7 @@ interface ComponentCardProps {
   imageUrl?: string;
   previewElement?: React.ReactNode;
   tag?: string;
+  linkTo?: string;
 }
 
 const ComponentCard: React.FC<ComponentCardProps> = ({
@@ -14,22 +16,13 @@ const ComponentCard: React.FC<ComponentCardProps> = ({
   description,
   imageUrl,
   previewElement,
-  tag = 'New'
+  tag = 'New',
+  linkTo
 }) => {
   const [isHovered, setIsHovered] = useState(false);
-
-  return (
-    <div 
-      className="glass-morphism rounded-xl overflow-hidden relative group transition-all duration-300"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      style={{
-        transform: isHovered ? 'translateY(-8px)' : 'translateY(0)',
-        boxShadow: isHovered 
-          ? '0 20px 30px -10px rgba(155, 135, 245, 0.15)'
-          : '0 10px 20px -10px rgba(0, 0, 0, 0.2)'
-      }}
-    >
+  
+  const CardContent = () => (
+    <>
       {/* Tag */}
       {tag && (
         <div className="absolute top-4 right-4 bg-neon-purple/80 py-1 px-2 rounded-full text-xs font-medium">
@@ -69,6 +62,28 @@ const ComponentCard: React.FC<ComponentCardProps> = ({
           </div>
         </div>
       </div>
+    </>
+  );
+
+  return (
+    <div 
+      className="glass-morphism rounded-xl overflow-hidden relative group transition-all duration-300"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      style={{
+        transform: isHovered ? 'translateY(-8px)' : 'translateY(0)',
+        boxShadow: isHovered 
+          ? '0 20px 30px -10px rgba(155, 135, 245, 0.15)'
+          : '0 10px 20px -10px rgba(0, 0, 0, 0.2)'
+      }}
+    >
+      {linkTo ? (
+        <Link to={linkTo} className="block h-full">
+          <CardContent />
+        </Link>
+      ) : (
+        <CardContent />
+      )}
     </div>
   );
 };
