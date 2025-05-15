@@ -47,7 +47,7 @@ const Index = () => {
     };
   }, []);
 
-  // Example components showcase data
+  // Example components showcase data - updated with new categories
   const components = [
     {
       title: 'Animated Buttons',
@@ -99,6 +99,55 @@ const Index = () => {
       description: 'Visual interactions and animations.',
       linkTo: '/effects',
       previewElement: <EffectPreview />
+    },
+    {
+      title: 'Typography',
+      description: 'Beautifully animated and styled text components.',
+      tag: 'New',
+      linkTo: '/components',
+      previewElement: (
+        <div className="w-full h-full flex items-center justify-center">
+          <div className="text-center">
+            <div className="bg-gradient-to-r from-neon-purple to-neon-cyan text-transparent bg-clip-text font-bold">Typography</div>
+          </div>
+        </div>
+      )
+    },
+    {
+      title: 'Animated Grids',
+      description: 'Modern grid layouts with entrance animations.',
+      tag: 'New',
+      linkTo: '/components',
+      previewElement: (
+        <div className="w-full h-full grid grid-cols-2 gap-1 p-1">
+          <div className="bg-neon-purple/20 rounded-sm"></div>
+          <div className="bg-white/10 rounded-sm"></div>
+          <div className="bg-white/10 rounded-sm"></div>
+          <div className="bg-neon-purple/20 rounded-sm"></div>
+        </div>
+      )
+    },
+    {
+      title: '3D Effects',
+      description: 'Immersive 3D transformations and interactions.',
+      tag: 'New',
+      linkTo: '/components',
+      previewElement: (
+        <div className="w-full h-full flex items-center justify-center">
+          <div className="w-8 h-8 bg-neon-purple/40 rounded transform rotate-12 perspective-[800px] shadow-lg"></div>
+        </div>
+      )
+    },
+    {
+      title: 'Motion Effects',
+      description: 'Fluid animations and transitions for elements.',
+      tag: 'New',
+      linkTo: '/components',
+      previewElement: (
+        <div className="w-full h-full flex items-center justify-center">
+          <div className="w-6 h-6 bg-neon-cyan/40 rounded-full animate-ping"></div>
+        </div>
+      )
     },
   ];
 
@@ -185,7 +234,7 @@ const Index = () => {
         </div>
       </section>
       
-      {/* Testimonials section - Replaced with the new GSAP-powered TestimonialsSection */}
+      {/* Testimonials section */}
       <TestimonialsSection />
       
       {/* CTA Section */}
