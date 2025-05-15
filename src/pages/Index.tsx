@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import HeroSection from '@/components/HeroSection';
 import ComponentCard from '@/components/ComponentCard';
@@ -11,30 +10,40 @@ import NavigationPreview from '@/components/previews/NavigationPreview';
 import LayoutPreview from '@/components/previews/LayoutPreview';
 import FeedbackPreview from '@/components/previews/FeedbackPreview';
 import EffectPreview from '@/components/previews/EffectPreview';
+import TestimonialsSection from '@/components/TestimonialsSection';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Index = () => {
-  // This would be replaced with real GSAP animations in production
+  // Initialize GSAP animations
   useEffect(() => {
-    // Simulate GSAP animations with CSS animations
+    // Animate elements that have the animate-on-scroll class
     const animatedElements = document.querySelectorAll('.animate-on-scroll');
     
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('animate-fade-in');
-          observer.unobserve(entry.target);
+    animatedElements.forEach((el, index) => {
+      gsap.fromTo(
+        el,
+        { y: 30, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.8,
+          delay: index * 0.1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: el,
+            start: "top bottom-=100",
+            toggleActions: "play none none none"
+          }
         }
-      });
-    }, { threshold: 0.1 });
-    
-    animatedElements.forEach(el => {
-      observer.observe(el);
+      );
     });
     
     return () => {
-      animatedElements.forEach(el => {
-        observer.unobserve(el);
-      });
+      // Cleanup all ScrollTriggers when component unmounts
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
     };
   }, []);
 
@@ -176,37 +185,8 @@ const Index = () => {
         </div>
       </section>
       
-      {/* Testimonials section */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="text-center max-w-3xl mx-auto mb-16 animate-on-scroll opacity-0">
-            <h2 className="text-3xl md:text-4xl font-bold text-gradient mb-4">
-              Loved by Developers
-            </h2>
-            <p className="text-gray-400 text-lg">
-              Don't just take our word for it. Here's what the community has to say.
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <TestimonialCard 
-              quote="These components saved me countless hours. The animations are buttery smooth and the code is clean and maintainable."
-              name="Alex Johnson"
-              title="Frontend Developer"
-            />
-            <TestimonialCard 
-              quote="I've never seen a UI library that combines beautiful aesthetics with performance this well. The 3D effects are amazing."
-              name="Sarah Chen"
-              title="UI Designer"
-            />
-            <TestimonialCard 
-              quote="The documentation is excellent and the components are incredibly easy to customize. This is now my go-to library."
-              name="Michael Rodriguez"
-              title="Software Engineer"
-            />
-          </div>
-        </div>
-      </section>
+      {/* Testimonials section - Replaced with the new GSAP-powered TestimonialsSection */}
+      <TestimonialsSection />
       
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-b from-black/0 to-black/40">
@@ -250,22 +230,6 @@ const FeatureCard = ({ title, description, icon }: { title: string, description:
     <div className="text-3xl mb-4">{icon}</div>
     <h3 className="text-xl font-medium text-white mb-2">{title}</h3>
     <p className="text-gray-400">{description}</p>
-  </div>
-);
-
-const TestimonialCard = ({ quote, name, title }: { quote: string, name: string, title: string }) => (
-  <div className="glass-morphism p-6 rounded-xl animate-on-scroll opacity-0">
-    <div className="mb-4 text-neon-purple">"</div>
-    <p className="text-gray-300 italic mb-6">{quote}</p>
-    <div className="flex items-center gap-3">
-      <div className="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center">
-        {name.charAt(0)}
-      </div>
-      <div>
-        <p className="text-white font-medium">{name}</p>
-        <p className="text-gray-400 text-sm">{title}</p>
-      </div>
-    </div>
   </div>
 );
 
