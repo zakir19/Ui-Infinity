@@ -2,17 +2,18 @@
 "use client"
 
 import * as React from "react"
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion"
+import { motion, useMotionValue, useSpring, useTransform, type MotionProps } from "framer-motion"
 
 import { cn } from "@/lib/utils"
 
-interface TiltCardProps extends React.HTMLAttributes<HTMLDivElement> {
+interface TiltCardProps extends Omit<MotionProps, "ref"> {
   as?: React.ElementType
   tiltAmount?: number
   glareAmount?: number
   borderRadius?: number
   glareColor?: string
   scale?: number
+  className?: string
 }
 
 const TiltCard = React.forwardRef<HTMLDivElement, TiltCardProps>(
@@ -31,7 +32,6 @@ const TiltCard = React.forwardRef<HTMLDivElement, TiltCardProps>(
     const y = useMotionValue(0)
     const glareX = useMotionValue(100)
     const glareY = useMotionValue(100)
-    const rotate = useMotionValue(0)
     
     const springConfig = { damping: 20, stiffness: 300 }
     const rotateX = useSpring(useTransform(y, [-100, 100], [tiltAmount, -tiltAmount]), springConfig)
@@ -68,7 +68,7 @@ const TiltCard = React.forwardRef<HTMLDivElement, TiltCardProps>(
     }
     
     // Create string values for background gradient to avoid using MotionValues directly in the JSX
-    const [gradientPosition, setGradientPosition] = React.useState<string>(`100% 100%`)
+    const [gradientPosition, setGradientPosition] = React.useState<string>("100% 100%")
     
     // Update the gradient position string whenever the spring values change
     React.useEffect(() => {
@@ -96,8 +96,8 @@ const TiltCard = React.forwardRef<HTMLDivElement, TiltCardProps>(
         onMouseLeave={onMouseLeave}
         style={{
           transformStyle: "preserve-3d",
-          rotateX,
-          rotateY,
+          rotateX, // Use MotionValue directly
+          rotateY, // Use MotionValue directly
           borderRadius: `${borderRadius}px`,
         }}
         whileHover={{ scale }}

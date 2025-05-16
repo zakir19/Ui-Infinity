@@ -5,6 +5,7 @@ import { GradientButton } from '@/components/ui/gradient-button';
 import { Magnetic } from '@/components/ui/magnetic';
 import { Sparkles } from '@/components/ui/sparkles';
 import { ArrowRight } from 'lucide-react';
+import { CopyButton } from '@/components/ui/copy-button';
 import Footer from '@/components/Footer';
 
 const ButtonComponents = () => {
@@ -29,7 +30,12 @@ const ButtonComponents = () => {
             {/* Standard Button */}
             <ButtonShowcase 
               title="Standard Button"
-              description="Clean, minimal button with multiple variants">
+              description="Clean, minimal button with multiple variants"
+              code={`<Button variant="default">Default Button</Button>
+<Button variant="destructive">Destructive Button</Button>
+<Button variant="outline">Outline Button</Button>
+<Button variant="secondary">Secondary Button</Button>
+<Button variant="ghost">Ghost Button</Button>`}>
               <div className="flex flex-col gap-4">
                 <Button variant="default">Default Button</Button>
                 <Button variant="destructive">Destructive Button</Button>
@@ -42,7 +48,10 @@ const ButtonComponents = () => {
             {/* Gradient Button */}
             <ButtonShowcase 
               title="Gradient Button"
-              description="Buttons with beautiful gradient backgrounds">
+              description="Buttons with beautiful gradient backgrounds"
+              code={`<GradientButton variant="purple">Purple Gradient</GradientButton>
+<GradientButton variant="blue">Blue Gradient</GradientButton>
+<GradientButton variant="pink">Pink Gradient</GradientButton>`}>
               <div className="flex flex-col gap-4">
                 <GradientButton variant="purple">Purple Gradient</GradientButton>
                 <GradientButton variant="blue">Blue Gradient</GradientButton>
@@ -53,7 +62,18 @@ const ButtonComponents = () => {
             {/* Icon Button */}
             <ButtonShowcase 
               title="Icon Button"
-              description="Buttons with integrated icons">
+              description="Buttons with integrated icons"
+              code={`<Button>
+  Continue
+  <ArrowRight className="ml-2 h-4 w-4" />
+</Button>
+<Button variant="outline">
+  View More
+  <ArrowRight className="ml-2 h-4 w-4" />
+</Button>
+<Button variant="secondary" size="icon">
+  <ArrowRight className="h-4 w-4" />
+</Button>`}>
               <div className="flex flex-col gap-4">
                 <Button>
                   Continue
@@ -72,7 +92,12 @@ const ButtonComponents = () => {
             {/* Magnetic Button */}
             <ButtonShowcase 
               title="Magnetic Button"
-              description="Button with magnetic cursor attraction effect">
+              description="Button with magnetic cursor attraction effect"
+              code={`<Magnetic>
+  <Button className="bg-gradient-to-r from-neon-purple to-neon-cyan text-white border border-white/20 px-8 py-6">
+    Magnetic Button
+  </Button>
+</Magnetic>`}>
               <Magnetic>
                 <Button className="bg-gradient-to-r from-neon-purple to-neon-cyan text-white border border-white/20 px-8 py-6">
                   Magnetic Button
@@ -83,7 +108,10 @@ const ButtonComponents = () => {
             {/* Sparkle Button */}
             <ButtonShowcase 
               title="Sparkle Button"
-              description="Button with sparkle text effect">
+              description="Button with sparkle text effect"
+              code={`<Button variant="outline" className="border-neon-purple/50">
+  <Sparkles>Sparkle Effect</Sparkles>
+</Button>`}>
               <Button variant="outline" className="border-neon-purple/50">
                 <Sparkles>Sparkle Effect</Sparkles>
               </Button>
@@ -92,7 +120,10 @@ const ButtonComponents = () => {
             {/* Size Variants */}
             <ButtonShowcase 
               title="Button Sizes"
-              description="Different size variants for buttons">
+              description="Different size variants for buttons"
+              code={`<Button size="lg">Large Button</Button>
+<Button size="default">Default Size</Button>
+<Button size="sm">Small Button</Button>`}>
               <div className="flex flex-col gap-4">
                 <Button size="lg">Large Button</Button>
                 <Button size="default">Default Size</Button>
@@ -152,14 +183,19 @@ export default function MyComponent() {
 const ButtonShowcase = ({ 
   title, 
   description, 
-  children 
+  children,
+  code 
 }: { 
   title: string; 
   description: string; 
-  children: React.ReactNode 
+  children: React.ReactNode;
+  code: string;
 }) => {
   return (
-    <div className="glass-morphism rounded-xl overflow-hidden hover:border-neon-purple/30 transition-colors">
+    <div className="glass-morphism rounded-xl overflow-hidden hover:border-neon-purple/30 transition-colors group relative">
+      {/* Copy Code Button */}
+      <CopyButton code={code} />
+      
       {/* Component info */}
       <div className="p-4 border-b border-white/10">
         <h3 className="text-white font-medium">{title}</h3>

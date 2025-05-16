@@ -16,7 +16,7 @@ const Components = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [activeCategory, setActiveCategory] = useState('All');
 
-  // Component categories
+  // Component categories - Added new categories from ui.aceternity.com
   const categories = [
     'All',
     'Buttons',
@@ -26,7 +26,16 @@ const Components = () => {
     'Modals',
     'Layout',
     'Feedback',
-    'Effects'
+    'Effects',
+    'Animation',
+    'Typography',
+    'Loaders',
+    'Grids',
+    'Hover',
+    'Backgrounds',
+    'Inputs',
+    'Sliders',
+    '3D Effects'
   ];
 
   // Handle category click
@@ -59,38 +68,96 @@ const Components = () => {
       case 'Effects':
         navigate('/effects');
         break;
+      // We won't navigate for the new categories yet
       default:
         // If 'All' or any other category, stay on current page
         break;
     }
   };
 
-  // Example components with our new additions
+  // Example components with new additions from aceternity UI
   const allComponents = [
+    // ... keep existing code (Button components)
     { name: 'Button', category: 'Buttons', description: 'Standard button with multiple variants', isNew: false },
     { name: 'Gradient Button', category: 'Buttons', description: 'Buttons with beautiful gradient backgrounds', isNew: true },
     { name: 'Icon Button', category: 'Buttons', description: 'Compact buttons with icons', isNew: false },
     { name: 'Magnetic Button', category: 'Buttons', description: 'Button that follows cursor with magnetic effect', isNew: true },
+    
+    // ... keep existing code (Card components)
     { name: 'Card', category: 'Cards', description: 'Standard card component with header, body, and footer', isNew: false },
     { name: '3D Card', category: 'Cards', description: 'Interactive card with 3D tilt effect', isNew: true },
     { name: 'Glass Card', category: 'Cards', description: 'Modern glassmorphism card with blur effect', isNew: true },
     { name: 'Gradient Border Card', category: 'Cards', description: 'Card with animated gradient border', isNew: true },
     { name: 'Profile Card', category: 'Cards', description: 'Specialized card for user profiles', isNew: false },
+    
+    // ... keep existing code (Navigation components)
     { name: 'Navbar', category: 'Navigation', description: 'Responsive navigation bar', isNew: false },
     { name: 'Tabs', category: 'Navigation', description: 'Tabbed interface for content organization', isNew: false },
     { name: 'Dropdown', category: 'Navigation', description: 'Toggleable menu for additional options', isNew: false },
+    
+    // ... keep existing code (Form components)
     { name: 'Text Input', category: 'Forms', description: 'Standard text input field', isNew: false },
     { name: 'Select', category: 'Forms', description: 'Dropdown select component', isNew: false },
     { name: 'Checkbox', category: 'Forms', description: 'Interactive checkbox component', isNew: false },
+    
+    // ... keep existing code (Modal components)
     { name: 'Modal', category: 'Modals', description: 'Standard modal dialog', isNew: false },
     { name: 'Drawer', category: 'Modals', description: 'Side-sliding panel', isNew: false },
+    
+    // ... keep existing code (Feedback components)
     { name: 'Tooltip', category: 'Feedback', description: 'Contextual tooltips for UI elements', isNew: false },
     { name: 'Toast', category: 'Feedback', description: 'Non-disruptive notifications', isNew: false },
+    
+    // ... keep existing code (Loader components)
     { name: 'Spinner', category: 'Loaders', description: 'Animated loading spinner', isNew: false },
     { name: 'Progress Bar', category: 'Loaders', description: 'Visual indicator of progress', isNew: false },
+    
+    // ... keep existing code (Effect components)
     { name: 'Reveal Image', category: 'Effects', description: 'Image with reveal animation and parallax effect', isNew: true },
     { name: 'Spotlight Effect', category: 'Effects', description: 'Interactive spotlight that follows the cursor', isNew: true },
     { name: 'Text Sparkles', category: 'Effects', description: 'Text with animated sparkle effect', isNew: true },
+    
+    // New components from aceternity ui
+    // Animation category
+    { name: 'Float Animation', category: 'Animation', description: 'Elements that float up and down subtly', isNew: true },
+    { name: 'Bento Grid Animation', category: 'Animation', description: 'Grid with staggered animations', isNew: true },
+    { name: 'Typewriter Effect', category: 'Animation', description: 'Text that types itself out', isNew: true },
+    { name: 'Scroll Progress', category: 'Animation', description: 'Visual indicator of scroll position', isNew: true },
+    
+    // Typography category
+    { name: 'Animated Heading', category: 'Typography', description: 'Headings with entrance animations', isNew: true },
+    { name: 'Gradient Text', category: 'Typography', description: 'Text with color gradients', isNew: true },
+    { name: 'Animated Text', category: 'Typography', description: 'Text with various animation effects', isNew: true },
+    
+    // Grids category
+    { name: 'Bento Grid', category: 'Grids', description: 'Modern asymmetric grid layout', isNew: true },
+    { name: 'Masonry Grid', category: 'Grids', description: 'Pinterest-style variable height grid', isNew: true },
+    { name: 'Wavy Grid', category: 'Grids', description: 'Grid with wavy animation effects', isNew: true },
+    
+    // Hover category
+    { name: 'Glow Hover', category: 'Hover', description: 'Elements that glow on hover', isNew: true },
+    { name: 'Magnet Hover', category: 'Hover', description: 'Elements that attract to cursor', isNew: true },
+    { name: 'Direction-aware Hover', category: 'Hover', description: 'Hover effects based on cursor direction', isNew: true },
+    
+    // Backgrounds category
+    { name: 'Animated Gradient', category: 'Backgrounds', description: 'Smooth animated gradient backgrounds', isNew: true },
+    { name: 'Particle Background', category: 'Backgrounds', description: 'Interactive particle system background', isNew: true },
+    { name: 'Mesh Gradient', category: 'Backgrounds', description: 'Modern mesh-style gradients', isNew: true },
+    
+    // Inputs category
+    { name: 'Animated Checkbox', category: 'Inputs', description: 'Checkboxes with smooth animations', isNew: true },
+    { name: 'Floating Label', category: 'Inputs', description: 'Inputs with animated floating labels', isNew: true },
+    { name: 'Animated Radio', category: 'Inputs', description: 'Radio buttons with animations', isNew: true },
+    
+    // Sliders category
+    { name: 'Range Slider', category: 'Sliders', description: 'Interactive range selection slider', isNew: true },
+    { name: 'Image Carousel', category: 'Sliders', description: 'Animated image carousel', isNew: true },
+    { name: 'Progress Slider', category: 'Sliders', description: 'Sliders showing progress or completion', isNew: true },
+    
+    // 3D Effects category
+    { name: '3D Transform', category: '3D Effects', description: 'Elements with 3D transformation effects', isNew: true },
+    { name: 'Parallax Depth', category: '3D Effects', description: 'Layered elements with parallax depth', isNew: true },
+    { name: '3D Button', category: '3D Effects', description: 'Buttons with 3D press effects', isNew: true },
   ];
 
   // Filter components by search query and active category
@@ -139,29 +206,31 @@ const Components = () => {
               {/* Categories */}
               <div className="glass-morphism p-4 rounded-xl">
                 <h3 className="text-white font-medium mb-3">Categories</h3>
-                <ul className="space-y-1">
-                  {categories.map((category) => (
-                    <li key={category}>
-                      <button
-                        onClick={() => handleCategoryClick(category)}
-                        className={`w-full text-left px-3 py-2 rounded-md transition-colors ${
-                          activeCategory === category
-                            ? 'bg-neon-purple/20 text-neon-purple'
-                            : 'hover:bg-white/5 text-gray-400 hover:text-white'
-                        }`}
-                      >
-                        <motion.span
-                          initial={{ x: 0 }}
-                          whileHover={{ x: 4 }}
-                          transition={{ type: "spring", stiffness: 300 }}
-                          className="inline-block"
+                <div className="max-h-[400px] overflow-y-auto pr-2 scrollbar-thin">
+                  <ul className="space-y-1">
+                    {categories.map((category) => (
+                      <li key={category}>
+                        <button
+                          onClick={() => handleCategoryClick(category)}
+                          className={`w-full text-left px-3 py-2 rounded-md transition-colors ${
+                            activeCategory === category
+                              ? 'bg-neon-purple/20 text-neon-purple'
+                              : 'hover:bg-white/5 text-gray-400 hover:text-white'
+                          }`}
                         >
-                          {category}
-                        </motion.span>
-                      </button>
-                    </li>
-                  ))}
-                </ul>
+                          <motion.span
+                            initial={{ x: 0 }}
+                            whileHover={{ x: 4 }}
+                            transition={{ type: "spring", stiffness: 300 }}
+                            className="inline-block"
+                          >
+                            {category}
+                          </motion.span>
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
               
               {/* Quick Links */}
@@ -178,10 +247,11 @@ const Components = () => {
             
             {/* Component grid */}
             <div className="lg:w-3/4">
-              {/* Featured components showcase */}
+              {/* Featured categories showcase */}
               <div className="mb-12">
                 <h2 className="text-2xl font-semibold text-white mb-6">Featured Categories</h2>
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                  {/* Original categories */}
                   <CategoryCard
                     title="Buttons"
                     description="Interactive UI elements for actions"
@@ -222,10 +292,32 @@ const Components = () => {
                     description="Visual interactions and animations"
                     onClick={() => navigate('/effects')}
                   />
+                  
+                  {/* New categories from aceternity */}
+                  <CategoryCard
+                    title="Animation"
+                    description="Motion and transition effects"
+                    onClick={() => setActiveCategory('Animation')}
+                  />
+                  <CategoryCard
+                    title="Typography"
+                    description="Text styling and animations"
+                    onClick={() => setActiveCategory('Typography')}
+                  />
+                  <CategoryCard
+                    title="Grids"
+                    description="Modern layout systems"
+                    onClick={() => setActiveCategory('Grids')}
+                  />
+                  <CategoryCard
+                    title="3D Effects"
+                    description="Depth and perspective elements"
+                    onClick={() => setActiveCategory('3D Effects')}
+                  />
                 </div>
               </div>
 
-              {/* Featured components showcase */}
+              {/* Featured components showcase - keep existing */}
               <div className="mb-12">
                 <h2 className="text-2xl font-semibold text-white mb-6">Featured Components</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -279,6 +371,33 @@ const Components = () => {
                   </div>
                 </div>
               </div>
+              
+              {/* Components grid based on filters */}
+              {filteredComponents.length > 0 && (
+                <div>
+                  <h2 className="text-2xl font-semibold text-white mb-6">
+                    {activeCategory === 'All' ? 'All Components' : activeCategory + ' Components'}
+                  </h2>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {filteredComponents.map((component, index) => (
+                      <div key={index} className="animate-on-scroll opacity-0">
+                        <ComponentItem
+                          name={component.name}
+                          description={component.description}
+                          isNew={component.isNew}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+              
+              {filteredComponents.length === 0 && (
+                <div className="text-center py-12">
+                  <h3 className="text-white text-xl mb-2">No components found</h3>
+                  <p className="text-gray-400">Try adjusting your search or filter criteria</p>
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -329,6 +448,38 @@ const CategoryCard = ({
       </div>
       <h3 className="text-white font-medium mb-1">{title}</h3>
       <p className="text-gray-400 text-sm">{description}</p>
+    </div>
+  </motion.div>
+);
+
+// New component for individual component items
+const ComponentItem = ({ 
+  name, 
+  description, 
+  isNew 
+}: { 
+  name: string; 
+  description: string; 
+  isNew: boolean;
+}) => (
+  <motion.div 
+    className="glass-morphism rounded-xl overflow-hidden border border-white/10 hover:border-neon-purple/30 transition-colors h-full"
+    whileHover={{ scale: 1.02 }}
+    transition={{ type: "spring", stiffness: 400, damping: 17 }}
+  >
+    {isNew && (
+      <div className="absolute top-3 right-3 bg-neon-purple/80 py-1 px-2 rounded-full text-xs font-medium">
+        New
+      </div>
+    )}
+    <div className="p-5">
+      <h3 className="text-white font-medium mb-2">{name}</h3>
+      <p className="text-gray-400 text-sm">{description}</p>
+      <div className="mt-4 flex justify-between items-center">
+        <button className="text-neon-purple hover:text-neon-cyan text-sm font-medium transition-colors">
+          View Details
+        </button>
+      </div>
     </div>
   </motion.div>
 );

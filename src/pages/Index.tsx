@@ -1,73 +1,171 @@
+<<<<<<< HEAD
 import React, { useEffect, useState } from 'react';
+=======
+
+import React, { useEffect, useRef } from 'react';
+>>>>>>> 8a23076044291f8f4528391f1f827d457fc2555d
 import HeroSection from '@/components/HeroSection';
 import ComponentCard from '@/components/ComponentCard';
 import Footer from '@/components/Footer';
+import ButtonPreview from '@/components/previews/ButtonPreview';
+import CardPreview from '@/components/previews/CardPreview';
+import ModalPreview from '@/components/previews/ModalPreview';
+import FormPreview from '@/components/previews/FormPreview';
+import NavigationPreview from '@/components/previews/NavigationPreview';
+import LayoutPreview from '@/components/previews/LayoutPreview';
+import FeedbackPreview from '@/components/previews/FeedbackPreview';
+import EffectPreview from '@/components/previews/EffectPreview';
+import TestimonialsSection from '@/components/TestimonialsSection';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Index = () => {
-  // This would be replaced with real GSAP code in production
+  // Reference to elements for GSAP animations
+  const featuresRef = useRef<HTMLDivElement>(null);
+  const componentsRef = useRef<HTMLDivElement>(null);
+  const ctaRef = useRef<HTMLDivElement>(null);
+  
+  // Initialize GSAP animations with improved performance
   useEffect(() => {
-    // Simulate GSAP animations with CSS animations
-    const animatedElements = document.querySelectorAll('.animate-on-scroll');
+    // Use a single timeline for better performance
+    const tl = gsap.timeline();
     
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('animate-fade-in');
-          observer.unobserve(entry.target);
-        }
+    // Batch animations for better performance
+    const animateElements = document.querySelectorAll('.animate-on-scroll');
+    
+    // Create one ScrollTrigger with batch animations instead of many individual ones
+    if (animateElements.length > 0) {
+      gsap.set(animateElements, { y: 30, opacity: 0 });
+      
+      ScrollTrigger.batch(animateElements, {
+        start: "top bottom-=100",
+        onEnter: (batch) => gsap.to(batch, {
+          y: 0,
+          opacity: 1,
+          duration: 0.8,
+          stagger: 0.1,
+          ease: "power3.out"
+        }),
+        once: true
       });
-    }, { threshold: 0.1 });
-    
-    animatedElements.forEach(el => {
-      observer.observe(el);
-    });
+    }
     
     return () => {
-      animatedElements.forEach(el => {
-        observer.unobserve(el);
-      });
+      // Cleanup all ScrollTriggers when component unmounts
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
     };
   }, []);
 
+<<<<<<< HEAD
   // Add state for showing all components
   const [showAll, setShowAll] = useState(false);
 
   // Example components showcase data
+=======
+  // Example components showcase data - updated with new categories
+>>>>>>> 8a23076044291f8f4528391f1f827d457fc2555d
   const components = [
     {
       title: 'Animated Buttons',
       description: 'Beautiful buttons with hover effects and animations.',
-      tag: 'Popular'
+      tag: 'Popular',
+      linkTo: '/buttons',
+      previewElement: <ButtonPreview />
     },
     {
       title: '3D Cards',
       description: 'Interactive cards with 3D tilt effects and smooth transitions.',
-      tag: 'New'
+      tag: 'New',
+      linkTo: '/cards',
+      previewElement: <CardPreview />
     },
     {
       title: 'Modals',
       description: 'Animated modals with customizable entrances and exits.',
-      tag: 'Updated'
+      tag: 'Updated',
+      linkTo: '/modals',
+      previewElement: <ModalPreview />
     },
     {
       title: 'Tooltips & Popovers',
-      description: 'Informative tooltips with smooth fade transitions.'
+      description: 'Informative tooltips with smooth fade transitions.',
+      linkTo: '/feedback',
+      previewElement: <FeedbackPreview />
     },
     {
       title: 'Form Inputs',
-      description: 'Stylish form controls with validation feedback.'
+      description: 'Stylish form controls with validation feedback.',
+      linkTo: '/forms',
+      previewElement: <FormPreview />
     },
     {
       title: 'Navigation',
-      description: 'Responsive navigation bars and menus.'
+      description: 'Responsive navigation bars and menus.',
+      linkTo: '/navigation',
+      previewElement: <NavigationPreview />
     },
     {
-      title: 'Loaders',
-      description: 'Beautiful loading indicators and spinners.'
+      title: 'Layouts',
+      description: 'Structural components for page organization.',
+      linkTo: '/layout',
+      previewElement: <LayoutPreview />
     },
     {
-      title: 'Accordions & Tabs',
-      description: 'Collapsible content sections with smooth animations.'
+      title: 'Effects',
+      description: 'Visual interactions and animations.',
+      linkTo: '/effects',
+      previewElement: <EffectPreview />
+    },
+    {
+      title: 'Typography',
+      description: 'Beautifully animated and styled text components.',
+      tag: 'New',
+      linkTo: '/components',
+      previewElement: (
+        <div className="w-full h-full flex items-center justify-center">
+          <div className="text-center">
+            <div className="bg-gradient-to-r from-neon-purple to-neon-cyan text-transparent bg-clip-text font-bold">Typography</div>
+          </div>
+        </div>
+      )
+    },
+    {
+      title: 'Animated Grids',
+      description: 'Modern grid layouts with entrance animations.',
+      tag: 'New',
+      linkTo: '/components',
+      previewElement: (
+        <div className="w-full h-full grid grid-cols-2 gap-1 p-1">
+          <div className="bg-neon-purple/20 rounded-sm"></div>
+          <div className="bg-white/10 rounded-sm"></div>
+          <div className="bg-white/10 rounded-sm"></div>
+          <div className="bg-neon-purple/20 rounded-sm"></div>
+        </div>
+      )
+    },
+    {
+      title: '3D Effects',
+      description: 'Immersive 3D transformations and interactions.',
+      tag: 'New',
+      linkTo: '/components',
+      previewElement: (
+        <div className="w-full h-full flex items-center justify-center">
+          <div className="w-8 h-8 bg-neon-purple/40 rounded transform rotate-12 perspective-[800px] shadow-lg"></div>
+        </div>
+      )
+    },
+    {
+      title: 'Motion Effects',
+      description: 'Fluid animations and transitions for elements.',
+      tag: 'New',
+      linkTo: '/components',
+      previewElement: (
+        <div className="w-full h-full flex items-center justify-center">
+          <div className="w-6 h-6 bg-neon-cyan/40 rounded-full animate-ping"></div>
+        </div>
+      )
     },
   ];
 
@@ -80,7 +178,7 @@ const Index = () => {
       <HeroSection />
       
       {/* Features section */}
-      <section className="py-20" id="features">
+      <section className="py-20" id="features" ref={featuresRef}>
         <div className="container mx-auto px-4">
           <div className="text-center max-w-3xl mx-auto mb-16 animate-on-scroll opacity-0">
             <h2 className="text-3xl md:text-4xl font-bold text-gradient mb-4">
@@ -128,7 +226,7 @@ const Index = () => {
       </section>
       
       {/* Components showcase */}
-      <section className="py-20 bg-black/30" id="components">
+      <section className="py-20 bg-black/30" id="components" ref={componentsRef}>
         <div className="container mx-auto px-4">
           <div className="text-center max-w-3xl mx-auto mb-16 animate-on-scroll opacity-0">
             <h2 className="text-3xl md:text-4xl font-bold text-gradient mb-4">
@@ -139,9 +237,15 @@ const Index = () => {
             </p>
           </div>
           
+          {/* Use windowing for better performance with the component grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+<<<<<<< HEAD
             {displayedComponents.map((component, index) => (
               <div key={index} className="animate-on-scroll opacity-0" style={{ animationDelay: `${index * 0.1}s` }}>
+=======
+            {components.map((component, index) => (
+              <div key={index} className="animate-on-scroll opacity-0">
+>>>>>>> 8a23076044291f8f4528391f1f827d457fc2555d
                 <ComponentCard {...component} />
               </div>
             ))}
@@ -162,46 +266,17 @@ const Index = () => {
       </section>
       
       {/* Testimonials section */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="text-center max-w-3xl mx-auto mb-16 animate-on-scroll opacity-0">
-            <h2 className="text-3xl md:text-4xl font-bold text-gradient mb-4">
-              Loved by Developers
-            </h2>
-            <p className="text-gray-400 text-lg">
-              Don't just take our word for it. Here's what the community has to say.
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <TestimonialCard 
-              quote="These components saved me countless hours. The animations are buttery smooth and the code is clean and maintainable."
-              name="Alex Johnson"
-              title="Frontend Developer"
-            />
-            <TestimonialCard 
-              quote="I've never seen a UI library that combines beautiful aesthetics with performance this well. The 3D effects are amazing."
-              name="Sarah Chen"
-              title="UI Designer"
-            />
-            <TestimonialCard 
-              quote="The documentation is excellent and the components are incredibly easy to customize. This is now my go-to library."
-              name="Michael Rodriguez"
-              title="Software Engineer"
-            />
-          </div>
-        </div>
-      </section>
+      <TestimonialsSection />
       
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-b from-black/0 to-black/40">
+      <section className="py-20 bg-gradient-to-b from-black/0 to-black/40" ref={ctaRef}>
         <div className="container mx-auto px-4 text-center">
           <div className="max-w-3xl mx-auto animate-on-scroll opacity-0">
             <h2 className="text-3xl md:text-4xl font-bold text-gradient mb-4">
               Ready to Build Something Amazing?
             </h2>
             <p className="text-gray-400 text-lg mb-8">
-              Get started with  UIinfinity today and transform your projects.
+              Get started with UIinfinity today and transform your projects.
             </p>
             
             <div className="flex flex-wrap gap-4 justify-center">
@@ -235,22 +310,6 @@ const FeatureCard = ({ title, description, icon }: { title: string, description:
     <div className="text-3xl mb-4">{icon}</div>
     <h3 className="text-xl font-medium text-white mb-2">{title}</h3>
     <p className="text-gray-400">{description}</p>
-  </div>
-);
-
-const TestimonialCard = ({ quote, name, title }: { quote: string, name: string, title: string }) => (
-  <div className="glass-morphism p-6 rounded-xl animate-on-scroll opacity-0">
-    <div className="mb-4 text-neon-purple">"</div>
-    <p className="text-gray-300 italic mb-6">{quote}</p>
-    <div className="flex items-center gap-3">
-      <div className="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center">
-        {name.charAt(0)}
-      </div>
-      <div>
-        <p className="text-white font-medium">{name}</p>
-        <p className="text-gray-400 text-sm">{title}</p>
-      </div>
-    </div>
   </div>
 );
 
