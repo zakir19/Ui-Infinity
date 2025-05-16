@@ -1,5 +1,4 @@
-
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import HeroSection from '@/components/HeroSection';
 import ComponentCard from '@/components/ComponentCard';
 import Footer from '@/components/Footer';
@@ -29,6 +28,9 @@ const Index = () => {
       });
     };
   }, []);
+
+  // Add state for showing all components
+  const [showAll, setShowAll] = useState(false);
 
   // Example components showcase data
   const components = [
@@ -68,6 +70,10 @@ const Index = () => {
       description: 'Collapsible content sections with smooth animations.'
     },
   ];
+
+  // Determine how many components to show
+  const previewCount = 4;
+  const displayedComponents = showAll ? components : components.slice(0, previewCount);
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -134,7 +140,7 @@ const Index = () => {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {components.map((component, index) => (
+            {displayedComponents.map((component, index) => (
               <div key={index} className="animate-on-scroll opacity-0" style={{ animationDelay: `${index * 0.1}s` }}>
                 <ComponentCard {...component} />
               </div>
@@ -142,12 +148,15 @@ const Index = () => {
           </div>
           
           <div className="text-center mt-12">
-            <a 
-              href="/components" 
-              className="inline-block px-8 py-3 bg-gradient-to-r from-neon-purple to-neon-cyan rounded-md text-white font-medium hover:opacity-90 transition-all"
-            >
-              View All Components
-            </a>
+            {/* Show the button only if there are more components than the preview count */}
+            {components.length > previewCount && (
+              <button
+                onClick={() => setShowAll((prev) => !prev)}
+                className="inline-block px-8 py-3 bg-gradient-to-r from-neon-purple to-neon-cyan rounded-md text-white font-medium hover:opacity-90 transition-all"
+              >
+                {showAll ? 'Show Less' : 'Show All'}
+              </button>
+            )}
           </div>
         </div>
       </section>
