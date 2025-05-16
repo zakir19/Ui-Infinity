@@ -1,5 +1,7 @@
 
-import { useToast } from "@/components/ui/use-toast"
-import { toast } from "@/components/ui/use-toast"
+// Re-export the toast functionality from the UI component
+import { useToast as useToastOriginal, toast as toastOriginal } from "@/components/ui/toast"
 
-export { useToast, toast }
+// Export with the same names
+export const useToast = useToastOriginal
+export const toast = toastOriginal
