@@ -1,5 +1,4 @@
 
-import { Action } from "./types";
 import { dispatch } from "./store";
 
 export const TOAST_LIMIT = 10;

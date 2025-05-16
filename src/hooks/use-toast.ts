@@ -7,7 +7,8 @@ import {
 } from "@/components/ui/toast";
 
 // Import the toast functionality from the lib
-import { useToast as useToastHook, createToast } from "@/lib/toast";
+import { useToast as useToastHook } from "@/lib/toast";
+import { createToast } from "@/lib/toast";
 
 export type ToasterToast = ToastProps & {
   id: string;
