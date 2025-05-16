@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+
+import React, { useEffect, useRef } from 'react';
 import HeroSection from '@/components/HeroSection';
 import ComponentCard from '@/components/ComponentCard';
 import Footer from '@/components/Footer';
@@ -17,29 +18,35 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 const Index = () => {
-  // Initialize GSAP animations
+  // Reference to elements for GSAP animations
+  const featuresRef = useRef<HTMLDivElement>(null);
+  const componentsRef = useRef<HTMLDivElement>(null);
+  const ctaRef = useRef<HTMLDivElement>(null);
+  
+  // Initialize GSAP animations with improved performance
   useEffect(() => {
-    // Animate elements that have the animate-on-scroll class
-    const animatedElements = document.querySelectorAll('.animate-on-scroll');
+    // Use a single timeline for better performance
+    const tl = gsap.timeline();
     
-    animatedElements.forEach((el, index) => {
-      gsap.fromTo(
-        el,
-        { y: 30, opacity: 0 },
-        {
+    // Batch animations for better performance
+    const animateElements = document.querySelectorAll('.animate-on-scroll');
+    
+    // Create one ScrollTrigger with batch animations instead of many individual ones
+    if (animateElements.length > 0) {
+      gsap.set(animateElements, { y: 30, opacity: 0 });
+      
+      ScrollTrigger.batch(animateElements, {
+        start: "top bottom-=100",
+        onEnter: (batch) => gsap.to(batch, {
           y: 0,
           opacity: 1,
           duration: 0.8,
-          delay: index * 0.1,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: el,
-            start: "top bottom-=100",
-            toggleActions: "play none none none"
-          }
-        }
-      );
-    });
+          stagger: 0.1,
+          ease: "power3.out"
+        }),
+        once: true
+      });
+    }
     
     return () => {
       // Cleanup all ScrollTriggers when component unmounts
@@ -156,7 +163,7 @@ const Index = () => {
       <HeroSection />
       
       {/* Features section */}
-      <section className="py-20" id="features">
+      <section className="py-20" id="features" ref={featuresRef}>
         <div className="container mx-auto px-4">
           <div className="text-center max-w-3xl mx-auto mb-16 animate-on-scroll opacity-0">
             <h2 className="text-3xl md:text-4xl font-bold text-gradient mb-4">
@@ -204,7 +211,7 @@ const Index = () => {
       </section>
       
       {/* Components showcase */}
-      <section className="py-20 bg-black/30" id="components">
+      <section className="py-20 bg-black/30" id="components" ref={componentsRef}>
         <div className="container mx-auto px-4">
           <div className="text-center max-w-3xl mx-auto mb-16 animate-on-scroll opacity-0">
             <h2 className="text-3xl md:text-4xl font-bold text-gradient mb-4">
@@ -215,9 +222,10 @@ const Index = () => {
             </p>
           </div>
           
+          {/* Use windowing for better performance with the component grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {components.map((component, index) => (
-              <div key={index} className="animate-on-scroll opacity-0" style={{ animationDelay: `${index * 0.1}s` }}>
+              <div key={index} className="animate-on-scroll opacity-0">
                 <ComponentCard {...component} />
               </div>
             ))}
@@ -238,7 +246,7 @@ const Index = () => {
       <TestimonialsSection />
       
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-b from-black/0 to-black/40">
+      <section className="py-20 bg-gradient-to-b from-black/0 to-black/40" ref={ctaRef}>
         <div className="container mx-auto px-4 text-center">
           <div className="max-w-3xl mx-auto animate-on-scroll opacity-0">
             <h2 className="text-3xl md:text-4xl font-bold text-gradient mb-4">

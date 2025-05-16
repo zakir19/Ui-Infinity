@@ -32,18 +32,6 @@ const testimonials: Testimonial[] = [
     name: "Michael Rodriguez",
     title: "Software Engineer",
     image: "https://i.pravatar.cc/150?img=3"
-  },
-  {
-    quote: "UIinfinity has transformed our design workflow. My team is now shipping features twice as fast.",
-    name: "Emma Wilson",
-    title: "Product Manager",
-    image: "https://i.pravatar.cc/150?img=4"
-  },
-  {
-    quote: "The interactive components are a game changer. Our users love the micro-interactions and smooth transitions.",
-    name: "David Kim",
-    title: "UX Designer",
-    image: "https://i.pravatar.cc/150?img=5"
   }
 ];
 
@@ -57,8 +45,16 @@ const TestimonialsSection = () => {
 
     if (!section || !title) return;
 
-    // Animate the title and description
-    gsap.fromTo(
+    // Simplified animation with better performance
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: title,
+        start: "top 80%",
+        once: true
+      }
+    });
+
+    tl.fromTo(
       title.querySelectorAll("h2, p"),
       { y: 30, opacity: 0 },
       {
@@ -66,18 +62,17 @@ const TestimonialsSection = () => {
         opacity: 1,
         stagger: 0.2,
         duration: 0.8,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: title,
-          start: "top 80%",
-          toggleActions: "play none none none"
-        }
+        ease: "power3.out"
       }
     );
 
     return () => {
       // Cleanup
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+      ScrollTrigger.getAll().forEach(trigger => {
+        if (trigger.vars.trigger === title) {
+          trigger.kill();
+        }
+      });
     };
   }, []);
 
@@ -95,7 +90,7 @@ const TestimonialsSection = () => {
         
         {/* Desktop view - Grid display */}
         <div className="hidden lg:grid grid-cols-3 gap-8">
-          {testimonials.slice(0, 3).map((testimonial, index) => (
+          {testimonials.map((testimonial, index) => (
             <TestimonialCard 
               key={index} 
               {...testimonial}
@@ -104,7 +99,7 @@ const TestimonialsSection = () => {
           ))}
         </div>
         
-        {/* Mobile view - Carousel */}
+        {/* Mobile view - Carousel - Limited to only show 3 testimonials for better performance */}
         <div className="lg:hidden">
           <Carousel 
             opts={{
@@ -118,7 +113,7 @@ const TestimonialsSection = () => {
                 <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
                   <TestimonialCard 
                     {...testimonial}
-                    delay={index}
+                    delay={index * 0.1}
                   />
                 </CarouselItem>
               ))}

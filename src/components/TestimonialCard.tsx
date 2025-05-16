@@ -23,46 +23,25 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
   delay = 0
 }) => {
   const cardRef = useRef<HTMLDivElement>(null);
-  const quoteRef = useRef<HTMLDivElement>(null);
-  const avatarRef = useRef<HTMLDivElement>(null);
-  const infoRef = useRef<HTMLDivElement>(null);
-
+  
   useEffect(() => {
     const card = cardRef.current;
-    const quoteEl = quoteRef.current;
-    const avatarEl = avatarRef.current;
-    const infoEl = infoRef.current;
+    if (!card) return;
 
-    if (!card || !quoteEl || !avatarEl || !infoEl) return;
-
+    // Simplified animation with better performance
     const timeline = gsap.timeline({
       scrollTrigger: {
         trigger: card,
         start: "top bottom-=100",
-        toggleActions: "play none none none"
+        once: true
       }
     });
 
-    timeline
-      .fromTo(card, 
-        { y: 50, opacity: 0 }, 
-        { y: 0, opacity: 1, duration: 0.6, ease: "power3.out", delay: delay * 0.1 }
-      )
-      .fromTo(quoteEl,
-        { scale: 0.8, opacity: 0 },
-        { scale: 1, opacity: 1, duration: 0.5, ease: "back.out" },
-        "-=0.3"
-      )
-      .fromTo(avatarEl,
-        { x: -20, opacity: 0 },
-        { x: 0, opacity: 1, duration: 0.4, ease: "power2.out" },
-        "-=0.2"
-      )
-      .fromTo(infoEl,
-        { y: 10, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.4, ease: "power2.out" },
-        "-=0.2"
-      );
+    timeline.fromTo(
+      card, 
+      { y: 30, opacity: 0 }, 
+      { y: 0, opacity: 1, duration: 0.6, ease: "power3.out", delay: delay }
+    );
 
     return () => {
       timeline.kill();
@@ -73,22 +52,20 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
     <TiltCard 
       ref={cardRef}
       className={cn("p-6 rounded-xl backdrop-blur-lg bg-black/30 border border-white/10", className)}
-      tiltAmount={5}
-      glareAmount={0.15}
-      scale={1.02}
+      tiltAmount={3} // Reduced for better performance
+      glareAmount={0.1} // Reduced for better performance
+      scale={1.01} // Reduced for better performance
     >
-      <div ref={quoteRef} className="mb-4 text-5xl text-neon-purple">"</div>
+      <div className="mb-4 text-5xl text-neon-purple">"</div>
       <p className="text-gray-300 italic mb-6">{quote}</p>
       <div className="flex items-center gap-3">
-        <div ref={avatarRef}>
-          <Avatar className="h-10 w-10 border border-white/10">
-            <AvatarImage src={image} />
-            <AvatarFallback className="bg-neon-purple/20 text-neon-purple">
-              {name.charAt(0)}
-            </AvatarFallback>
-          </Avatar>
-        </div>
-        <div ref={infoRef}>
+        <Avatar className="h-10 w-10 border border-white/10">
+          <AvatarImage src={image} />
+          <AvatarFallback className="bg-neon-purple/20 text-neon-purple">
+            {name.charAt(0)}
+          </AvatarFallback>
+        </Avatar>
+        <div>
           <p className="text-white font-medium">{name}</p>
           <p className="text-gray-400 text-sm">{title}</p>
         </div>

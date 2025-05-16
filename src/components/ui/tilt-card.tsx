@@ -68,7 +68,7 @@ const TiltCard = React.forwardRef<HTMLDivElement, TiltCardProps>(
     }
     
     // Create string values for background gradient to avoid using MotionValues directly in the JSX
-    const [gradientPosition, setGradientPosition] = React.useState<string>(`100% 100%`)
+    const [gradientPosition, setGradientPosition] = React.useState<string>("100% 100%")
     
     // Update the gradient position string whenever the spring values change
     React.useEffect(() => {
