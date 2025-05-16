@@ -1,12 +1,13 @@
 
-// Re-export the toast functionality from the UI component
+// Import types from the UI component
 import {
   Toast,
   ToastActionElement,
   ToastProps
 } from "@/components/ui/toast";
 
-import { createToast, useToast as useToastHook } from "@/lib/toast";
+// Import the toast functionality from the lib
+import { useToast as useToastHook, createToast } from "@/lib/toast";
 
 export type ToasterToast = ToastProps & {
   id: string;
@@ -15,5 +16,8 @@ export type ToasterToast = ToastProps & {
   action?: ToastActionElement;
 };
 
-export const toast = createToast();
-export const useToast = useToastHook;
+// Create a new toast instance
+const toast = createToast();
+
+// Re-export the toast functionality
+export { toast, useToastHook as useToast };

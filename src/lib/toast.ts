@@ -8,6 +8,7 @@ export type ToastProps = {
   action?: React.ReactNode;
   variant?: "default" | "destructive";
   duration?: number;
+  onOpenChange?: (open: boolean) => void;
 };
 
 const TOAST_LIMIT = 10;
@@ -111,7 +112,7 @@ export const reducer = (state: State, action: Action): State => {
           t.id === toastId || toastId === undefined
             ? {
                 ...t,
-                open: false,
+                onOpenChange: t.onOpenChange ? t.onOpenChange : undefined,
               }
             : t
         ),
@@ -162,11 +163,11 @@ function createToast() {
       toast: {
         ...props,
         id,
-        open: true,
         onOpenChange: (open: boolean) => {
           if (!open) {
             dismiss();
           }
+          props.onOpenChange?.(open);
         },
       },
     });
