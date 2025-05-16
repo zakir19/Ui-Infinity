@@ -96,8 +96,8 @@ const TiltCard = React.forwardRef<HTMLDivElement, TiltCardProps>(
         onMouseLeave={onMouseLeave}
         style={{
           transformStyle: "preserve-3d",
-          rotateX, // This is safe because rotateX is a MotionValue that framer-motion knows how to handle
-          rotateY, // This is safe because rotateY is a MotionValue that framer-motion knows how to handle
+          rotateX: rotateX, // Specify explicitly as a MotionValue
+          rotateY: rotateY, // Specify explicitly as a MotionValue
           borderRadius: `${borderRadius}px`,
         }}
         whileHover={{ scale }}
