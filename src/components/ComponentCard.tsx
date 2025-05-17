@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { CopyButton } from '@/components/ui/copy-button';
 
 interface ComponentCardProps {
   title: string;
@@ -9,6 +10,7 @@ interface ComponentCardProps {
   previewElement?: React.ReactNode;
   tag?: string;
   linkTo?: string;
+  code?: string;
 }
 
 const ComponentCard: React.FC<ComponentCardProps> = ({
@@ -17,7 +19,8 @@ const ComponentCard: React.FC<ComponentCardProps> = ({
   imageUrl,
   previewElement,
   tag = 'New',
-  linkTo
+  linkTo,
+  code
 }) => {
   const [isHovered, setIsHovered] = useState(false);
   
@@ -29,6 +32,9 @@ const ComponentCard: React.FC<ComponentCardProps> = ({
           {tag}
         </div>
       )}
+      
+      {/* Copy Code Button - Show if code is provided */}
+      {code && <CopyButton code={code} />}
       
       {/* Preview area */}
       <div className="h-48 flex items-center justify-center p-4 bg-black/20">

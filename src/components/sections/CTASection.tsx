@@ -1,6 +1,7 @@
 
 import React, { useRef, useEffect } from 'react';
 import gsap from 'gsap';
+import { CopyButton } from '@/components/ui/copy-button';
 
 const CTASection = () => {
   const ctaRef = useRef<HTMLDivElement>(null);
@@ -50,9 +51,22 @@ const CTASection = () => {
     return () => ctx.revert(); // Clean up
   }, []);
 
+  const ctaCode = `// Import CTA component
+import CTASection from '@/components/sections/CTASection';
+
+// Include the component in your page
+const Page = () => (
+  <div>
+    <CTASection />
+  </div>
+);`;
+
   return (
-    <section className="py-20 bg-gradient-to-b from-black/0 to-black/40" ref={ctaRef}>
-      <div className="container mx-auto px-4 text-center">
+    <section className="py-20 bg-gradient-to-b from-black/0 to-black/40 relative group" ref={ctaRef}>
+      {/* Add Copy Code Button */}
+      <div className="container mx-auto px-4">
+        <CopyButton code={ctaCode} className="absolute top-4 right-4" />
+        
         <div className="max-w-3xl mx-auto animate-on-scroll">
           <h2 className="text-3xl md:text-4xl font-bold text-gradient mb-4">
             Ready to Build Something Amazing?

@@ -8,15 +8,12 @@ import ComponentsShowcase from '@/components/sections/ComponentsShowcase';
 import CTASection from '@/components/sections/CTASection';
 import AnimatedComponentsLoader from '@/components/sections/AnimatedComponentsLoader';
 import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-gsap.registerPlugin(ScrollTrigger);
 
 const Index = () => {
   // References for main page sections
   const componentsRef = useRef<HTMLDivElement>(null);
   
-  // Initialize GSAP animations with improved performance and error handling
+  // Initialize animations with IntersectionObserver for better performance and stability
   useEffect(() => {
     // Ensure DOM is ready before setting up animations
     const ctx = gsap.context(() => {
@@ -27,33 +24,39 @@ const Index = () => {
         // Set initial state
         gsap.set(animateElements, { y: 30, opacity: 0 });
         
-        // Create simpler animations without ScrollTrigger for stability
-        animateElements.forEach((element) => {
-          // Create a simple intersection observer instead of ScrollTrigger
-          const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-              if (entry.isIntersecting) {
-                // Animate the element when it comes into view
-                gsap.to(entry.target, {
-                  y: 0,
-                  opacity: 1,
-                  duration: 0.8,
-                  ease: "power3.out",
-                  onComplete: () => {
-                    // Clean up observer after animation completes
-                    observer.unobserve(entry.target);
-                  }
-                });
-              }
-            });
-          }, {
-            threshold: 0.1,
-            rootMargin: '-100px 0px'
+        // Create a simple intersection observer instead of ScrollTrigger
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              // Animate the element when it comes into view
+              gsap.to(entry.target, {
+                y: 0,
+                opacity: 1,
+                duration: 0.8,
+                ease: "power3.out",
+                onComplete: () => {
+                  // Clean up observer after animation completes
+                  observer.unobserve(entry.target);
+                }
+              });
+            }
           });
-          
-          // Start observing each element
+        }, {
+          threshold: 0.1,
+          rootMargin: '-100px 0px'
+        });
+        
+        // Start observing each element
+        animateElements.forEach(element => {
           observer.observe(element);
         });
+        
+        // Cleanup function
+        return () => {
+          animateElements.forEach(element => {
+            observer.unobserve(element);
+          });
+        };
       }
     });
     

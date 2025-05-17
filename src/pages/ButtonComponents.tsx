@@ -130,6 +130,66 @@ const ButtonComponents = () => {
                 <Button size="sm">Small Button</Button>
               </div>
             </ButtonShowcase>
+
+            {/* 3D Button - New */}
+            <ButtonShowcase 
+              title="3D Button"
+              description="Buttons with 3D press effect"
+              code={`<Button className="neo-button hover:-translate-y-1 active:translate-y-0 shadow-lg">
+  3D Button
+</Button>
+<Button className="bg-neon-purple shadow-lg hover:-translate-y-1 active:translate-y-0 transition-all">
+  Press Me
+</Button>`}>
+              <div className="flex flex-col gap-4">
+                <Button className="neo-button hover:-translate-y-1 active:translate-y-0 shadow-lg">
+                  3D Button
+                </Button>
+                <Button className="bg-neon-purple shadow-lg hover:-translate-y-1 active:translate-y-0 transition-all">
+                  Press Me
+                </Button>
+              </div>
+            </ButtonShowcase>
+
+            {/* Glow Button - New */}
+            <ButtonShowcase 
+              title="Glow Button"
+              description="Buttons with glow effect on hover"
+              code={`<Button className="border border-neon-purple bg-transparent shadow-none hover:shadow-[0_0_15px_rgba(155,135,245,0.5)] transition-all">
+  Glow on Hover
+</Button>
+<Button className="bg-neon-cyan border-none shadow-none hover:shadow-[0_0_20px_rgba(45,212,191,0.7)] transition-all">
+  Cyan Glow
+</Button>`}>
+              <div className="flex flex-col gap-4">
+                <Button className="border border-neon-purple bg-transparent shadow-none hover:shadow-[0_0_15px_rgba(155,135,245,0.5)] transition-all">
+                  Glow on Hover
+                </Button>
+                <Button className="bg-neon-cyan border-none shadow-none hover:shadow-[0_0_20px_rgba(45,212,191,0.7)] transition-all">
+                  Cyan Glow
+                </Button>
+              </div>
+            </ButtonShowcase>
+
+            {/* Ripple Button - New */}
+            <ButtonShowcase 
+              title="Ripple Button"
+              description="Buttons with ripple effect on click"
+              code={`<Button className="neo-ripple bg-neon-purple">
+  Click for Ripple
+</Button>
+<Button className="neo-ripple bg-gradient-to-r from-neon-purple to-neon-cyan">
+  Gradient Ripple
+</Button>`}>
+              <div className="flex flex-col gap-4">
+                <Button className="neo-ripple bg-neon-purple">
+                  Click for Ripple
+                </Button>
+                <Button className="neo-ripple bg-gradient-to-r from-neon-purple to-neon-cyan">
+                  Gradient Ripple
+                </Button>
+              </div>
+            </ButtonShowcase>
           </div>
         </div>
       </section>
@@ -138,7 +198,39 @@ const ButtonComponents = () => {
       <section className="py-12 bg-black/20">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-white mb-6">Usage</h2>
-          <div className="glass-morphism p-6 rounded-xl overflow-hidden">
+          <div className="glass-morphism p-6 rounded-xl overflow-hidden relative group">
+            <CopyButton 
+              code={`// Import the button component
+import { Button } from "@/components/ui/button";
+
+// Use in your component
+export default function MyComponent() {
+  return (
+    <>
+      <Button variant="default">Default Button</Button>
+      <Button variant="destructive">Destructive Button</Button>
+      <Button variant="outline">Outline Button</Button>
+      <Button variant="secondary">Secondary Button</Button>
+      <Button variant="ghost">Ghost Button</Button>
+      <Button variant="link">Link Button</Button>
+      
+      {/* With icon */}
+      <Button>
+        Continue
+        <ArrowRight className="ml-2 h-4 w-4" />
+      </Button>
+      
+      {/* Different sizes */}
+      <Button size="lg">Large Button</Button>
+      <Button size="default">Default Size</Button>
+      <Button size="sm">Small Button</Button>
+      <Button size="icon">
+        <ArrowRight className="h-4 w-4" />
+      </Button>
+    </>
+  )
+}`} 
+            />
             <pre className="text-sm text-gray-300 overflow-auto p-4">
 {`// Import the button component
 import { Button } from "@/components/ui/button";

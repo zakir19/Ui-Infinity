@@ -27,39 +27,53 @@ const ComponentsShowcase = () => {
   const [showAll, setShowAll] = useState(false);
   const componentsRef = useRef<HTMLDivElement>(null);
   
-  // Initialize GSAP animations
+  // Initialize animations with IntersectionObserver for better performance and stability
   useEffect(() => {
     if (componentsRef.current) {
       const elements = componentsRef.current.querySelectorAll('.animate-on-scroll');
       
-      if (elements.length) {
+      if (elements.length > 0) {
+        // Set initial state
         gsap.set(elements, { y: 30, opacity: 0 });
         
-        ScrollTrigger.batch(elements, {
-          start: "top bottom-=100",
-          onEnter: (batch) => gsap.to(batch, {
-            y: 0,
-            opacity: 1,
-            duration: 0.8,
-            stagger: 0.1,
-            ease: "power3.out"
-          }),
-          once: true
+        // Create a simple intersection observer instead of ScrollTrigger
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              // Animate the element when it comes into view
+              gsap.to(entry.target, {
+                y: 0,
+                opacity: 1,
+                duration: 0.8,
+                ease: "power3.out",
+                onComplete: () => {
+                  // Clean up observer after animation completes
+                  observer.unobserve(entry.target);
+                }
+              });
+            }
+          });
+        }, {
+          threshold: 0.1,
+          rootMargin: '-100px 0px'
         });
+        
+        // Start observing each element
+        elements.forEach(element => {
+          observer.observe(element);
+        });
+        
+        // Cleanup function
+        return () => {
+          elements.forEach(element => {
+            observer.unobserve(element);
+          });
+        };
       }
     }
-    
-    return () => {
-      // Cleanup
-      ScrollTrigger.getAll().forEach(trigger => {
-        if (trigger.vars.trigger === componentsRef.current) {
-          trigger.kill();
-        }
-      });
-    };
   }, [showAll]); // Re-run when showAll changes as new elements might be added
 
-  // Example components showcase data
+  // Example components showcase data with additional components
   const components: ComponentData[] = [
     {
       title: 'Animated Buttons',
@@ -112,11 +126,12 @@ const ComponentsShowcase = () => {
       linkTo: '/effects',
       previewElement: <EffectPreview />
     },
+    // Original components
     {
       title: 'Typography',
       description: 'Beautifully animated and styled text components.',
       tag: 'New',
-      linkTo: '/components',
+      linkTo: '/typography',
       previewElement: (
         <div className="w-full h-full flex items-center justify-center">
           <div className="text-center">
@@ -129,7 +144,7 @@ const ComponentsShowcase = () => {
       title: 'Animated Grids',
       description: 'Modern grid layouts with entrance animations.',
       tag: 'New',
-      linkTo: '/components',
+      linkTo: '/grids',
       previewElement: (
         <div className="w-full h-full grid grid-cols-2 gap-1 p-1">
           <div className="bg-neon-purple/20 rounded-sm"></div>
@@ -143,7 +158,7 @@ const ComponentsShowcase = () => {
       title: '3D Effects',
       description: 'Immersive 3D transformations and interactions.',
       tag: 'New',
-      linkTo: '/components',
+      linkTo: '/3d-effects',
       previewElement: (
         <div className="w-full h-full flex items-center justify-center">
           <div className="w-8 h-8 bg-neon-purple/40 rounded transform rotate-12 perspective-[800px] shadow-lg"></div>
@@ -154,17 +169,75 @@ const ComponentsShowcase = () => {
       title: 'Motion Effects',
       description: 'Fluid animations and transitions for elements.',
       tag: 'New',
-      linkTo: '/components',
+      linkTo: '/animation',
       previewElement: (
         <div className="w-full h-full flex items-center justify-center">
           <div className="w-6 h-6 bg-neon-cyan/40 rounded-full animate-ping"></div>
         </div>
       )
     },
+    // New components for expanded categories
+    {
+      title: 'Hover Effects',
+      description: 'Interactive hover animations and transitions.',
+      tag: 'New',
+      linkTo: '/hover',
+      previewElement: (
+        <div className="w-full h-full flex items-center justify-center">
+          <div className="w-16 h-16 bg-neon-purple/30 hover:bg-neon-purple/80 transition-all duration-300 rounded-md"></div>
+        </div>
+      )
+    },
+    {
+      title: 'Animated Backgrounds',
+      description: 'Dynamic background effects and patterns.',
+      tag: 'New',
+      linkTo: '/backgrounds',
+      previewElement: (
+        <div className="w-full h-full bg-gradient-to-br from-neon-purple/20 to-neon-cyan/20 animate-pulse"></div>
+      )
+    },
+    {
+      title: 'Custom Inputs',
+      description: 'Beautifully styled form input components.',
+      tag: 'New',
+      linkTo: '/inputs',
+      previewElement: (
+        <div className="w-full h-full flex items-center justify-center">
+          <div className="w-3/4 h-8 rounded-md bg-white/10 border border-neon-purple/30"></div>
+        </div>
+      )
+    },
+    {
+      title: 'Animated Sliders',
+      description: 'Interactive slider components with animations.',
+      tag: 'New',
+      linkTo: '/sliders',
+      previewElement: (
+        <div className="w-full h-full flex items-center justify-center">
+          <div className="w-3/4 h-1 bg-white/20 rounded-full">
+            <div className="w-1/2 h-1 bg-neon-purple rounded-full relative">
+              <div className="absolute -right-2 -top-1.5 w-4 h-4 bg-neon-purple rounded-full"></div>
+            </div>
+          </div>
+        </div>
+      )
+    },
+    {
+      title: 'Loaders & Spinners',
+      description: 'Animated loading indicators and spinners.',
+      tag: 'New',
+      linkTo: '/loaders',
+      previewElement: (
+        <div className="w-full h-full flex items-center justify-center">
+          <div className="w-8 h-8 border-2 border-neon-cyan border-t-transparent rounded-full animate-spin"></div>
+        </div>
+      )
+    },
   ];
 
   // Determine how many components to show
-  const previewCount = 4;
+  const previewCount = 8;
   const displayedComponents = showAll ? components : components.slice(0, previewCount);
 
   return (
