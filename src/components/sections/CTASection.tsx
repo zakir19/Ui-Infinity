@@ -1,47 +1,53 @@
 
 import React, { useRef, useEffect } from 'react';
 import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-gsap.registerPlugin(ScrollTrigger);
 
 const CTASection = () => {
   const ctaRef = useRef<HTMLDivElement>(null);
   
   useEffect(() => {
-    // Initialize animation for CTA section
-    if (ctaRef.current) {
-      const elements = ctaRef.current.querySelectorAll('.animate-on-scroll');
-      
-      // Only create animations if elements exist
-      if (elements.length) {
-        // Set initial state
-        gsap.set(elements, { y: 30, opacity: 0 });
+    // Initialize animation for CTA section using IntersectionObserver
+    const ctx = gsap.context(() => {
+      if (ctaRef.current) {
+        const elements = ctaRef.current.querySelectorAll('.animate-on-scroll');
         
-        // Create a simple timeline without relying on batch
-        const timeline = gsap.timeline({
-          scrollTrigger: {
-            trigger: ctaRef.current,
-            start: "top bottom-=100",
-            once: true
-          }
-        });
-        
-        // Animate elements one by one with stagger
-        timeline.to(elements, {
-          y: 0,
-          opacity: 1,
-          duration: 0.8,
-          stagger: 0.1,
-          ease: "power3.out"
-        });
+        if (elements.length) {
+          // Set initial state
+          gsap.set(elements, { y: 30, opacity: 0 });
+          
+          // Use IntersectionObserver for more reliable trigger
+          const observer = new IntersectionObserver(
+            (entries) => {
+              if (entries[0].isIntersecting) {
+                // Create a timeline for sequential animation
+                const timeline = gsap.timeline();
+                
+                // Animate elements with stagger
+                timeline.to(elements, {
+                  y: 0,
+                  opacity: 1,
+                  duration: 0.8,
+                  stagger: 0.1,
+                  ease: "power3.out"
+                });
+                
+                // Unobserve once animation has started
+                observer.unobserve(ctaRef.current!);
+              }
+            },
+            {
+              threshold: 0.2,
+              rootMargin: "-50px 0px"
+            }
+          );
+          
+          // Start observing
+          observer.observe(ctaRef.current);
+        }
       }
-    }
+    }, ctaRef);
     
-    return () => {
-      // Cleanup ScrollTriggers
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-    };
+    return () => ctx.revert(); // Clean up
   }, []);
 
   return (

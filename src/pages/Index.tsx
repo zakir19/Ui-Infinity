@@ -16,35 +16,50 @@ const Index = () => {
   // References for main page sections
   const componentsRef = useRef<HTMLDivElement>(null);
   
-  // Initialize GSAP animations with improved performance
+  // Initialize GSAP animations with improved performance and error handling
   useEffect(() => {
-    // Get all elements to animate
-    const animateElements = document.querySelectorAll('.animate-on-scroll');
-    
-    // Only proceed if elements exist
-    if (animateElements.length > 0) {
-      // Set initial state for all elements
-      gsap.set(animateElements, { y: 30, opacity: 0 });
+    // Ensure DOM is ready before setting up animations
+    const ctx = gsap.context(() => {
+      // Get all elements to animate
+      const animateElements = document.querySelectorAll('.animate-on-scroll');
       
-      // Create individual animations for elements instead of using batch
-      animateElements.forEach((element) => {
-        gsap.to(element, {
-          scrollTrigger: {
-            trigger: element,
-            start: "top bottom-=100",
-            once: true
-          },
-          y: 0,
-          opacity: 1,
-          duration: 0.8,
-          ease: "power3.out"
+      if (animateElements.length > 0) {
+        // Set initial state
+        gsap.set(animateElements, { y: 30, opacity: 0 });
+        
+        // Create simpler animations without ScrollTrigger for stability
+        animateElements.forEach((element) => {
+          // Create a simple intersection observer instead of ScrollTrigger
+          const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                // Animate the element when it comes into view
+                gsap.to(entry.target, {
+                  y: 0,
+                  opacity: 1,
+                  duration: 0.8,
+                  ease: "power3.out",
+                  onComplete: () => {
+                    // Clean up observer after animation completes
+                    observer.unobserve(entry.target);
+                  }
+                });
+              }
+            });
+          }, {
+            threshold: 0.1,
+            rootMargin: '-100px 0px'
+          });
+          
+          // Start observing each element
+          observer.observe(element);
         });
-      });
-    }
+      }
+    });
     
+    // Cleanup function
     return () => {
-      // Cleanup all ScrollTriggers when component unmounts
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+      ctx.revert(); // Clean up all GSAP animations
     };
   }, []);
 

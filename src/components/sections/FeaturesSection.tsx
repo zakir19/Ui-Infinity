@@ -1,9 +1,6 @@
 
 import React, { useRef, useEffect } from 'react';
 import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-gsap.registerPlugin(ScrollTrigger);
 
 const FeatureCard = ({ title, description, icon }: { title: string, description: string, icon: string }) => (
   <div className="glass-morphism p-6 rounded-xl animate-on-scroll opacity-0">
@@ -16,35 +13,45 @@ const FeatureCard = ({ title, description, icon }: { title: string, description:
 const FeaturesSection = () => {
   const featuresRef = useRef<HTMLDivElement>(null);
 
-  // Initialize GSAP animations
+  // Initialize animations using IntersectionObserver instead of ScrollTrigger
   useEffect(() => {
-    // Use a single timeline for better performance
-    const tl = gsap.timeline();
-    
-    // Batch animations for better performance
-    const animateElements = document.querySelectorAll('.animate-on-scroll');
-    
-    // Create one ScrollTrigger with batch animations instead of many individual ones
-    if (animateElements.length > 0) {
-      gsap.set(animateElements, { y: 30, opacity: 0 });
+    const ctx = gsap.context(() => {
+      const animateElements = featuresRef.current?.querySelectorAll('.animate-on-scroll');
       
-      ScrollTrigger.batch(animateElements, {
-        start: "top bottom-=100",
-        onEnter: (batch) => gsap.to(batch, {
-          y: 0,
-          opacity: 1,
-          duration: 0.8,
-          stagger: 0.1,
-          ease: "power3.out"
-        }),
-        once: true
-      });
-    }
+      if (animateElements?.length) {
+        gsap.set(animateElements, { y: 30, opacity: 0 });
+        
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry, index) => {
+              if (entry.isIntersecting) {
+                // Animate with a slight delay based on index for staggered effect
+                gsap.to(entry.target, {
+                  y: 0,
+                  opacity: 1,
+                  duration: 0.8,
+                  ease: "power3.out",
+                  delay: index * 0.1,
+                  onComplete: () => {
+                    observer.unobserve(entry.target);
+                  }
+                });
+              }
+            });
+          },
+          {
+            threshold: 0.1,
+            rootMargin: "-50px 0px"
+          }
+        );
+        
+        animateElements.forEach(element => {
+          observer.observe(element);
+        });
+      }
+    }, featuresRef);
     
-    return () => {
-      // Cleanup all ScrollTriggers when component unmounts
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-    };
+    return () => ctx.revert();
   }, []);
 
   return (
