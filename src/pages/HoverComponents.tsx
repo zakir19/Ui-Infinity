@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { CopyButton } from '@/components/ui/copy-button';
 import Footer from '@/components/Footer';
