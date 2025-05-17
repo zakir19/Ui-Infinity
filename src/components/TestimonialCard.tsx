@@ -22,23 +22,23 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
   className,
   delay = 0
 }) => {
-  const cardRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   
   useEffect(() => {
-    const card = cardRef.current;
-    if (!card) return;
+    const container = containerRef.current;
+    if (!container) return;
 
     // Simplified animation with better performance
     const timeline = gsap.timeline({
       scrollTrigger: {
-        trigger: card,
+        trigger: container,
         start: "top bottom-=100",
         once: true
       }
     });
 
     timeline.fromTo(
-      card, 
+      container, 
       { y: 30, opacity: 0 }, 
       { y: 0, opacity: 1, duration: 0.6, ease: "power3.out", delay: delay }
     );
@@ -49,28 +49,29 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
   }, [delay]);
 
   return (
-    <TiltCard 
-      ref={cardRef}
-      className={cn("p-6 rounded-xl backdrop-blur-lg bg-black/30 border border-white/10", className)}
-      tiltAmount={3} // Reduced for better performance
-      glareAmount={0.1} // Reduced for better performance
-      scale={1.01} // Reduced for better performance
-    >
-      <div className="mb-4 text-5xl text-neon-purple">"</div>
-      <p className="text-gray-300 italic mb-6">{quote}</p>
-      <div className="flex items-center gap-3">
-        <Avatar className="h-10 w-10 border border-white/10">
-          <AvatarImage src={image} />
-          <AvatarFallback className="bg-neon-purple/20 text-neon-purple">
-            {name.charAt(0)}
-          </AvatarFallback>
-        </Avatar>
-        <div>
-          <p className="text-white font-medium">{name}</p>
-          <p className="text-gray-400 text-sm">{title}</p>
+    <div ref={containerRef}>
+      <TiltCard 
+        className={cn("p-6 rounded-xl backdrop-blur-lg bg-black/30 border border-white/10", className)}
+        tiltAmount={3} 
+        glareAmount={0.1} 
+        scale={1.01}
+      >
+        <div className="mb-4 text-5xl text-neon-purple">"</div>
+        <p className="text-gray-300 italic mb-6">{quote}</p>
+        <div className="flex items-center gap-3">
+          <Avatar className="h-10 w-10 border border-white/10">
+            <AvatarImage src={image} />
+            <AvatarFallback className="bg-neon-purple/20 text-neon-purple">
+              {name.charAt(0)}
+            </AvatarFallback>
+          </Avatar>
+          <div>
+            <p className="text-white font-medium">{name}</p>
+            <p className="text-gray-400 text-sm">{title}</p>
+          </div>
         </div>
-      </div>
-    </TiltCard>
+      </TiltCard>
+    </div>
   );
 };
 

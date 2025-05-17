@@ -1,0 +1,238 @@
+
+/* Custom UI Styles */
+
+/* Neo Card - Base styles for cards with a modern, unique look */
+.neo-card {
+  background: linear-gradient(145deg, rgba(20, 20, 25, 0.7), rgba(30, 30, 40, 0.9));
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.3),
+    0 1px 0 0 rgba(255, 255, 255, 0.06) inset,
+    0 -1px 0 0 rgba(0, 0, 0, 0.2) inset;
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.3s ease-out;
+}
+
+/* Neo Button - Uniquely styled button component */
+.neo-button {
+  background: linear-gradient(135deg, rgba(155, 135, 245, 0.15), rgba(155, 135, 245, 0.05));
+  box-shadow: 
+    0 4px 12px rgba(0, 0, 0, 0.2),
+    0 1px 0 rgba(255, 255, 255, 0.06) inset;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.neo-button:hover {
+  background: linear-gradient(135deg, rgba(155, 135, 245, 0.3), rgba(155, 135, 245, 0.1));
+  transform: translateY(-2px);
+  box-shadow: 
+    0 8px 16px rgba(0, 0, 0, 0.2),
+    0 1px 0 rgba(255, 255, 255, 0.1) inset;
+}
+
+.neo-button:active {
+  transform: translateY(0);
+  box-shadow: 
+    0 2px 4px rgba(0, 0, 0, 0.2),
+    0 1px 0 rgba(255, 255, 255, 0.05) inset;
+}
+
+/* Neo Input - Uniquely styled input field */
+.neo-input {
+  background: linear-gradient(145deg, rgba(20, 20, 25, 0.5), rgba(30, 30, 40, 0.5));
+  box-shadow: 
+    0 2px 6px rgba(0, 0, 0, 0.2) inset,
+    0 1px 0 rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.9);
+  transition: all 0.2s ease;
+}
+
+.neo-input:focus {
+  background: linear-gradient(145deg, rgba(25, 25, 35, 0.7), rgba(35, 35, 50, 0.7));
+  box-shadow: 
+    0 2px 6px rgba(0, 0, 0, 0.3) inset,
+    0 0 0 1px rgba(155, 135, 245, 0.4);
+  border-color: rgba(155, 135, 245, 0.5);
+}
+
+/* Neo Switch - Custom toggle switch */
+.neo-switch {
+  position: relative;
+  width: 50px;
+  height: 26px;
+}
+
+.neo-switch-track {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(145deg, rgba(30, 30, 40, 0.5), rgba(20, 20, 25, 0.5));
+  border-radius: 13px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: 0.3s;
+}
+
+.neo-switch-thumb {
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  left: 3px;
+  bottom: 3px;
+  background: linear-gradient(135deg, rgba(155, 135, 245, 0.8), rgba(155, 135, 245, 0.5));
+  border-radius: 50%;
+  transition: 0.3s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.neo-switch-input:checked + .neo-switch-track {
+  background: linear-gradient(145deg, rgba(155, 135, 245, 0.2), rgba(155, 135, 245, 0.1));
+}
+
+.neo-switch-input:checked + .neo-switch-track .neo-switch-thumb {
+  transform: translateX(24px);
+  background: linear-gradient(135deg, rgba(155, 135, 245, 1), rgba(155, 135, 245, 0.8));
+}
+
+/* Neo Select - Custom select component */
+.neo-select {
+  background: linear-gradient(145deg, rgba(20, 20, 25, 0.5), rgba(30, 30, 40, 0.5));
+  box-shadow: 
+    0 2px 6px rgba(0, 0, 0, 0.2),
+    0 1px 0 rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.9);
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.neo-select:focus {
+  box-shadow: 
+    0 0 0 2px rgba(155, 135, 245, 0.3),
+    0 2px 6px rgba(0, 0, 0, 0.2);
+  border-color: rgba(155, 135, 245, 0.5);
+}
+
+/* Neo Badge - Custom badge component */
+.neo-badge {
+  background: linear-gradient(135deg, rgba(155, 135, 245, 0.3), rgba(155, 135, 245, 0.1));
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+  border-radius: 9999px;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(155, 135, 245, 0.3);
+}
+
+/* Neo Tooltip - Custom tooltip component */
+.neo-tooltip {
+  background: linear-gradient(145deg, rgba(40, 40, 50, 0.95), rgba(30, 30, 40, 0.95));
+  box-shadow: 
+    0 4px 12px rgba(0, 0, 0, 0.2),
+    0 1px 0 rgba(255, 255, 255, 0.05) inset;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(8px);
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Neo Modal - Custom modal component */
+.neo-modal {
+  background: linear-gradient(145deg, rgba(25, 25, 35, 0.8), rgba(35, 35, 45, 0.9));
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.4),
+    0 1px 0 rgba(255, 255, 255, 0.1) inset,
+    0 -1px 0 rgba(0, 0, 0, 0.2) inset;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(24px);
+}
+
+/* Neo Checkbox - Custom checkbox component */
+.neo-checkbox {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  background: linear-gradient(145deg, rgba(20, 20, 25, 0.5), rgba(30, 30, 40, 0.5));
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+  display: inline-block;
+  position: relative;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.neo-checkbox:checked {
+  background: linear-gradient(135deg, rgba(155, 135, 245, 0.8), rgba(155, 135, 245, 0.5));
+  border-color: rgba(155, 135, 245, 0.5);
+}
+
+.neo-checkbox:checked::after {
+  content: '';
+  position: absolute;
+  left: 5px;
+  top: 2px;
+  width: 6px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+/* Pulse animation for interactive elements */
+@keyframes pulse-border {
+  0%, 100% {
+    border-color: rgba(155, 135, 245, 0.2);
+    box-shadow: 0 0 0 0 rgba(155, 135, 245, 0.4);
+  }
+  50% {
+    border-color: rgba(155, 135, 245, 0.5);
+    box-shadow: 0 0 0 4px rgba(155, 135, 245, 0.2);
+  }
+}
+
+.neo-pulse {
+  animation: pulse-border 2s infinite;
+}
+
+/* Ripple effect for clickable elements */
+.neo-ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.neo-ripple::after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.2) 10%, transparent 10.01%);
+  background-repeat: no-repeat;
+  background-position: 50%;
+  transform: scale(10, 10);
+  opacity: 0;
+  transition: transform 0.5s, opacity 0.8s;
+}
+
+.neo-ripple:active::after {
+  transform: scale(0, 0);
+  opacity: 0.3;
+  transition: 0s;
+}

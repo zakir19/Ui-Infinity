@@ -14,6 +14,7 @@ import ModalComponents from "./pages/ModalComponents";
 import LayoutComponents from "./pages/LayoutComponents";
 import FeedbackComponents from "./pages/FeedbackComponents";
 import EffectComponents from "./pages/EffectComponents";
+import CustomUI from "./pages/CustomUI";
 import NotFound from "./pages/NotFound";
 import Navbar from "./components/Navbar";
 
@@ -37,6 +38,7 @@ const App = () => (
           <Route path="/layout" element={<LayoutComponents />} />
           <Route path="/feedback" element={<FeedbackComponents />} />
           <Route path="/effects" element={<EffectComponents />} />
+          <Route path="/custom-ui" element={<CustomUI />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
