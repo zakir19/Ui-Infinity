@@ -2,6 +2,7 @@
 import React from 'react';
 import { CopyButton } from '@/components/ui/copy-button';
 import Footer from '@/components/Footer';
+import { Magnetic } from '@/components/ui/magnetic';
 
 const HoverComponents = () => {
   return (
@@ -19,9 +20,149 @@ const HoverComponents = () => {
       
       <section className="py-12">
         <div className="container mx-auto px-4">
-          <p className="text-center text-gray-400 text-lg">
-            Hover components coming soon. Check back for updates!
-          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Hover Scale Effect */}
+            <div className="bg-black/20 border border-white/10 rounded-lg p-6 relative group">
+              <h3 className="text-xl font-semibold mb-4 text-white">Hover Scale</h3>
+              <div className="mb-6 flex justify-center">
+                <button className="px-4 py-2 bg-gray-800 rounded-md text-white transition-transform hover:scale-110">
+                  Hover Me
+                </button>
+              </div>
+              <div className="bg-black/80 rounded-md p-4 relative">
+                <CopyButton 
+                  code={`<button className="px-4 py-2 bg-gray-800 rounded-md text-white transition-transform hover:scale-110">
+  Hover Me
+</button>`} 
+                />
+                <pre className="text-gray-300 text-xs overflow-auto p-1">
+                  <code>{`<button className="px-4 py-2 bg-gray-800 rounded-md text-white transition-transform hover:scale-110">
+  Hover Me
+</button>`}</code>
+                </pre>
+              </div>
+            </div>
+            
+            {/* Border Glow Effect */}
+            <div className="bg-black/20 border border-white/10 rounded-lg p-6 relative group">
+              <h3 className="text-xl font-semibold mb-4 text-white">Border Glow</h3>
+              <div className="mb-6 flex justify-center">
+                <button className="px-4 py-2 bg-gray-800 rounded-md text-white border border-transparent hover:border-neon-purple transition-colors">
+                  Hover Me
+                </button>
+              </div>
+              <div className="bg-black/80 rounded-md p-4 relative">
+                <CopyButton 
+                  code={`<button className="px-4 py-2 bg-gray-800 rounded-md text-white border border-transparent hover:border-neon-purple transition-colors">
+  Hover Me
+</button>`} 
+                />
+                <pre className="text-gray-300 text-xs overflow-auto p-1">
+                  <code>{`<button className="px-4 py-2 bg-gray-800 rounded-md text-white border border-transparent hover:border-neon-purple transition-colors">
+  Hover Me
+</button>`}</code>
+                </pre>
+              </div>
+            </div>
+            
+            {/* Color Shift Effect */}
+            <div className="bg-black/20 border border-white/10 rounded-lg p-6 relative group">
+              <h3 className="text-xl font-semibold mb-4 text-white">Color Shift</h3>
+              <div className="mb-6 flex justify-center">
+                <button className="px-4 py-2 bg-gray-800 rounded-md text-white hover:bg-neon-purple transition-colors">
+                  Hover Me
+                </button>
+              </div>
+              <div className="bg-black/80 rounded-md p-4 relative">
+                <CopyButton 
+                  code={`<button className="px-4 py-2 bg-gray-800 rounded-md text-white hover:bg-neon-purple transition-colors">
+  Hover Me
+</button>`} 
+                />
+                <pre className="text-gray-300 text-xs overflow-auto p-1">
+                  <code>{`<button className="px-4 py-2 bg-gray-800 rounded-md text-white hover:bg-neon-purple transition-colors">
+  Hover Me
+</button>`}</code>
+                </pre>
+              </div>
+            </div>
+            
+            {/* Shadow Effect */}
+            <div className="bg-black/20 border border-white/10 rounded-lg p-6 relative group">
+              <h3 className="text-xl font-semibold mb-4 text-white">Shadow Effect</h3>
+              <div className="mb-6 flex justify-center">
+                <button className="px-4 py-2 bg-gray-800 rounded-md text-white shadow-none hover:shadow-[0_0_15px_rgba(155,135,245,0.5)] transition-shadow">
+                  Hover Me
+                </button>
+              </div>
+              <div className="bg-black/80 rounded-md p-4 relative">
+                <CopyButton 
+                  code={`<button className="px-4 py-2 bg-gray-800 rounded-md text-white shadow-none hover:shadow-[0_0_15px_rgba(155,135,245,0.5)] transition-shadow">
+  Hover Me
+</button>`} 
+                />
+                <pre className="text-gray-300 text-xs overflow-auto p-1">
+                  <code>{`<button className="px-4 py-2 bg-gray-800 rounded-md text-white shadow-none hover:shadow-[0_0_15px_rgba(155,135,245,0.5)] transition-shadow">
+  Hover Me
+</button>`}</code>
+                </pre>
+              </div>
+            </div>
+            
+            {/* Magnetic Effect */}
+            <div className="bg-black/20 border border-white/10 rounded-lg p-6 relative group">
+              <h3 className="text-xl font-semibold mb-4 text-white">Magnetic Effect</h3>
+              <div className="mb-6 flex justify-center">
+                <Magnetic strength={20}>
+                  <button className="px-4 py-2 bg-gray-800 rounded-md text-white">
+                    Move Your Mouse Near Me
+                  </button>
+                </Magnetic>
+              </div>
+              <div className="bg-black/80 rounded-md p-4 relative">
+                <CopyButton 
+                  code={`import { Magnetic } from '@/components/ui/magnetic';
+
+<Magnetic strength={20}>
+  <button className="px-4 py-2 bg-gray-800 rounded-md text-white">
+    Move Your Mouse Near Me
+  </button>
+</Magnetic>`} 
+                />
+                <pre className="text-gray-300 text-xs overflow-auto p-1">
+                  <code>{`import { Magnetic } from '@/components/ui/magnetic';
+
+<Magnetic strength={20}>
+  <button className="px-4 py-2 bg-gray-800 rounded-md text-white">
+    Move Your Mouse Near Me
+  </button>
+</Magnetic>`}</code>
+                </pre>
+              </div>
+            </div>
+            
+            {/* Text Underline Effect */}
+            <div className="bg-black/20 border border-white/10 rounded-lg p-6 relative group">
+              <h3 className="text-xl font-semibold mb-4 text-white">Text Underline</h3>
+              <div className="mb-6 flex justify-center">
+                <a href="#" className="text-white relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:scale-x-0 after:bg-neon-purple after:transition-transform after:duration-300 hover:after:scale-x-100 after:origin-left">
+                  Hover Over This Text
+                </a>
+              </div>
+              <div className="bg-black/80 rounded-md p-4 relative">
+                <CopyButton 
+                  code={`<a href="#" className="text-white relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:scale-x-0 after:bg-neon-purple after:transition-transform after:duration-300 hover:after:scale-x-100 after:origin-left">
+  Hover Over This Text
+</a>`} 
+                />
+                <pre className="text-gray-300 text-xs overflow-auto p-1">
+                  <code>{`<a href="#" className="text-white relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:scale-x-0 after:bg-neon-purple after:transition-transform after:duration-300 hover:after:scale-x-100 after:origin-left">
+  Hover Over This Text
+</a>`}</code>
+                </pre>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
       
