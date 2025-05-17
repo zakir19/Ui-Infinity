@@ -11,7 +11,6 @@ import EffectPreview from '@/components/previews/EffectPreview';
 import TypographyComponents from '@/pages/TypographyComponents';
 import GridComponents from '@/pages/GridComponents';
 import ThreeDEffectsComponents from '@/pages/ThreeDEffectsComponents';
-import 
 
 // This component doesn't render anything visible
 // It preloads all component previews to ensure they're ready when needed
