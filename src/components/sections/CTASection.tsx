@@ -13,37 +13,41 @@ const CTASection = () => {
     if (ctaRef.current) {
       const elements = ctaRef.current.querySelectorAll('.animate-on-scroll');
       
+      // Only create animations if elements exist
       if (elements.length) {
+        // Set initial state
         gsap.set(elements, { y: 30, opacity: 0 });
         
-        ScrollTrigger.batch(elements, {
-          start: "top bottom-=100",
-          onEnter: (batch) => gsap.to(batch, {
-            y: 0,
-            opacity: 1,
-            duration: 0.8,
-            stagger: 0.1,
-            ease: "power3.out"
-          }),
-          once: true
+        // Create a simple timeline without relying on batch
+        const timeline = gsap.timeline({
+          scrollTrigger: {
+            trigger: ctaRef.current,
+            start: "top bottom-=100",
+            once: true
+          }
+        });
+        
+        // Animate elements one by one with stagger
+        timeline.to(elements, {
+          y: 0,
+          opacity: 1,
+          duration: 0.8,
+          stagger: 0.1,
+          ease: "power3.out"
         });
       }
     }
     
     return () => {
       // Cleanup ScrollTriggers
-      ScrollTrigger.getAll().forEach(trigger => {
-        if (trigger.vars.trigger === ctaRef.current) {
-          trigger.kill();
-        }
-      });
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
     };
   }, []);
 
   return (
     <section className="py-20 bg-gradient-to-b from-black/0 to-black/40" ref={ctaRef}>
       <div className="container mx-auto px-4 text-center">
-        <div className="max-w-3xl mx-auto animate-on-scroll opacity-0">
+        <div className="max-w-3xl mx-auto animate-on-scroll">
           <h2 className="text-3xl md:text-4xl font-bold text-gradient mb-4">
             Ready to Build Something Amazing?
           </h2>
