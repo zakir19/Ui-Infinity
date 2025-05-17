@@ -17,7 +17,7 @@ const TiltCard = forwardRef<HTMLDivElement, TiltCardProps>(
     
     const rotateX = useMotionValue(0);
     const rotateY = useMotionValue(0);
-    const glarePosition = useMotionValue(50);
+    const glarePosition = useMotionValue('50% 50%'); // Changed to store position as string
     const glareOpacity = useMotionValue(0);
     
     const transformRotateX = useTransform(rotateX, [-maxTilt, maxTilt], [-tiltAmount, tiltAmount]);
@@ -41,7 +41,7 @@ const TiltCard = forwardRef<HTMLDivElement, TiltCardProps>(
       rotateX.set(calculatedRotateX);
       rotateY.set(-calculatedRotateY);
       
-      // Calculate glare position
+      // Calculate glare position and store it as a string
       const glareX = ((e.clientX - rect.left) / rect.width) * 100;
       const glareY = ((e.clientY - rect.top) / rect.height) * 100;
       glarePosition.set(`${glareX}% ${glareY}%`);
