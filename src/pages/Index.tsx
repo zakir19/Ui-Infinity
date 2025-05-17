@@ -18,26 +18,27 @@ const Index = () => {
   
   // Initialize GSAP animations with improved performance
   useEffect(() => {
-    // Use a single timeline for better performance
-    const tl = gsap.timeline();
-    
-    // Batch animations for better performance
+    // Get all elements to animate
     const animateElements = document.querySelectorAll('.animate-on-scroll');
     
-    // Create one ScrollTrigger with batch animations instead of many individual ones
+    // Only proceed if elements exist
     if (animateElements.length > 0) {
+      // Set initial state for all elements
       gsap.set(animateElements, { y: 30, opacity: 0 });
       
-      ScrollTrigger.batch(animateElements, {
-        start: "top bottom-=100",
-        onEnter: (batch) => gsap.to(batch, {
+      // Create individual animations for elements instead of using batch
+      animateElements.forEach((element) => {
+        gsap.to(element, {
+          scrollTrigger: {
+            trigger: element,
+            start: "top bottom-=100",
+            once: true
+          },
           y: 0,
           opacity: 1,
           duration: 0.8,
-          stagger: 0.1,
           ease: "power3.out"
-        }),
-        once: true
+        });
       });
     }
     
