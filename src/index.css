@@ -1,10 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Root CSS variables */
 @layer base {
   :root {
     --background: 240 10% 3.9%;
@@ -39,30 +37,27 @@
   }
 }
 
-/* Base styles */
 @layer base {
   * {
     @apply border-border selection:bg-white/10 selection:text-white;
+  }
+  
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "ss01", "ss02", "cv01", "cv02", "cv03";
   }
 
   html {
     @apply scroll-smooth;
   }
-
-  body {
-    @apply bg-background text-foreground antialiased;
-    font-family: 'Inter', sans-serif;
-    font-feature-settings: "ss01", "ss02", "cv01", "cv02", "cv03";
-  }
 }
 
-/* Custom utility classes */
 @layer utilities {
   .scrollbar-none {
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
-
+  
   .scrollbar-none::-webkit-scrollbar {
     display: none;
   }
@@ -70,16 +65,16 @@
   .glass-morphism {
     @apply backdrop-blur-xl bg-white/5 border border-white/10 shadow-[0_4px_12px_-2px_rgba(0,0,0,0.3)];
   }
-
+  
   .neo-blur {
     @apply backdrop-blur-2xl bg-black/40 border border-white/10;
   }
-
+  
   .text-gradient {
     @apply bg-gradient-to-br from-white via-white/90 to-white/70 bg-clip-text text-transparent;
   }
-
+  
   .text-gradient-purple {
-    @apply bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-400 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-neon-purple via-neon-pink to-neon-cyan bg-clip-text text-transparent;
   }
 }
