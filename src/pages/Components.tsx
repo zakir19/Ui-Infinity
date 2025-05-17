@@ -1,8 +1,9 @@
+
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Footer from '@/components/Footer';
 import { Search } from 'lucide-react';
-import { TiltCard } from '@/components/ui/tilt-card';
+import TiltCard from '@/components/ui/tilt-card';
 import { Spotlight } from '@/components/ui/spotlight';
 import { GlassCard } from '@/components/ui/glass-card';
 import { Magnetic } from '@/components/ui/magnetic';

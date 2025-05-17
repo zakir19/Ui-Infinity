@@ -1,3 +1,4 @@
+
 import React, { useRef } from 'react';
 import { motion, useMotionValue, useTransform } from 'framer-motion';
 
@@ -7,13 +8,11 @@ interface TiltCardProps {
   maxTilt?: number;
 }
 
-const TiltCard: React.FC<TiltCardProps> = ({ children, className, maxTilt = 20 }) => {
+export const TiltCard: React.FC<TiltCardProps> = ({ children, className, maxTilt = 20 }) => {
   const cardRef = useRef<HTMLDivElement>(null);
   
   const rotateX = useMotionValue(0);
   const rotateY = useMotionValue(0);
-
-  const transformStyle = `perspective(600px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!cardRef.current) return;
@@ -44,9 +43,7 @@ const TiltCard: React.FC<TiltCardProps> = ({ children, className, maxTilt = 20 }
       ref={cardRef}
       className={`glass-morphism rounded-xl p-6 shadow-lg ${className || ''}`}
       style={{
-        transform: transformStyle,
-        rotateX: typeof rotateX === 'object' ? `${rotateX.get()}deg` : rotateX,
-        rotateY: typeof rotateY === 'object' ? `${rotateY.get()}deg` : rotateY,
+        transform: `perspective(600px) rotateX(${rotateX.get()}deg) rotateY(${rotateY.get()}deg)`,
       }}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}

@@ -5,7 +5,7 @@ import { Spotlight } from '@/components/ui/spotlight';
 import { GlassCard } from '@/components/ui/glass-card';
 import { Sparkles } from '@/components/ui/sparkles';
 import { GradientBorder } from '@/components/ui/gradient-border';
-import { TiltCard } from '@/components/ui/tilt-card';
+import TiltCard from '@/components/ui/tilt-card';
 import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
 import Footer from '@/components/Footer';

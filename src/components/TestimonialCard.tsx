@@ -1,6 +1,6 @@
 
 import React, { useRef, useEffect } from 'react';
-import { TiltCard } from '@/components/ui/tilt-card';
+import TiltCard from '@/components/ui/tilt-card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { cn } from '@/lib/utils';
 import gsap from 'gsap';

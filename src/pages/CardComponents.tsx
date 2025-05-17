@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
-import { TiltCard } from '@/components/ui/tilt-card';
+import TiltCard from '@/components/ui/tilt-card';
 import { GlassCard } from '@/components/ui/glass-card';
 import { GradientBorder } from '@/components/ui/gradient-border';
 import { AspectRatio } from '@/components/ui/aspect-ratio';

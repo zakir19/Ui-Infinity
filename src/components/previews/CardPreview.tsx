@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { TiltCard } from '@/components/ui/tilt-card';
+import TiltCard from '@/components/ui/tilt-card';
 import { GlassCard } from '@/components/ui/glass-card';
 
 const CardPreview = () => {
