@@ -1,8 +1,59 @@
-
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import ThreeScene from './ThreeScene';
+import gsap from 'gsap';
+import { SplitText } from 'gsap/SplitText';
+
+// Register the SplitText plugin
+gsap.registerPlugin(SplitText);
 
 const HeroSection = () => {
+  const textRef = useRef<HTMLSpanElement>(null);
+  
+  useEffect(() => {
+    if (!textRef.current) return;
+    
+    // Create the split text effect
+    const splitText = new SplitText(textRef.current, { type: "chars, words" });
+    const chars = splitText.chars;
+    
+    // Initial setup - hide all characters
+    gsap.set(chars, { 
+      opacity: 0,
+      y: 20,
+    });
+    
+    // Create the animation timeline
+    const tl = gsap.timeline();
+    
+    // Animate each character
+    tl.to(chars, {
+      opacity: 1,
+      y: 0,
+      duration: 0.8,
+      stagger: 0.04,
+      ease: "power3.out"
+    });
+    
+    // Create color change animation
+    gsap.to(textRef.current, {
+      backgroundImage: 'linear-gradient(to right, #9b87f5, #33C3F0, #D946EF, #9b87f5)',
+      backgroundSize: '200% auto',
+      backgroundClip: 'text',
+      webkitBackgroundClip: 'text', 
+      color: 'transparent',
+      duration: 3,
+      repeat: -1,
+      yoyo: true,
+      ease: "power1.inOut"
+    });
+    
+    // Clean up function
+    return () => {
+      tl.kill();
+      splitText.revert();
+    };
+  }, []);
+
   return (
     <section className="relative min-h-screen flex flex-col justify-center pt-20">
       {/* Background gradients */}
@@ -18,7 +69,7 @@ const HeroSection = () => {
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
             <span className="text-gradient">Beautiful UI Components</span>
             <br />
-            <span className="text-gradient-purple">For Modern Websites</span>
+            <span ref={textRef} className="inline-block">For Modern Websites</span>
           </h1>
           
           <p className="text-gray-400 text-lg max-w-xl mx-auto lg:mx-0 leading-relaxed">
