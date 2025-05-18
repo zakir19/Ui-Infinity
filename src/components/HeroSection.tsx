@@ -1,46 +1,8 @@
 
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import ThreeScene from './ThreeScene';
-import gsap from 'gsap';
 
 const HeroSection = () => {
-  // Reference for the text that will have the color animation
-  const textRef = useRef<HTMLSpanElement>(null);
-
-  // Set up the color animation with GSAP
-  useEffect(() => {
-    if (textRef.current) {
-      const colors = [
-        '#D946EF', // Magenta Pink
-        '#8B5CF6', // Vivid Purple
-        '#0EA5E9', // Ocean Blue
-        '#33C3F0', // Sky Blue
-        '#F97316', // Bright Orange
-        '#D946EF'  // Back to Pink (for smooth loop)
-      ];
-
-      // Create a timeline for smooth color transitions
-      const timeline = gsap.timeline({
-        repeat: -1, // Infinite loop
-        yoyo: false, 
-      });
-
-      // Add color transitions
-      colors.forEach((color, index) => {
-        timeline.to(textRef.current, {
-          color: color,
-          duration: 1.8,
-          ease: "power2.inOut",
-        });
-      });
-
-      // Clean up animation on component unmount
-      return () => {
-        timeline.kill();
-      };
-    }
-  }, []);
-
   return (
     <section className="relative min-h-screen flex flex-col justify-center pt-20">
       {/* Background gradients */}
@@ -56,13 +18,7 @@ const HeroSection = () => {
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
             <span className="text-gradient">Beautiful UI Components</span>
             <br />
-            <span 
-              ref={textRef} 
-              className="transition-colors duration-200"
-              style={{ WebkitTextFillColor: 'transparent', WebkitBackgroundClip: 'text', backgroundClip: 'text' }}
-            >
-              For Modern Websites
-            </span>
+            <span className="text-gradient-purple">For Modern Websites</span>
           </h1>
           
           <p className="text-gray-400 text-lg max-w-xl mx-auto lg:mx-0 leading-relaxed">
