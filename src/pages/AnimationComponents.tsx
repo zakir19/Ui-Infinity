@@ -99,6 +99,7 @@ keyframes: {
 <div className="animate-bounce">
   <div className="w-8 h-8 bg-neon-cyan rounded-full"></div>
 </div>`} 
+              className="opacity-0 group-hover:opacity-100"
             />
             <pre className="text-sm text-gray-300 overflow-auto p-4">
 {`// Fade in animation
@@ -137,7 +138,7 @@ const ComponentShowcase = ({
   return (
     <div className="glass-morphism rounded-xl overflow-hidden hover:border-neon-purple/30 transition-colors group relative">
       {/* Copy Code Button */}
-      <CopyButton code={code} />
+      <CopyButton code={code} className="opacity-0 group-hover:opacity-100" />
       
       {/* Component info */}
       <div className="p-4 border-b border-white/10">

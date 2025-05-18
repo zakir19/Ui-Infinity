@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { CopyButton } from '@/components/ui/copy-button';
 import Footer from '@/components/Footer';
@@ -34,7 +35,8 @@ const InputComponents = () => {
                   code={`<div className="mb-6">
   <Label htmlFor="standard-input">Username</Label>
   <Input id="standard-input" placeholder="Enter your username" />
-</div>`} 
+</div>`}
+                  className="opacity-0 group-hover:opacity-100"
                 />
                 <pre className="text-gray-300 text-xs overflow-auto p-1">
                   <code>{`<div className="mb-6">
@@ -65,7 +67,8 @@ const InputComponents = () => {
     className="neo-input w-full px-3 py-2 text-white" 
     placeholder="Enter your email" 
   />
-</div>`} 
+</div>`}
+                  className="opacity-0 group-hover:opacity-100"
                 />
                 <pre className="text-gray-300 text-xs overflow-auto p-1">
                   <code>{`<div className="mb-6">
@@ -92,7 +95,8 @@ const InputComponents = () => {
                   code={`<div className="mb-6">
   <Label htmlFor="text-area">Message</Label>
   <Textarea id="text-area" placeholder="Type your message here" />
-</div>`} 
+</div>`}
+                  className="opacity-0 group-hover:opacity-100"
                 />
                 <pre className="text-gray-300 text-xs overflow-auto p-1">
                   <code>{`<div className="mb-6">
@@ -129,7 +133,8 @@ const InputComponents = () => {
     </div>
     <Input id="icon-input" className="pl-10" placeholder="Search..." />
   </div>
-</div>`} 
+</div>`}
+                  className="opacity-0 group-hover:opacity-100"
                 />
                 <pre className="text-gray-300 text-xs overflow-auto p-1">
                   <code>{`<div className="mb-6">
@@ -177,7 +182,8 @@ const InputComponents = () => {
       />
     ))}
   </div>
-</div>`} 
+</div>`}
+                  className="opacity-0 group-hover:opacity-100"
                 />
                 <pre className="text-gray-300 text-xs overflow-auto p-1">
                   <code>{`<div className="mb-6">
@@ -211,7 +217,8 @@ const InputComponents = () => {
   <Label htmlFor="validation-input">Password</Label>
   <Input id="validation-input" type="password" className="border-red-500" placeholder="Enter password" />
   <p className="text-red-500 text-xs mt-1">Password must be at least 8 characters long</p>
-</div>`} 
+</div>`}
+                  className="opacity-0 group-hover:opacity-100"
                 />
                 <pre className="text-gray-300 text-xs overflow-auto p-1">
                   <code>{`<div className="mb-6">
