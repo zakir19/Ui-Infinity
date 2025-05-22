@@ -19,9 +19,42 @@ const GridComponents = () => {
       
       <section className="py-12">
         <div className="container mx-auto px-4">
-          <p className="text-center text-gray-400 text-lg">
-            Grid components coming soon. Check back for updates!
-          </p>
+          <div className="glass-morphism p-6 rounded-xl overflow-hidden relative group">
+            <CopyButton 
+              code={`// Basic grid layout
+<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+  <div>Item 1</div>
+  <div>Item 2</div>
+  <div>Item 3</div>
+</div>
+
+// Auto-fit grid with minmax
+<div className="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-4">
+  <div>Auto-fit Item 1</div>
+  <div>Auto-fit Item 2</div>
+  <div>Auto-fit Item 3</div>
+</div>`} 
+              className="opacity-0 group-hover:opacity-100"
+            />
+            <p className="text-center text-gray-400 text-lg mb-4">
+              Grid components coming soon. Check back for updates!
+            </p>
+            <pre className="text-sm text-gray-300 overflow-auto p-4">
+{`// Basic grid layout
+<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+  <div>Item 1</div>
+  <div>Item 2</div>
+  <div>Item 3</div>
+</div>
+
+// Auto-fit grid with minmax
+<div className="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-4">
+  <div>Auto-fit Item 1</div>
+  <div>Auto-fit Item 2</div>
+  <div>Auto-fit Item 3</div>
+</div>`}
+            </pre>
+          </div>
         </div>
       </section>
       
