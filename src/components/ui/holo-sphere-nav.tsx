@@ -2,7 +2,7 @@
 import React, { useRef, useState, useMemo } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Sphere, Text, Html } from '@react-three/drei';
-import { Vector3, Color } from 'three';
+import { Vector3 } from 'three';
 import * as THREE from 'three';
 
 interface NavigationItem {
@@ -46,9 +46,8 @@ const NavigationNode: React.FC<{
 
   return (
     <group position={position}>
-      <Sphere
+      <mesh
         ref={meshRef}
-        args={[0.3, 16, 16]}
         onPointerOver={() => {
           setHovered(true);
           onHover(true);
@@ -59,6 +58,7 @@ const NavigationNode: React.FC<{
         }}
         onClick={onClick}
       >
+        <sphereGeometry args={[0.3, 16, 16]} />
         <meshStandardMaterial
           color={item.color}
           transparent
@@ -66,7 +66,7 @@ const NavigationNode: React.FC<{
           emissive={item.color}
           emissiveIntensity={hovered ? 0.3 : 0.1}
         />
-      </Sphere>
+      </mesh>
       
       {hovered && (
         <Html>
@@ -135,7 +135,8 @@ const CoreSphere: React.FC<{ color: string }> = ({ color }) => {
   });
 
   return (
-    <Sphere ref={meshRef} args={[0.8, 32, 32]}>
+    <mesh ref={meshRef}>
+      <sphereGeometry args={[0.8, 32, 32]} />
       <meshStandardMaterial
         color={color}
         transparent
@@ -143,7 +144,7 @@ const CoreSphere: React.FC<{ color: string }> = ({ color }) => {
         emissive={color}
         emissiveIntensity={0.5}
       />
-    </Sphere>
+    </mesh>
   );
 };
 
