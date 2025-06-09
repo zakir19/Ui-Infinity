@@ -10,9 +10,62 @@ import {
 } from '@/components/ui/navigation-menu';
 import Footer from '@/components/Footer';
 import { CopyButton } from '@/components/ui/copy-button';
+import { HoloSphereNav } from '@/components/ui/holo-sphere-nav';
+import { QuantumPortalNav } from '@/components/ui/quantum-portal-nav';
 import { toast } from '@/hooks/use-toast';
 
 const NavigationComponents = () => {
+  // Sample navigation data for the 3D components
+  const sampleNavItems = [
+    { id: '1', label: 'Home', color: '#9b87f5', onClick: () => toast({ title: 'Home clicked!' }) },
+    { id: '2', label: 'About', color: '#06b6d4', onClick: () => toast({ title: 'About clicked!' }) },
+    { id: '3', label: 'Services', color: '#ec4899', onClick: () => toast({ title: 'Services clicked!' }) },
+    { id: '4', label: 'Contact', color: '#10b981', onClick: () => toast({ title: 'Contact clicked!' }) }
+  ];
+
+  const portalNavItems = [
+    { 
+      id: '1', 
+      label: 'Products', 
+      color: '#9b87f5',
+      subItems: [
+        { label: 'Web Apps', onClick: () => toast({ title: 'Web Apps clicked!' }) },
+        { label: 'Mobile Apps', onClick: () => toast({ title: 'Mobile Apps clicked!' }) }
+      ],
+      onClick: () => toast({ title: 'Products clicked!' })
+    },
+    { 
+      id: '2', 
+      label: 'Solutions', 
+      color: '#06b6d4',
+      subItems: [
+        { label: 'Enterprise', onClick: () => toast({ title: 'Enterprise clicked!' }) },
+        { label: 'Startups', onClick: () => toast({ title: 'Startups clicked!' }) }
+      ],
+      onClick: () => toast({ title: 'Solutions clicked!' })
+    },
+    { 
+      id: '3', 
+      label: 'Resources', 
+      color: '#ec4899',
+      subItems: [
+        { label: 'Documentation', onClick: () => toast({ title: 'Docs clicked!' }) },
+        { label: 'Tutorials', onClick: () => toast({ title: 'Tutorials clicked!' }) }
+      ],
+      onClick: () => toast({ title: 'Resources clicked!' })
+    },
+    { 
+      id: '4', 
+      label: 'Support', 
+      color: '#10b981',
+      subItems: [
+        { label: 'Help Center', onClick: () => toast({ title: 'Help clicked!' }) },
+        { label: 'Contact Us', onClick: () => toast({ title: 'Contact clicked!' }) }
+      ],
+      onClick: () => toast({ title: 'Support clicked!' })
+    }
+  ];
+
   return (
     <div className="min-h-screen">
       {/* Header */}
@@ -31,6 +84,63 @@ const NavigationComponents = () => {
       <section className="py-12">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {/* HoloSphere Navigation */}
+            <NavShowcase 
+              title="HoloSphere Navigation"
+              description="3D holographic sphere with orbiting navigation nodes"
+              code={`import { HoloSphereNav } from '@/components/ui/holo-sphere-nav';
+
+const navItems = [
+  { id: '1', label: 'Home', color: '#9b87f5', onClick: () => console.log('Home') },
+  { id: '2', label: 'About', color: '#06b6d4', onClick: () => console.log('About') },
+  { id: '3', label: 'Services', color: '#ec4899', onClick: () => console.log('Services') },
+  { id: '4', label: 'Contact', color: '#10b981', onClick: () => console.log('Contact') }
+];
+
+<HoloSphereNav 
+  items={navItems}
+  radius={3}
+  coreColor="#9b87f5"
+  className="w-full h-64"
+/>`}>
+              <div className="bg-black/20 p-6 rounded-lg">
+                <HoloSphereNav 
+                  items={sampleNavItems}
+                  radius={2.5}
+                  coreColor="#9b87f5"
+                />
+              </div>
+            </NavShowcase>
+
+            {/* Quantum Portal Navigation */}
+            <NavShowcase 
+              title="Quantum Portal Navigation"
+              description="Futuristic portal with floating polyhedron nodes and sub-menus"
+              code={`import { QuantumPortalNav } from '@/components/ui/quantum-portal-nav';
+
+const portalItems = [
+  { 
+    id: '1', 
+    label: 'Products', 
+    color: '#9b87f5',
+    subItems: [
+      { label: 'Web Apps', onClick: () => console.log('Web Apps') },
+      { label: 'Mobile Apps', onClick: () => console.log('Mobile Apps') }
+    ],
+    onClick: () => console.log('Products')
+  },
+  // ... more items
+];
+
+<QuantumPortalNav 
+  items={portalItems}
+  className="w-full h-64"
+/>`}>
+              <div className="bg-black/20 p-6 rounded-lg">
+                <QuantumPortalNav items={portalNavItems} />
+              </div>
+            </NavShowcase>
+
             {/* Navigation Menu */}
             <NavShowcase 
               title="Navigation Menu"
@@ -243,7 +353,6 @@ const NavigationComponents = () => {
               </div>
             </NavShowcase>
 
-            {/* Dropdown Menu */}
             <NavShowcase 
               title="Dropdown Menu"
               description="Toggle menu for displaying additional options"
@@ -297,7 +406,6 @@ const NavigationComponents = () => {
               </div>
             </NavShowcase>
             
-            {/* Pagination */}
             <NavShowcase 
               title="Pagination"
               description="Navigation controls for paginated content"
@@ -364,33 +472,9 @@ import {
   NavigationMenuLink
 } from "@/components/ui/navigation-menu";
 
-// Basic Navigation Menu
-<NavigationMenu>
-  <NavigationMenuList>
-    <NavigationMenuItem>
-      <NavigationMenuTrigger>Getting Started</NavigationMenuTrigger>
-      <NavigationMenuContent>
-        {/* Your dropdown content here */}
-      </NavigationMenuContent>
-    </NavigationMenuItem>
-    <NavigationMenuItem>
-      <NavigationMenuLink>Documentation</NavigationMenuLink>
-    </NavigationMenuItem>
-  </NavigationMenuList>
-</NavigationMenu>
-`}
-              className="opacity-0 group-hover:opacity-100"
-            />
-            <pre className="text-sm text-gray-300 overflow-auto p-4">
-{`// Import navigation components
-import {
-  NavigationMenu,
-  NavigationMenuList,
-  NavigationMenuItem,
-  NavigationMenuTrigger,
-  NavigationMenuContent,
-  NavigationMenuLink
-} from "@/components/ui/navigation-menu";
+// Import 3D navigation components
+import { HoloSphereNav } from "@/components/ui/holo-sphere-nav";
+import { QuantumPortalNav } from "@/components/ui/quantum-portal-nav";
 
 // Basic Navigation Menu
 <NavigationMenu>
@@ -406,6 +490,58 @@ import {
     </NavigationMenuItem>
   </NavigationMenuList>
 </NavigationMenu>
+
+// 3D HoloSphere Navigation
+<HoloSphereNav 
+  items={navItems}
+  radius={3}
+  coreColor="#9b87f5"
+/>
+
+// 3D Quantum Portal Navigation
+<QuantumPortalNav items={portalItems} />
+`}
+              className="opacity-0 group-hover:opacity-100"
+            />
+            <pre className="text-sm text-gray-300 overflow-auto p-4">
+{`// Import navigation components
+import {
+  NavigationMenu,
+  NavigationMenuList,
+  NavigationMenuItem,
+  NavigationMenuTrigger,
+  NavigationMenuContent,
+  NavigationMenuLink
+} from "@/components/ui/navigation-menu";
+
+// Import 3D navigation components
+import { HoloSphereNav } from "@/components/ui/holo-sphere-nav";
+import { QuantumPortalNav } from "@/components/ui/quantum-portal-nav";
+
+// Basic Navigation Menu
+<NavigationMenu>
+  <NavigationMenuList>
+    <NavigationMenuItem>
+      <NavigationMenuTrigger>Getting Started</NavigationMenuTrigger>
+      <NavigationMenuContent>
+        {/* Your dropdown content here */}
+      </NavigationMenuContent>
+    </NavigationMenuItem>
+    <NavigationMenuItem>
+      <NavigationMenuLink>Documentation</NavigationMenuLink>
+    </NavigationMenuItem>
+  </NavigationMenuList>
+</NavigationMenu>
+
+// 3D HoloSphere Navigation
+<HoloSphereNav 
+  items={navItems}
+  radius={3}
+  coreColor="#9b87f5"
+/>
+
+// 3D Quantum Portal Navigation
+<QuantumPortalNav items={portalItems} />
 `}
             </pre>
           </div>
