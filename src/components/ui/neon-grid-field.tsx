@@ -1,5 +1,5 @@
 
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useMemo } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 
@@ -14,6 +14,26 @@ interface NeonGridFieldProps {
 const NeonGrid: React.FC<{ isFocused: boolean; hasText: boolean }> = ({ isFocused, hasText }) => {
   const gridRef = useRef<THREE.Group>(null);
   
+  const gridGeometry = useMemo(() => {
+    const geometry = new THREE.BufferGeometry();
+    const vertices = [];
+    const size = 2;
+    const divisions = 10;
+    
+    // Create grid lines
+    for (let i = 0; i <= divisions; i++) {
+      const x = (i / divisions - 0.5) * size;
+      // Vertical lines
+      vertices.push(x, -size/2, 0, x, size/2, 0);
+      // Horizontal lines
+      const y = (i / divisions - 0.5) * size;
+      vertices.push(-size/2, y, 0, size/2, y, 0);
+    }
+    
+    geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
+    return geometry;
+  }, []);
+  
   useFrame((state) => {
     if (gridRef.current) {
       gridRef.current.rotation.x = isFocused ? -0.3 : -0.1;
@@ -25,47 +45,13 @@ const NeonGrid: React.FC<{ isFocused: boolean; hasText: boolean }> = ({ isFocuse
     }
   });
 
-  const gridLines = [];
-  const size = 2;
-  const divisions = 10;
-  
-  for (let i = 0; i <= divisions; i++) {
-    const x = (i / divisions - 0.5) * size;
-    gridLines.push(
-      <line key={`v${i}`}>
-        <bufferGeometry>
-          <bufferAttribute
-            attach="attributes-position"
-            count={2}
-            array={new Float32Array([x, -size/2, 0, x, size/2, 0])}
-            itemSize={3}
-          />
-        </bufferGeometry>
-        <lineBasicMaterial color={isFocused ? "#33C3F0" : "#9b87f5"} />
-      </line>
-    );
-    
-    const y = (i / divisions - 0.5) * size;
-    gridLines.push(
-      <line key={`h${i}`}>
-        <bufferGeometry>
-          <bufferAttribute
-            attach="attributes-position"
-            count={2}
-            array={new Float32Array([-size/2, y, 0, size/2, y, 0])}
-            itemSize={3}
-          />
-        </bufferGeometry>
-        <lineBasicMaterial color={isFocused ? "#33C3F0" : "#9b87f5"} />
-      </line>
-    );
-  }
-
   return (
     <group ref={gridRef}>
-      {gridLines}
+      <lineSegments geometry={gridGeometry}>
+        <lineBasicMaterial color={isFocused ? "#33C3F0" : "#9b87f5"} />
+      </lineSegments>
       <mesh position={[0, 0, 0.01]}>
-        <planeGeometry args={[size, size]} />
+        <planeGeometry args={[2, 2]} />
         <meshStandardMaterial
           color={isFocused ? "#33C3F0" : "#9b87f5"}
           transparent
@@ -101,7 +87,10 @@ export const NeonGridField: React.FC<NeonGridFieldProps> = ({
       
       <div className="relative">
         <div className="absolute inset-0 h-24 -top-4">
-          <Canvas camera={{ position: [0, 0, 2], fov: 45 }}>
+          <Canvas 
+            camera={{ position: [0, 0, 2], fov: 45 }}
+            gl={{ alpha: true, antialias: true }}
+          >
             <ambientLight intensity={0.3} />
             <NeonGrid isFocused={focused} hasText={inputValue.length > 0} />
           </Canvas>

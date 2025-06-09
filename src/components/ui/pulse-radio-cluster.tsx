@@ -1,5 +1,5 @@
 
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useMemo } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 
@@ -19,9 +19,9 @@ interface PulseRadioClusterProps {
 const RadioNode: React.FC<{ 
   position: [number, number, number];
   isSelected: boolean;
-  isConnected: boolean;
-  onClick: () => void;
-}> = ({ position, isSelected, isConnected, onClick }) => {
+  nodeIndex: number;
+  onNodeClick: (index: number) => void;
+}> = ({ position, isSelected, nodeIndex, onNodeClick }) => {
   const nodeRef = useRef<THREE.Mesh>(null);
   
   useFrame((state) => {
@@ -37,7 +37,7 @@ const RadioNode: React.FC<{
     <mesh 
       ref={nodeRef} 
       position={position}
-      onClick={onClick}
+      onClick={() => onNodeClick(nodeIndex)}
     >
       <sphereGeometry args={[0.2, 16, 16]} />
       <meshStandardMaterial
@@ -50,29 +50,30 @@ const RadioNode: React.FC<{
 };
 
 const ConnectionLines: React.FC<{ selectedIndex: number; positions: [number, number, number][] }> = ({ selectedIndex, positions }) => {
-  if (selectedIndex === -1) return null;
-
-  const lines = positions.map((pos, index) => {
-    if (index === selectedIndex) return null;
+  const lineGeometry = useMemo(() => {
+    if (selectedIndex === -1) return null;
     
+    const vertices = [];
     const selectedPos = positions[selectedIndex];
     
-    return (
-      <line key={index}>
-        <bufferGeometry>
-          <bufferAttribute
-            attach="attributes-position"
-            count={2}
-            array={new Float32Array([...selectedPos, ...pos])}
-            itemSize={3}
-          />
-        </bufferGeometry>
-        <lineBasicMaterial color="#33C3F0" opacity={0.6} transparent />
-      </line>
-    );
-  });
+    positions.forEach((pos, index) => {
+      if (index !== selectedIndex) {
+        vertices.push(...selectedPos, ...pos);
+      }
+    });
+    
+    const geometry = new THREE.BufferGeometry();
+    geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
+    return geometry;
+  }, [selectedIndex, positions]);
 
-  return <>{lines}</>;
+  if (!lineGeometry) return null;
+
+  return (
+    <lineSegments geometry={lineGeometry}>
+      <lineBasicMaterial color="#33C3F0" opacity={0.6} transparent />
+    </lineSegments>
+  );
 };
 
 export const PulseRadioCluster: React.FC<PulseRadioClusterProps> = ({
@@ -86,17 +87,25 @@ export const PulseRadioCluster: React.FC<PulseRadioClusterProps> = ({
   
   const selectedIndex = options.findIndex(opt => opt.value === selectedValue);
   
-  const positions: [number, number, number][] = options.map((_, index) => {
-    const angle = (index / options.length) * Math.PI * 2;
-    const radius = 1.2;
-    return [
-      Math.cos(angle) * radius,
-      Math.sin(angle) * radius,
-      0
-    ];
-  });
+  const positions: [number, number, number][] = useMemo(() => {
+    return options.map((_, index) => {
+      const angle = (index / options.length) * Math.PI * 2;
+      const radius = 1.2;
+      return [
+        Math.cos(angle) * radius,
+        Math.sin(angle) * radius,
+        0
+      ];
+    });
+  }, [options.length]);
 
-  const handleNodeClick = (optionValue: string) => {
+  const handleNodeClick = (nodeIndex: number) => {
+    const optionValue = options[nodeIndex].value;
+    setSelectedValue(optionValue);
+    onChange?.(optionValue);
+  };
+
+  const handleRadioChange = (optionValue: string) => {
     setSelectedValue(optionValue);
     onChange?.(optionValue);
   };
@@ -108,7 +117,10 @@ export const PulseRadioCluster: React.FC<PulseRadioClusterProps> = ({
       </label>
       
       <div className="relative h-64 mb-4">
-        <Canvas camera={{ position: [0, 0, 4], fov: 45 }}>
+        <Canvas 
+          camera={{ position: [0, 0, 4], fov: 45 }}
+          gl={{ alpha: true, antialias: true }}
+        >
           <ambientLight intensity={0.3} />
           <pointLight position={[2, 2, 2]} intensity={0.8} color="#33C3F0" />
           
@@ -119,8 +131,8 @@ export const PulseRadioCluster: React.FC<PulseRadioClusterProps> = ({
               key={option.value}
               position={positions[index]}
               isSelected={selectedValue === option.value}
-              isConnected={selectedIndex !== -1 && selectedIndex !== index}
-              onClick={() => handleNodeClick(option.value)}
+              nodeIndex={index}
+              onNodeClick={handleNodeClick}
             />
           ))}
         </Canvas>
@@ -135,7 +147,7 @@ export const PulseRadioCluster: React.FC<PulseRadioClusterProps> = ({
               name="radio-cluster"
               value={option.value}
               checked={selectedValue === option.value}
-              onChange={() => handleNodeClick(option.value)}
+              onChange={() => handleRadioChange(option.value)}
               className="w-4 h-4 text-neon-cyan focus:ring-neon-cyan bg-black/20 border-neon-cyan/30"
             />
             <label htmlFor={option.value} className="ml-2 text-sm text-gray-300">

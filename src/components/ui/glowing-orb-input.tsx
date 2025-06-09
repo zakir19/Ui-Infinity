@@ -56,7 +56,10 @@ export const GlowingOrbInput: React.FC<GlowingOrbInputProps> = ({
   return (
     <div className={`relative ${className}`}>
       <div className="relative h-32 mb-4">
-        <Canvas camera={{ position: [0, 0, 3], fov: 45 }}>
+        <Canvas 
+          camera={{ position: [0, 0, 3], fov: 45 }}
+          gl={{ alpha: true, antialias: true }}
+        >
           <ambientLight intensity={0.3} />
           <pointLight position={[2, 2, 2]} intensity={0.8} color="#9b87f5" />
           <GlowingOrb isFocused={focused} />
