@@ -1,7 +1,13 @@
-
 import React from 'react';
 import Footer from '@/components/Footer';
 import { CopyButton } from '@/components/ui/copy-button';
+import { GlowingOrbInput } from '@/components/ui/glowing-orb-input';
+import { NeonGridField } from '@/components/ui/neon-grid-field';
+import { PrismSelect } from '@/components/ui/prism-select';
+import { HoloToggleRing } from '@/components/ui/holo-toggle-ring';
+import { PulseRadioCluster } from '@/components/ui/pulse-radio-cluster';
+import { CrystalTextArea } from '@/components/ui/crystal-textarea';
+import { VortexFormButton } from '@/components/ui/vortex-form-button';
 
 const FormComponents = () => {
   return (
@@ -22,6 +28,148 @@ const FormComponents = () => {
       <section className="py-12">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* Glowing Orb Input */}
+            <FormShowcase 
+              title="Glowing Orb Input"
+              description="A text input encased in a glowing 3D orb with pulsing neon effects"
+              code={`import { GlowingOrbInput } from '@/components/ui/glowing-orb-input';
+
+<GlowingOrbInput
+  label="Username"
+  placeholder="Enter your username"
+  onChange={(value) => console.log(value)}
+/>`}>
+              <GlowingOrbInput
+                label="Username"
+                placeholder="Enter your username"
+              />
+            </FormShowcase>
+
+            {/* Neon Grid Field */}
+            <FormShowcase 
+              title="Neon Grid Field"
+              description="Text input on a 3D grid that tilts and glows with neon colors"
+              code={`import { NeonGridField } from '@/components/ui/neon-grid-field';
+
+<NeonGridField
+  label="Email Address"
+  placeholder="Enter your email"
+  onChange={(value) => console.log(value)}
+/>`}>
+              <NeonGridField
+                label="Email Address"
+                placeholder="Enter your email"
+              />
+            </FormShowcase>
+
+            {/* Prism Select */}
+            <FormShowcase 
+              title="Prism Select"
+              description="Dropdown select shaped like a rotating 3D prism with neon highlights"
+              code={`import { PrismSelect } from '@/components/ui/prism-select';
+
+<PrismSelect
+  label="Select Country"
+  options={[
+    { value: 'us', label: 'United States' },
+    { value: 'ca', label: 'Canada' },
+    { value: 'uk', label: 'United Kingdom' },
+    { value: 'au', label: 'Australia' }
+  ]}
+  onChange={(value) => console.log(value)}
+/>`}>
+              <PrismSelect
+                label="Select Country"
+                options={[
+                  { value: 'us', label: 'United States' },
+                  { value: 'ca', label: 'Canada' },
+                  { value: 'uk', label: 'United Kingdom' },
+                  { value: 'au', label: 'Australia' }
+                ]}
+              />
+            </FormShowcase>
+
+            {/* Holo Toggle Ring */}
+            <FormShowcase 
+              title="Holo Toggle Ring"
+              description="Toggle switch with a glowing 3D ring and floating neon sphere"
+              code={`import { HoloToggleRing } from '@/components/ui/holo-toggle-ring';
+
+<HoloToggleRing
+  label="Enable notifications"
+  onChange={(checked) => console.log(checked)}
+/>`}>
+              <HoloToggleRing
+                label="Enable notifications"
+              />
+            </FormShowcase>
+
+            {/* Pulse Radio Cluster */}
+            <FormShowcase 
+              title="Pulse Radio Cluster"
+              description="Radio group as a constellation of glowing nodes with connecting light beams"
+              code={`import { PulseRadioCluster } from '@/components/ui/pulse-radio-cluster';
+
+<PulseRadioCluster
+  label="Subscription Plan"
+  options={[
+    { value: 'basic', label: 'Basic Plan' },
+    { value: 'pro', label: 'Pro Plan' },
+    { value: 'enterprise', label: 'Enterprise' }
+  ]}
+  onChange={(value) => console.log(value)}
+/>`}>
+              <PulseRadioCluster
+                label="Subscription Plan"
+                options={[
+                  { value: 'basic', label: 'Basic Plan' },
+                  { value: 'pro', label: 'Pro Plan' },
+                  { value: 'enterprise', label: 'Enterprise' }
+                ]}
+              />
+            </FormShowcase>
+
+            {/* Crystal TextArea */}
+            <FormShowcase 
+              title="Crystal TextArea"
+              description="Textarea encased in a 3D crystal structure that refracts neon light"
+              code={`import { CrystalTextArea } from '@/components/ui/crystal-textarea';
+
+<CrystalTextArea
+  label="Your Message"
+  placeholder="Enter your message here..."
+  rows={4}
+  onChange={(value) => console.log(value)}
+/>`}>
+              <CrystalTextArea
+                label="Your Message"
+                placeholder="Enter your message here..."
+                rows={4}
+              />
+            </FormShowcase>
+
+            {/* Vortex Form Button */}
+            <FormShowcase 
+              title="Vortex Form Button"
+              description="Submit button with a 3D vortex that swirls with neon energy"
+              code={`import { VortexFormButton } from '@/components/ui/vortex-form-button';
+
+<VortexFormButton
+  type="submit"
+  onClick={() => console.log('Form submitted!')}
+>
+  Submit Form
+</VortexFormButton>`}>
+              <VortexFormButton
+                onClick={() => console.log('Form submitted!')}
+              >
+                Submit Form
+              </VortexFormButton>
+            </FormShowcase>
+
+            {/* Keep existing components */}
+            {/* ... keep existing code (Text Input, Email Input, Select Input, etc.) the same ... */}
+            
             {/* Text Input */}
             <FormShowcase 
               title="Text Input"
