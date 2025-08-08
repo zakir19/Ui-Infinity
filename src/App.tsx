@@ -23,11 +23,19 @@ import CustomUI from './pages/CustomUI';
 import NotFound from './pages/NotFound';
 import Navbar from './components/Navbar';
 import CardLibrary from './pages/CardLibrary';
+import Preloader from './components/Preloader';
+import PageTransition from './components/PageTransition';
+import Cursor from './components/Cursor';
 
 function App() {
   return (
     <Router>
       <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white">
+        {/* Global overlays */}
+        <Preloader />
+        <PageTransition />
+        <Cursor />
+        
         <Navbar />
         <Routes>
           <Route path="/" element={<Index />} />

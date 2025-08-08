@@ -4,6 +4,7 @@ import React, { useRef, useEffect, useState } from 'react';
 const ThreeScene: React.FC = () => {
   const mountRef = useRef<HTMLDivElement>(null);
   const [isInView, setIsInView] = useState(false);
+  const sceneRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const mountElement = mountRef.current;
@@ -30,10 +31,43 @@ const ThreeScene: React.FC = () => {
     };
   }, []);
 
+  // Subtle parallax tilt with mouse, disabled on touch and when out of view
+  useEffect(() => {
+    const el = sceneRef.current;
+    const container = mountRef.current;
+    if (!el || !container) return;
+
+    const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (isTouch || prefersReduced) return;
+
+    const onMove = (e: MouseEvent) => {
+      if (!isInView) return;
+      const rect = container.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width - 0.5;
+      const y = (e.clientY - rect.top) / rect.height - 0.5;
+      const rotateX = y * -10; // degrees
+      const rotateY = x * 10;
+      el.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    };
+
+    const onLeave = () => {
+      el.style.transform = 'rotateX(0deg) rotateY(0deg)';
+    };
+
+    container.addEventListener('mousemove', onMove);
+    container.addEventListener('mouseleave', onLeave);
+
+    return () => {
+      container.removeEventListener('mousemove', onMove);
+      container.removeEventListener('mouseleave', onLeave);
+    };
+  }, [isInView]);
+
   return (
     <div ref={mountRef} className="relative">
       {/* CSS-based placeholder for the 3D scene - optimized animation */}
-      <div className="relative w-72 h-72 md:w-96 md:h-96 mx-auto">
+      <div ref={sceneRef} className="relative w-72 h-72 md:w-96 md:h-96 mx-auto preserve-3d will-change-transform">
         {/* Only animate when in view */}
         {isInView && (
           <>
