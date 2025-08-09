@@ -59,7 +59,7 @@ const Components = () => {
     return {
       hidden: from,
       show: { x: 0, y: 0, rotate: 0, opacity: 1, transition: { type: "spring", stiffness: 340, damping: 24 } },
-      exit: { opacity: 0, scale: 0.92, filter: "blur(4px)", transition: { duration: 0.22 } },
+      exit: { opacity: 0, scale: 0.92, transition: { duration: 0.22 } },
     };
   };
 
