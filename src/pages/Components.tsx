@@ -407,7 +407,7 @@ const Components = () => {
                     <LayoutGroup id="components-grid">
                       <Magnetic strength={40}>
                         <motion.div
-                          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+                          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch"
                           variants={containerVariants}
                           initial="hidden"
                           animate="show"
@@ -419,6 +419,7 @@ const Components = () => {
                                 key={`${component.name}-${index}`}
                                 variants={getItemVariants(index)}
                                 layout
+                                className="h-full"
                               >
                                 <PreviewCard
                                   name={component.name}

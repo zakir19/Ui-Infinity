@@ -13,20 +13,20 @@ interface PreviewCardProps {
 }
 
 const overlayVariants = {
-  initial: { opacity: 0, y: 8 },
+  rest: { opacity: 0, y: 8 },
   hover: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 320, damping: 22 } },
 };
 
 const PreviewCard: React.FC<PreviewCardProps> = ({ name, description, isNew, className, onClick }) => {
   return (
-    <motion.div className={cn("relative group h-full", className)} initial={false}>
+    <motion.div className={cn("relative group h-full", className)} initial="rest" animate="rest" whileHover="hover" variants={{ rest: {}, hover: {} }}>
       {isNew && (
         <div className="absolute z-10 top-3 right-3 bg-neon-purple/80 py-1 px-2 rounded-full text-xs font-medium">
           New
         </div>
       )}
 
-      <TiltCard className="h-48 bg-gradient-to-br from-neon-purple/10 to-neon-cyan/10 border border-white/10 rounded-xl overflow-hidden">
+      <TiltCard className="h-full min-h-[14rem] bg-gradient-to-br from-neon-purple/10 to-neon-cyan/10 border border-white/10 rounded-xl overflow-hidden">
         <div className="relative h-full w-full p-5">
           {/* Default content */}
           <div className="flex h-full flex-col justify-between">
@@ -49,8 +49,6 @@ const PreviewCard: React.FC<PreviewCardProps> = ({ name, description, isNew, cla
           {/* Quick Look overlay */}
           <motion.div
             variants={overlayVariants}
-            initial="initial"
-            whileHover="hover"
             className="pointer-events-none absolute inset-x-3 bottom-3 flex items-center justify-between rounded-lg bg-black/30 px-3 py-2 backdrop-blur-md border border-white/10"
           >
             <div className="flex items-center gap-2">
