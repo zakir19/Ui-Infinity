@@ -405,21 +405,22 @@ const Components = () => {
                   </h2>
                   <MotionConfig reducedMotion="user">
                     <LayoutGroup id="components-grid">
-                      <Magnetic strength={40}>
-                        <motion.div
-                          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch"
-                          variants={containerVariants}
-                          initial="hidden"
-                          animate="show"
-                          layout
-                        >
-                          <AnimatePresence initial={false}>
-                            {filteredComponents.map((component, index) => (
+                      <motion.div
+                        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch"
+                        variants={containerVariants}
+                        initial="hidden"
+                        animate="show"
+                        layout
+                      >
+                        <AnimatePresence initial={false}>
+                          {filteredComponents.map((component, index) => (
+                            <Magnetic strength={32} key={`${component.name}-${index}`}>
                               <motion.div
-                                key={`${component.name}-${index}`}
                                 variants={getItemVariants(index)}
                                 layout
                                 className="h-full"
+                                whileHover={{ scale: 1.01 }}
+                                transition={{ type: "spring", stiffness: 350, damping: 22 }}
                               >
                                 <PreviewCard
                                   name={component.name}
@@ -427,11 +428,11 @@ const Components = () => {
                                   isNew={component.isNew}
                                 />
                               </motion.div>
-                            ))}
-                          </AnimatePresence>
-                        </motion.div>
-                      </Magnetic>
-                    </LayoutGroup>
+                            </Magnetic>
+                          ))}
+                        </AnimatePresence>
+                      </motion.div>
+                     </LayoutGroup>
                   </MotionConfig>
                 </div>
               )}
