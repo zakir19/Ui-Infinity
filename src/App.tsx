@@ -26,6 +26,7 @@ import CardLibrary from './pages/CardLibrary';
 import Preloader from './components/Preloader';
 import PageTransition from './components/PageTransition';
 import Cursor from './components/Cursor';
+import ExperimentalLab from './pages/ExperimentalLab';
 
 function App() {
   return (
@@ -59,6 +60,7 @@ function App() {
           <Route path="/sliders" element={<SliderComponents />} />
           <Route path="/loaders" element={<LoaderComponents />} />
           <Route path="/custom-ui" element={<CustomUI />} />
+          <Route path="/lab" element={<ExperimentalLab />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
