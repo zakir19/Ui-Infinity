@@ -27,6 +27,8 @@ import Preloader from './components/Preloader';
 import PageTransition from './components/PageTransition';
 import Cursor from './components/Cursor';
 import ExperimentalLab from './pages/ExperimentalLab';
+import { Toaster as ShadcnToaster } from '@/components/ui/toaster';
+import { Toaster as SonnerToaster } from 'sonner';
 
 function App() {
   return (
@@ -36,6 +38,8 @@ function App() {
         <Preloader />
         <PageTransition />
         <Cursor />
+        <ShadcnToaster />
+        <SonnerToaster position="top-right" richColors />
         
         <Navbar />
         <Routes>

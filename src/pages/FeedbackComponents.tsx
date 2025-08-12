@@ -274,7 +274,7 @@ shadcnToast({
                   <input
                     type="text"
                     id="email"
-                    value="notanemail"
+                    defaultValue="notanemail"
                     className="w-full px-4 py-2 rounded-md bg-black/20 border border-red-500 text-white placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
                   />
                   <p className="text-xs text-red-500 mt-1">Please enter a valid email address</p>
@@ -285,7 +285,7 @@ shadcnToast({
                   <input
                     type="password"
                     id="password"
-                    value="pass123"
+                    defaultValue="pass123"
                     className="w-full px-4 py-2 rounded-md bg-black/20 border border-yellow-500 text-white placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
                   />
                   <p className="text-xs text-yellow-500 mt-1">Password should be at least 8 characters long</p>
@@ -296,7 +296,7 @@ shadcnToast({
                   <input
                     type="text"
                     id="username"
-                    value="johndoe"
+                    defaultValue="johndoe"
                     className="w-full px-4 py-2 rounded-md bg-black/20 border border-green-500 text-white placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
                   />
                   <p className="text-xs text-green-500 mt-1">Username is available</p>
