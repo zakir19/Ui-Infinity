@@ -2,6 +2,10 @@
 import React from 'react';
 import { CopyButton } from '@/components/ui/copy-button';
 import Footer from '@/components/Footer';
+import SmokeFogModal from '@/components/animations/SmokeFogModal';
+import GoboLightCard from '@/components/animations/GoboLightCard';
+import SilkCurtainDemo from '@/components/animations/SilkCurtainDemo';
+import AqueousRippleButton from '@/components/animations/AqueousRippleButton';
 
 const AnimationComponents = () => {
   return (
@@ -76,6 +80,55 @@ keyframes: {
               <div className="animate-bounce">
                 <div className="w-8 h-8 bg-neon-cyan rounded-full"></div>
               </div>
+            </ComponentShowcase>
+
+            {/* Smoke & Fog Modal Reveal */}
+            <ComponentShowcase
+              title="Smoke & Fog Modal Reveal"
+              description="Modal emerging through layered, swirling fog"
+              code={`import SmokeFogModal from '@/components/animations/SmokeFogModal'
+
+<SmokeFogModal />`}>
+              <SmokeFogModal />
+            </ComponentShowcase>
+
+            {/* Gobo Light Hover Effect */}
+            <ComponentShowcase
+              title="Gobo Light Hover"
+              description="Cinematic patterned light sweep across card"
+              code={`import GoboLightCard from '@/components/animations/GoboLightCard'
+
+<GoboLightCard className="h-36">
+  Your content
+</GoboLightCard>`}
+            >
+              <GoboLightCard className="h-36">
+                <div className="text-center">
+                  <div className="text-sm">Hover to reveal gobo lighting</div>
+                </div>
+              </GoboLightCard>
+            </ComponentShowcase>
+
+            {/* Silk Curtain Page Transition (Demo) */}
+            <ComponentShowcase
+              title="Silk Curtain Transition"
+              description="Sweep of simulated silk with fold highlights"
+              code={`import SilkCurtainDemo from '@/components/animations/SilkCurtainDemo'
+
+<SilkCurtainDemo />`}
+            >
+              <SilkCurtainDemo />
+            </ComponentShowcase>
+
+            {/* Aqueous Ripple Button */}
+            <ComponentShowcase
+              title="Aqueous Ripple Button"
+              description="Water droplet ripple emanating from click point"
+              code={`import AqueousRippleButton from '@/components/animations/AqueousRippleButton'
+
+<AqueousRippleButton>Click me</AqueousRippleButton>`}
+            >
+              <AqueousRippleButton>Click me</AqueousRippleButton>
             </ComponentShowcase>
           </div>
         </div>
