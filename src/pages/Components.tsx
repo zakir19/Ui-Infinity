@@ -322,22 +322,22 @@ const Components = () => {
                   <CategoryCard
                     title="Animation"
                     description="Motion and transition effects"
-                    onClick={() => setActiveCategory('Animation')}
+                    onClick={() => navigate('/animation')}
                   />
                   <CategoryCard
                     title="Typography"
                     description="Text styling and animations"
-                    onClick={() => setActiveCategory('Typography')}
+                    onClick={() => navigate('/typography')}
                   />
                   <CategoryCard
                     title="Grids"
                     description="Modern layout systems"
-                    onClick={() => setActiveCategory('Grids')}
+                    onClick={() => navigate('/grids')}
                   />
                   <CategoryCard
                     title="3D Effects"
                     description="Depth and perspective elements"
-                    onClick={() => setActiveCategory('3D Effects')}
+                    onClick={() => navigate('/3d-effects')}
                   />
                 </div>
               </div>
