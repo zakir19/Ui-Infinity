@@ -79,13 +79,11 @@ const config = {
         },
         'gradient-x': {
           '0%, 100%': {
-            'background-size': '200% 200%',
-            'background-position': 'left center',
+            'background-position': '0% 50%'
           },
           '50%': {
-            'background-size': '200% 200%',
-            'background-position': 'right center',
-          },
+            'background-position': '100% 50%'
+          }
         },
         'slow-spin': {
           '0%': { transform: 'rotate(0deg)' },
@@ -95,7 +93,7 @@ const config = {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        'gradient-x': 'gradient-x 5s ease infinite',
+        'gradient-x': 'gradient-x 3s ease infinite',
         'slow-spin': 'slow-spin 15s linear infinite',
       },
       boxShadow: {
