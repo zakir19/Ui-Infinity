@@ -1,76 +1,93 @@
 
 import React from 'react';
-import ThreeScene from './ThreeScene';
+import { motion } from 'framer-motion';
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-screen flex flex-col justify-center pt-20">
-      {/* Background gradients */}
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden -z-10">
-        <div className="absolute top-1/4 left-1/4 w-1/3 h-1/3 bg-neon-purple opacity-10 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-1/3 h-1/3 bg-neon-cyan opacity-10 rounded-full blur-3xl"></div>
+    <section className="relative min-h-screen flex flex-col justify-center overflow-hidden">
+      {/* Subtle animated background (aurora + grid blend) */}
+      <div className="absolute inset-0 -z-10">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_10%,hsl(270_90%_60%/.15),transparent_40%),radial-gradient(circle_at_80%_80%,hsl(190_95%_55%/.12),transparent_35%)]" />
+        <motion.div
+          aria-hidden
+          className="absolute -inset-16 blur-3xl opacity-30"
+          initial={{ scale: 1 }}
+          animate={{ scale: [1, 1.05, 1] }}
+          transition={{ duration: 8, repeat: Infinity, repeatType: 'mirror' }}
+          style={{
+            background:
+              'radial-gradient(60%_60%_at_50%_40%,hsl(270_95%_75%/.5),transparent),radial-gradient(50%_50%_at_30%_70%,hsl(190_95%_70%/.5),transparent)'
+          }}
+        />
       </div>
 
-      {/* Content container */}
-      <div className="container mx-auto px-4 py-16 flex flex-col-reverse lg:flex-row items-center gap-8 lg:gap-16">
-        {/* Left side - Text content */}
-        <div className="lg:w-1/2 text-center lg:text-left space-y-6">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-            <span className="text-gradient">Beautiful UI Components</span>
-            <br />
-            <span className="text-gradient-purple">For Modern Websites</span>
-          </h1>
-          
-          <p className="text-gray-400 text-lg max-w-xl mx-auto lg:mx-0 leading-relaxed">
-            A stunning collection of UI components with beautiful animations, 
-            3D effects, and a developer-friendly API. Build beautiful interfaces faster.
-          </p>
-          
-          <div className="flex flex-wrap gap-4 justify-center lg:justify-start pt-4">
-            <a 
+      <div className="container mx-auto px-6 py-24">
+        {/* Headline with sweeping glow */}
+        <div className="relative max-w-5xl mx-auto text-center">
+          <motion.div
+            aria-hidden
+            className="absolute inset-x-0 -top-16 h-24"
+            initial={{ opacity: 0, x: -100 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: 'easeOut' }}
+          >
+            <div className="mx-auto h-full w-1/2 bg-gradient-to-r from-purple-500/20 via-pink-500/20 to-cyan-400/20 blur-2xl rounded-full" />
+          </motion.div>
+
+          <motion.h1
+            className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight text-center"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, ease: 'easeOut' }}
+          >
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-white via-white/90 to-white/70">
+              Digital Craftsmanship Reimagined.
+            </span>
+          </motion.h1>
+
+          <motion.p
+            className="mt-6 text-gray-400 text-lg max-w-2xl mx-auto"
+            initial={{ opacity: 0, y: 8 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2, duration: 0.6 }}
+          >
+            We build experiences that resonate.
+          </motion.p>
+
+          <motion.div
+            className="mt-10 flex items-center justify-center"
+            initial={{ opacity: 0, y: 8 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.35, duration: 0.6 }}
+          >
+            <a
               href="#components"
-              className="px-6 py-3 bg-neon-purple hover:bg-neon-purple/80 text-white font-medium rounded-md transition-all"
+              className="group relative inline-flex items-center gap-2 rounded-full px-6 py-3 bg-white/5 border border-white/10 text-white"
             >
-              Explore Components
+              <span className="relative z-10">Explore Work</span>
+              {/* shimmer */}
+              <span className="pointer-events-none absolute inset-0 overflow-hidden rounded-full">
+                <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
+              </span>
             </a>
-            
-            <a 
-              href="https://github.com" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="px-6 py-3 bg-transparent border border-white/20 hover:border-white/40 text-white font-medium rounded-md transition-all"
-            >
-              View on GitHub
-            </a>
-          </div>
-          
-          <div className="flex items-center justify-center lg:justify-start gap-4 pt-4 text-gray-400">
-            <div className="flex -space-x-2">
-              {[1, 2, 3, 4].map((_, i) => (
-                <div 
-                  key={i} 
-                  className="w-8 h-8 rounded-full bg-gray-800 border-2 border-background flex items-center justify-center text-xs font-medium"
-                >
-                  {String.fromCharCode(65 + i)}
-                </div>
-              ))}
-            </div>
-            <span>Trusted by thousands of developers</span>
-          </div>
-        </div>
-        
-        {/* Right side - 3D Scene */}
-        <div className="lg:w-1/2 relative">
-          <ThreeScene />
+          </motion.div>
         </div>
       </div>
-      
-      {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-2 text-gray-400 animate-bounce">
-        <span className="text-sm">Scroll to explore</span>
-        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-        </svg>
+
+      {/* Scroll cue */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-gray-500">
+        <motion.div
+          initial={{ opacity: 0, y: 6 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ repeat: Infinity, repeatType: 'mirror', duration: 1.6 }}
+          className="text-sm"
+        >
+          Scroll
+        </motion.div>
       </div>
     </section>
   );

@@ -1,10 +1,23 @@
 
 import React from 'react';
 import { GlassCard } from '@/components/ui/glass-card';
+import { CopyButton } from '@/components/ui/copy-button';
 
 const ModalPreview = () => {
+  const modalCode = `import { GlassCard } from '@/components/ui/glass-card';
+
+<GlassCard className="h-28 w-36 flex flex-col items-center justify-center p-3">
+  <div className="w-full bg-neon-purple/20 h-5 rounded-sm mb-2"></div>
+  <div className="w-full bg-white/10 h-12 rounded-sm"></div>
+  <div className="flex justify-end w-full mt-2 gap-1">
+    <div className="h-4 w-8 bg-white/10 rounded-sm"></div>
+    <div className="h-4 w-8 bg-neon-purple/50 rounded-sm"></div>
+  </div>
+</GlassCard>`;
+
   return (
-    <div className="w-full h-full flex items-center justify-center">
+    <div className="w-full h-full flex items-center justify-center group relative">
+      <CopyButton code={modalCode} className="opacity-0 group-hover:opacity-100" />
       <GlassCard className="h-28 w-36 flex flex-col items-center justify-center p-3">
         <div className="w-full bg-neon-purple/20 h-5 rounded-sm mb-2"></div>
         <div className="w-full bg-white/10 h-12 rounded-sm"></div>

@@ -8,6 +8,9 @@ import NavigationPreview from '@/components/previews/NavigationPreview';
 import LayoutPreview from '@/components/previews/LayoutPreview';
 import FeedbackPreview from '@/components/previews/FeedbackPreview';
 import EffectPreview from '@/components/previews/EffectPreview';
+import TypographyComponents from '@/pages/TypographyComponents';
+import GridComponents from '@/pages/GridComponents';
+import ThreeDEffectsComponents from '@/pages/ThreeDEffectsComponents';
 
 // This component doesn't render anything visible
 // It preloads all component previews to ensure they're ready when needed
@@ -30,7 +33,10 @@ export {
   NavigationPreview,
   LayoutPreview,
   FeedbackPreview,
-  EffectPreview
+  EffectPreview,
+  TypographyComponents,
+  GridComponents,
+  ThreeDEffectsComponents
 };
 
 export default AnimatedComponentsLoader;

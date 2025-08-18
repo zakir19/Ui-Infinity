@@ -34,6 +34,7 @@ const HoverComponents = () => {
                   code={`<button className="px-4 py-2 bg-gray-800 rounded-md text-white transition-transform hover:scale-110">
   Hover Me
 </button>`} 
+                  className="opacity-0 group-hover:opacity-100"
                 />
                 <pre className="text-gray-300 text-xs overflow-auto p-1">
                   <code>{`<button className="px-4 py-2 bg-gray-800 rounded-md text-white transition-transform hover:scale-110">
@@ -56,6 +57,7 @@ const HoverComponents = () => {
                   code={`<button className="px-4 py-2 bg-gray-800 rounded-md text-white border border-transparent hover:border-neon-purple transition-colors">
   Hover Me
 </button>`} 
+                  className="opacity-0 group-hover:opacity-100"
                 />
                 <pre className="text-gray-300 text-xs overflow-auto p-1">
                   <code>{`<button className="px-4 py-2 bg-gray-800 rounded-md text-white border border-transparent hover:border-neon-purple transition-colors">
@@ -78,6 +80,7 @@ const HoverComponents = () => {
                   code={`<button className="px-4 py-2 bg-gray-800 rounded-md text-white hover:bg-neon-purple transition-colors">
   Hover Me
 </button>`} 
+                  className="opacity-0 group-hover:opacity-100"
                 />
                 <pre className="text-gray-300 text-xs overflow-auto p-1">
                   <code>{`<button className="px-4 py-2 bg-gray-800 rounded-md text-white hover:bg-neon-purple transition-colors">
@@ -100,6 +103,7 @@ const HoverComponents = () => {
                   code={`<button className="px-4 py-2 bg-gray-800 rounded-md text-white shadow-none hover:shadow-[0_0_15px_rgba(155,135,245,0.5)] transition-shadow">
   Hover Me
 </button>`} 
+                  className="opacity-0 group-hover:opacity-100"
                 />
                 <pre className="text-gray-300 text-xs overflow-auto p-1">
                   <code>{`<button className="px-4 py-2 bg-gray-800 rounded-md text-white shadow-none hover:shadow-[0_0_15px_rgba(155,135,245,0.5)] transition-shadow">
@@ -128,6 +132,7 @@ const HoverComponents = () => {
     Move Your Mouse Near Me
   </button>
 </Magnetic>`} 
+                  className="opacity-0 group-hover:opacity-100"
                 />
                 <pre className="text-gray-300 text-xs overflow-auto p-1">
                   <code>{`import { Magnetic } from '@/components/ui/magnetic';
@@ -154,6 +159,7 @@ const HoverComponents = () => {
                   code={`<a href="#" className="text-white relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:scale-x-0 after:bg-neon-purple after:transition-transform after:duration-300 hover:after:scale-x-100 after:origin-left">
   Hover Over This Text
 </a>`} 
+                  className="opacity-0 group-hover:opacity-100"
                 />
                 <pre className="text-gray-300 text-xs overflow-auto p-1">
                   <code>{`<a href="#" className="text-white relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:scale-x-0 after:bg-neon-purple after:transition-transform after:duration-300 hover:after:scale-x-100 after:origin-left">

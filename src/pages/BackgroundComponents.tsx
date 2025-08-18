@@ -28,7 +28,8 @@ const BackgroundComponents = () => {
               </div>
               <div className="bg-black/80 rounded-md p-4 relative">
                 <CopyButton 
-                  code={`<div className="h-40 bg-gradient-to-r from-neon-purple to-neon-cyan rounded-lg"></div>`} 
+                  code={`<div className="h-40 bg-gradient-to-r from-neon-purple to-neon-cyan rounded-lg"></div>`}
+                  className="opacity-0 group-hover:opacity-100"
                 />
                 <pre className="text-gray-300 text-xs overflow-auto p-1">
                   <code>{`<div className="h-40 bg-gradient-to-r from-neon-purple to-neon-cyan rounded-lg"></div>`}</code>
@@ -62,7 +63,8 @@ keyframes: {
 }
 
 /* React Component */
-<div className="h-40 bg-gradient-to-r from-neon-purple via-neon-pink to-neon-cyan rounded-lg animate-gradient-x"></div>`} 
+<div className="h-40 bg-gradient-to-r from-neon-purple via-neon-pink to-neon-cyan rounded-lg animate-gradient-x"></div>`}
+                  className="opacity-0 group-hover:opacity-100"
                 />
                 <pre className="text-gray-300 text-xs overflow-auto p-1">
                   <code>{`/* Add this to your tailwind.config.js */
@@ -109,7 +111,8 @@ keyframes: {
 /* In your CSS or Tailwind utilities */
 .glass-morphism {
   @apply backdrop-blur-xl bg-white/5 border border-white/10 shadow-[0_4px_12px_-2px_rgba(0,0,0,0.3)];
-}`} 
+}`}
+                  className="opacity-0 group-hover:opacity-100"
                 />
                 <pre className="text-gray-300 text-xs overflow-auto p-1">
                   <code>{`<div className="relative">
@@ -149,7 +152,8 @@ keyframes: {
     width: '200%',
     height: '200%'
   }}></div>
-</div>`} 
+</div>`}
+                  className="opacity-0 group-hover:opacity-100"
                 />
                 <pre className="text-gray-300 text-xs overflow-auto p-1">
                   <code>{`<div className="h-40 bg-gray-800 rounded-lg relative overflow-hidden">
@@ -182,7 +186,8 @@ animation: {
 /* React Component */
 <div className="h-40 bg-gray-800 rounded-lg relative overflow-hidden">
   <div className="absolute -inset-[100%] bg-gradient-to-r from-neon-purple to-neon-cyan opacity-30 animate-slow-spin"></div>
-</div>`} 
+</div>`}
+                  className="opacity-0 group-hover:opacity-100"
                 />
                 <pre className="text-gray-300 text-xs overflow-auto p-1">
                   <code>{`/* Add this to your tailwind.config.js */
@@ -212,7 +217,8 @@ animation: {
                   code={`<div className="h-40 bg-gray-900 rounded-lg relative" style={{
   backgroundImage: "linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px)",
   backgroundSize: "20px 20px"
-}}></div>`} 
+}}></div>`}
+                  className="opacity-0 group-hover:opacity-100"
                 />
                 <pre className="text-gray-300 text-xs overflow-auto p-1">
                   <code>{`<div className="h-40 bg-gray-900 rounded-lg relative" style={{

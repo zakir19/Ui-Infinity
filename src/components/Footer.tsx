@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Github, Twitter, Linkedin } from 'lucide-react';
 
@@ -20,18 +19,18 @@ const Footer = () => {
               Beautiful UI components with smooth animations and 3D effects.
             </p>
             <div className="flex gap-4">
-              <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
+              <a href="https://github.com/zakir19" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
                 <Github className="h-5 w-5" />
               </a>
               <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
                 <Twitter className="h-5 w-5" />
               </a>
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
+              <a href="https://www.linkedin.com/in/zakir-husain-patel/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
                 <Linkedin className="h-5 w-5" />
               </a>
             </div>
           </div>
-          
+
           {/* Resources */}
           <div>
             <h3 className="text-white font-medium mb-4">Resources</h3>
@@ -42,7 +41,7 @@ const Footer = () => {
               <FooterLink href="#">Playground</FooterLink>
             </ul>
           </div>
-          
+
           {/* Company */}
           <div>
             <h3 className="text-white font-medium mb-4">Company</h3>
@@ -53,28 +52,34 @@ const Footer = () => {
               <FooterLink href="#">Contact</FooterLink>
             </ul>
           </div>
-          
+
           {/* Contact */}
           <div>
             <h3 className="text-white font-medium mb-4" id="contact">Get in Touch</h3>
             <p className="text-gray-400 mb-4">
               Have questions? Reach out to us.
             </p>
-            <div className="flex">
+            <form 
+              action="https://formspree.io/f/xkgryprw" 
+              method="POST" 
+              className="flex"
+            >
               <input 
                 type="email" 
+                name="email"
                 placeholder="Enter your email" 
+                required
                 className="bg-gray-800 border border-gray-700 text-white px-3 py-2 rounded-l-md focus:outline-none focus:ring-1 focus:ring-neon-purple"
               />
-              <button className="bg-neon-purple hover:bg-neon-purple/80 text-white px-4 py-2 rounded-r-md transition-colors">
+              <button type="submit" className="bg-neon-purple hover:bg-neon-purple/80 text-white px-4 py-2 rounded-r-md transition-colors">
                 Subscribe
               </button>
-            </div>
+            </form>
           </div>
         </div>
-        
+
         <div className="mt-12 pt-6 border-t border-gray-800 text-center text-gray-500 text-sm">
-          © {new Date().getFullYear()} UIinfinity. All rights reserved.
+          © {new Date().getFullYear()} UIinfinity. All rights reserved. Made with ❤️ by Zakir.
         </div>
       </div>
     </footer>

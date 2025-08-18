@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Footer from '@/components/Footer';
 import { Search } from 'lucide-react';
@@ -10,12 +10,19 @@ import { Magnetic } from '@/components/ui/magnetic';
 import { Sparkles } from '@/components/ui/sparkles';
 import { GradientBorder } from '@/components/ui/gradient-border';
 import { Button } from '@/components/ui/button';
-import { motion } from 'framer-motion';
+import PreviewCard from '@/components/PreviewCard';
+import { motion, AnimatePresence, LayoutGroup, MotionConfig } from 'framer-motion';
 
 const Components = () => {
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
   const [activeCategory, setActiveCategory] = useState('All');
+
+  useEffect(() => {
+    document.title = 'Components | [Your Agency Name Here]';
+    const meta = document.querySelector('meta[name="description"]') as HTMLMetaElement | null;
+    if (meta) meta.content = 'Interactive UI components with motion: buttons, cards, effects and more.';
+  }, []);
 
   // Component categories - Added new categories from ui.aceternity.com
   const categories = [
@@ -38,6 +45,23 @@ const Components = () => {
     'Sliders',
     '3D Effects'
   ];
+
+  // Motion variants for grid assembly and filtering
+  const containerVariants = { hidden: {}, show: { transition: { staggerChildren: 0.06, delayChildren: 0.1 } } };
+  const getItemVariants = (i: number) => {
+    const dir = i % 4;
+    const from = {
+      x: dir === 0 ? -80 : dir === 1 ? 80 : 0,
+      y: dir === 2 ? -80 : dir === 3 ? 80 : 0,
+      rotate: dir === 0 ? -6 : dir === 1 ? 6 : dir === 2 ? -4 : 4,
+      opacity: 0,
+    };
+    return {
+      hidden: from,
+      show: { x: 0, y: 0, rotate: 0, opacity: 1, transition: { type: "spring", stiffness: 340, damping: 24 } },
+      exit: { opacity: 0, scale: 0.92, transition: { duration: 0.22 } },
+    };
+  };
 
   // Handle category click
   const handleCategoryClick = (category: string) => {
@@ -298,22 +322,22 @@ const Components = () => {
                   <CategoryCard
                     title="Animation"
                     description="Motion and transition effects"
-                    onClick={() => setActiveCategory('Animation')}
+                    onClick={() => navigate('/animation')}
                   />
                   <CategoryCard
                     title="Typography"
                     description="Text styling and animations"
-                    onClick={() => setActiveCategory('Typography')}
+                    onClick={() => navigate('/typography')}
                   />
                   <CategoryCard
                     title="Grids"
                     description="Modern layout systems"
-                    onClick={() => setActiveCategory('Grids')}
+                    onClick={() => navigate('/grids')}
                   />
                   <CategoryCard
                     title="3D Effects"
                     description="Depth and perspective elements"
-                    onClick={() => setActiveCategory('3D Effects')}
+                    onClick={() => navigate('/3d-effects')}
                   />
                 </div>
               </div>
@@ -379,17 +403,37 @@ const Components = () => {
                   <h2 className="text-2xl font-semibold text-white mb-6">
                     {activeCategory === 'All' ? 'All Components' : activeCategory + ' Components'}
                   </h2>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {filteredComponents.map((component, index) => (
-                      <div key={index} className="animate-on-scroll opacity-0">
-                        <ComponentItem
-                          name={component.name}
-                          description={component.description}
-                          isNew={component.isNew}
-                        />
-                      </div>
-                    ))}
-                  </div>
+                  <MotionConfig reducedMotion="user">
+                    <LayoutGroup id="components-grid">
+                      <motion.div
+                        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch"
+                        variants={containerVariants}
+                        initial="hidden"
+                        animate="show"
+                        layout
+                      >
+                        <AnimatePresence initial={false}>
+                          {filteredComponents.map((component, index) => (
+                            <Magnetic strength={32} key={`${component.name}-${index}`}>
+                              <motion.div
+                                variants={getItemVariants(index)}
+                                layout
+                                className="h-full"
+                                whileHover={{ scale: 1.01 }}
+                                transition={{ type: "spring", stiffness: 350, damping: 22 }}
+                              >
+                                <PreviewCard
+                                  name={component.name}
+                                  description={component.description}
+                                  isNew={component.isNew}
+                                />
+                              </motion.div>
+                            </Magnetic>
+                          ))}
+                        </AnimatePresence>
+                      </motion.div>
+                     </LayoutGroup>
+                  </MotionConfig>
                 </div>
               )}
               

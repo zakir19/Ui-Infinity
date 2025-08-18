@@ -82,4 +82,16 @@
   .text-gradient-purple {
     @apply bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-400 bg-clip-text text-transparent;
   }
+
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+
+  .backface-hidden {
+    backface-visibility: hidden;
+  }
 }
