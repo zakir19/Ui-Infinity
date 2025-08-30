@@ -166,6 +166,34 @@ const Components: React.FC = () => {
       case 'Effects':
         navigate('/effects');
         break;
+      // added routes for the remaining categories
+      case 'Animation':
+        navigate('/animation');
+        break;
+      case 'Typography':
+        navigate('/typography');
+        break;
+      case 'Loaders':
+        navigate('/loaders');
+        break;
+      case 'Grids':
+        navigate('/grids');
+        break;
+      case 'Hover':
+        navigate('/hover');
+        break;
+      case 'Backgrounds':
+        navigate('/backgrounds');
+        break;
+      case 'Inputs':
+        navigate('/inputs');
+        break;
+      case 'Sliders':
+        navigate('/sliders');
+        break;
+      case '3D Effects':
+        navigate('/3d-effects');
+        break;
       default:
         break;
     }
@@ -236,6 +264,13 @@ const Components: React.FC = () => {
     { name: '3D Transform', category: '3D Effects', description: 'Elements with 3D transformation effects', isNew: true },
     { name: 'Parallax Depth', category: '3D Effects', description: 'Layered elements with parallax depth', isNew: true },
     { name: '3D Button', category: '3D Effects', description: 'Buttons with 3D press effects', isNew: true },
+
+    // NEW additions
+    { name: 'Content Carousel', category: 'Sliders', description: 'Carousel for mixed content with controls', isNew: true },
+    { name: 'Card Carousel', category: 'Sliders', description: 'Carousel showcasing multiple cards', isNew: true },
+    { name: 'Card Swiper', category: 'Sliders', description: 'Touch-enabled swipeable card stack', isNew: true },
+    { name: 'Input OTP', category: 'Inputs', description: 'One-time password input with segmented fields', isNew: true },
+    { name: 'Special Card', category: 'Cards', description: 'Feature-rich card with additional content areas', isNew: true },
   ];
 
   const filteredComponents = allComponents.filter((component) => {
