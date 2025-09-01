@@ -1,6 +1,7 @@
 // ...existing code...
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { usePageTitle } from '../hooks/usePageTitle';
 import Footer from '@/components/Footer';
 import { Search } from 'lucide-react';
 import TiltCard from '@/components/ui/tilt-card';
@@ -108,15 +109,11 @@ const getItemVariants = (i: number) => {
 };
 
 const Components: React.FC = () => {
+  usePageTitle('Components');
+  
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
   const [activeCategory, setActiveCategory] = useState('All');
-
-  useEffect(() => {
-    document.title = 'Components | [Your Agency Name Here]';
-    const meta = document.querySelector('meta[name="description"]') as HTMLMetaElement | null;
-    if (meta) meta.content = 'Interactive UI components with motion: buttons, cards, effects and more.';
-  }, []);
 
   const categories = [
     'All',
@@ -447,7 +444,6 @@ const Components: React.FC = () => {
                             };
 
                             const targetPath =
-                              component.path ||
                               categoryRouteMap[component.category] ||
                               `/${(component.category || 'components').toLowerCase().replace(/\s+/g, '-')}`;
 
