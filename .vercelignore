@@ -1,0 +1,68 @@
+# Source files (not needed for production)
+src/
+tsconfig*.json
+vite.config.ts
+vite.lib.config.ts
+postcss.config.js
+tailwind.config.ts
+eslint.config.js
+components.json
+
+# Development files
+*.ts
+*.tsx
+!*.d.ts
+
+# Build configuration
+scripts/
+examples/
+docs/
+
+# Package management
+package-lock.json
+bun.lockb
+.npmrc
+.yarnrc
+
+# Development dependencies
+node_modules/
+
+# Test files
+test-package.js
+__tests__/
+*.test.*
+*.spec.*
+
+# Git
+.git/
+.gitignore
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Environment files
+.env*
+
+# Cache
+.cache/
+.parcel-cache/
+.eslintcache
+
+# Coverage
+coverage/
+.nyc_output/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.temp
