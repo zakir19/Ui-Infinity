@@ -25,6 +25,7 @@ const VortexEffect: React.FC<{ isHovered: boolean; isClicked: boolean }> = ({ is
       } else {
         vortexRef.current.scale.lerp(new THREE.Vector3(1, 1, 1), 0.1);
       }
+      
     }
   });
 

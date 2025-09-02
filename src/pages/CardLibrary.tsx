@@ -11,11 +11,9 @@ import { SwipeableCard } from '@/components/ui/swipeable-card';
 import { AuroraCard } from '@/components/ui/aurora-card';
 import { GlowCard } from '@/components/ui/glow-card';
 import { GradientBorder } from '@/components/ui/gradient-border';
-import { AspectRatio } from '@/components/ui/aspect-ratio';
-import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { CopyButton } from '@/components/ui/copy-button';
-import { Badge } from '@/components/ui/badge';
+// Badge, Avatar, AspectRatio removed (Radix-based). Using inline elements instead.
 import { Heart, MessageCircle, Share, Star, TrendingUp, Users } from 'lucide-react';
 import Footer from '@/components/Footer';
 
@@ -97,13 +95,11 @@ const CardLibrary = () => {
                 <Card className="w-full max-w-md">
                   <CardContent className="pt-6">
                     <div className="flex items-center space-x-4">
-                      <Avatar className="h-16 w-16">
-                        <AvatarFallback className="bg-gradient-to-br from-neon-purple to-neon-cyan text-white font-bold">JD</AvatarFallback>
-                      </Avatar>
+                      <div className="h-16 w-16 rounded-full bg-gradient-to-br from-neon-purple to-neon-cyan flex items-center justify-center text-white font-bold">JD</div>
                       <div>
                         <h3 className="font-semibold text-white">Jane Doe</h3>
                         <p className="text-sm text-gray-400">UX Designer</p>
-                        <Badge variant="outline" className="mt-1 border-green-500 text-green-400">Online</Badge>
+                        <span className="inline-flex items-center px-2 py-0.5 text-xs rounded border border-green-500 text-green-400 mt-1">Online</span>
                       </div>
                     </div>
                   </CardContent>
@@ -128,11 +124,9 @@ const CardLibrary = () => {
 </Card>`}
               >
                 <Card className="w-full max-w-md overflow-hidden">
-                  <AspectRatio ratio={16/9}>
-                    <div className="w-full h-full bg-gradient-to-br from-neon-purple/20 to-neon-cyan/20 flex items-center justify-center">
-                      <span className="text-gray-400">16:9 Image Placeholder</span>
-                    </div>
-                  </AspectRatio>
+                  <div className="w-full h-48 bg-gradient-to-br from-neon-purple/20 to-neon-cyan/20 flex items-center justify-center">
+                    <span className="text-gray-400">16:9 Image Placeholder</span>
+                  </div>
                   <CardContent>
                     <h3 className="font-semibold text-white mt-2">Image Card</h3>
                     <p className="text-sm text-gray-400">Perfect for showcasing visual content with maintained aspect ratios</p>
@@ -427,9 +421,7 @@ const CardLibrary = () => {
                 <Card className="w-full max-w-md">
                   <CardHeader>
                     <div className="flex items-center space-x-3">
-                      <Avatar>
-                        <AvatarFallback className="bg-gradient-to-r from-neon-purple to-neon-cyan text-white">JD</AvatarFallback>
-                      </Avatar>
+                      <div className="h-10 w-10 rounded-full bg-gradient-to-r from-neon-purple to-neon-cyan text-white flex items-center justify-center text-xs font-bold">JD</div>
                       <div>
                         <p className="font-semibold text-white">John Doe</p>
                         <p className="text-xs text-gray-400">2 hours ago</p>

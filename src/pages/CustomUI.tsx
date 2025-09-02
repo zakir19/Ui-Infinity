@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { NeoButton } from '@/components/ui/neo-button';
+import { Button } from '@/components/ui/button';
 import { NeoCard, NeoCardHeader, NeoCardTitle, NeoCardDescription, NeoCardContent, NeoCardFooter } from '@/components/ui/neo-card';
 import TiltCard from '@/components/ui/tilt-card';
 import Footer from '@/components/Footer';
@@ -31,21 +31,21 @@ const CustomUI = () => {
               description="Custom buttons with unique visual effects">
               <div className="flex flex-col gap-4">
                 <div className="flex flex-wrap gap-4">
-                  <NeoButton variant="default">Default</NeoButton>
-                  <NeoButton variant="solid">Solid</NeoButton>
-                  <NeoButton variant="outline">Outline</NeoButton>
-                  <NeoButton variant="ghost">Ghost</NeoButton>
+                  <Button variant="default">Default</Button>
+                  <Button className="bg-white/10 hover:bg-white/20">Solid</Button>
+                  <Button variant="outline">Outline</Button>
+                  <Button variant="ghost">Ghost</Button>
                 </div>
                 <div className="flex flex-wrap gap-4">
-                  <NeoButton size="xs">Extra Small</NeoButton>
-                  <NeoButton size="sm">Small</NeoButton>
-                  <NeoButton size="default">Default</NeoButton>
-                  <NeoButton size="lg">Large</NeoButton>
+                  <Button className="h-8 px-3 text-xs">Extra Small</Button>
+                  <Button className="h-9 px-4 text-sm">Small</Button>
+                  <Button>Default</Button>
+                  <Button className="h-11 px-6 text-base">Large</Button>
                 </div>
                 <div className="flex flex-wrap gap-4">
-                  <NeoButton glow="subtle">Subtle Glow</NeoButton>
-                  <NeoButton glow="strong">Strong Glow</NeoButton>
-                  <NeoButton variant="solid" glow="strong">Solid Glow</NeoButton>
+                  <Button className="shadow-[0_0_20px_theme(colors.purple.500/30)]">Subtle Glow</Button>
+                  <Button className="shadow-[0_0_30px_theme(colors.purple.500/50)]">Strong Glow</Button>
+                  <Button className="bg-white/10 hover:bg-white/20 shadow-[0_0_30px_theme(colors.purple.500/50)]">Solid Glow</Button>
                 </div>
               </div>
             </ComponentShowcase>
@@ -64,8 +64,8 @@ const CustomUI = () => {
                     <p className="text-gray-300">This is the main content area of the card where you can place your primary information.</p>
                   </NeoCardContent>
                   <NeoCardFooter>
-                    <NeoButton variant="ghost" className="text-sm">Cancel</NeoButton>
-                    <NeoButton variant="default" className="text-sm ml-auto">Continue</NeoButton>
+                    <Button variant="ghost" className="text-sm">Cancel</Button>
+                    <Button variant="default" className="text-sm ml-auto">Continue</Button>
                   </NeoCardFooter>
                 </NeoCard>
 
@@ -183,7 +183,7 @@ const CustomUI = () => {
               description="Custom animation effects for UI elements">
               <div className="space-y-6">
                 <div className="flex gap-4">
-                  <NeoButton className="neo-pulse">Pulse Effect</NeoButton>
+                  <Button className="neo-pulse">Pulse Effect</Button>
                   <div className="neo-badge neo-pulse">Pulse Badge</div>
                 </div>
                 
@@ -193,9 +193,9 @@ const CustomUI = () => {
                 
                 <div className="grid grid-cols-3 gap-4">
                   {[1, 2, 3].map((i) => (
-                    <NeoButton key={i} variant="ghost" className="animate-float" style={{ animationDelay: `${i * 0.2}s` }}>
+                    <Button key={i} variant="ghost" className="animate-float" style={{ animationDelay: `${i * 0.2}s` }}>
                       Float {i}
-                    </NeoButton>
+                    </Button>
                   ))}
                 </div>
               </div>
@@ -211,7 +211,7 @@ const CustomUI = () => {
           <NeoCard className="overflow-hidden">
             <pre className="text-sm text-gray-300 overflow-auto p-8">
 {`// Import custom components
-import { NeoButton } from '@/components/ui/neo-button';
+import { Button } from '@/components/ui/button';
 import { NeoCard, NeoCardHeader, NeoCardTitle } from '@/components/ui/neo-card';
 import TiltCard from '@/components/ui/tilt-card';
 import '../styles/custom-ui.css';
@@ -224,9 +224,9 @@ function MyComponent() {
         <NeoCardTitle>Custom Component</NeoCardTitle>
       </NeoCardHeader>
       <div className="p-6">
-        <NeoButton variant="solid" glow="strong">
+        <Button className="bg-white/10 hover:bg-white/20 shadow-[0_0_30px_theme(colors.purple.500/50)]">
           Interactive Button
-        </NeoButton>
+        </Button>
       </div>
     </NeoCard>
   );

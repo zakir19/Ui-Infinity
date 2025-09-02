@@ -1,0 +1,110 @@
+# Source files (not needed for production)
+src/
+tsconfig*.json
+vite.config.ts
+vite.lib.config.ts
+postcss.config.js
+tailwind.config.ts
+eslint.config.js
+components.json
+
+# Development files
+*.ts
+*.tsx
+!*.d.ts
+
+# Build configuration
+scripts/
+examples/
+docs/
+
+# Package management
+package-lock.json
+bun.lockb
+.npmrc
+.yarnrc
+
+# Development dependencies
+node_modules/
+
+# Test files
+test-package.js
+__tests__/
+*.test.*
+*.spec.*
+
+# Git
+.git/
+.gitignore
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Environment files
+.env*
+
+# Cache
+.cache/
+.parcel-cache/
+.eslintcache
+
+# Coverage
+coverage/
+.nyc_output/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.temp
+
+# Exclude problematic UI components with Radix UI dependencies
+src/components/ui/clay-button.tsx
+src/components/ui/breadcrumb.tsx
+src/components/ui/alert-dialog.tsx
+src/components/ui/accordion.tsx
+src/components/ui/checkbox.tsx
+src/components/ui/avatar.tsx
+src/components/ui/context-menu.tsx
+src/components/ui/collapsible.tsx
+src/components/ui/dropdown-menu.tsx
+src/components/ui/aurora-button.tsx
+src/components/ui/glass-button.tsx
+src/components/ui/command.tsx
+src/components/ui/hover-card.tsx
+src/components/ui/aspect-ratio.tsx
+src/components/ui/glossy-button.tsx
+src/components/ui/form.tsx
+src/components/ui/liquid-button.tsx
+src/components/ui/iridescent-button.tsx
+src/components/ui/metallic-button.tsx
+src/components/ui/morphing-button.tsx
+src/components/ui/loading-button.tsx
+src/components/ui/navigation-menu.tsx
+src/components/ui/neo-button.tsx
+src/components/ui/menubar.tsx
+src/components/ui/neumorphic-button.tsx
+src/components/ui/popover.tsx
+src/components/ui/progress.tsx
+src/components/ui/radio-group.tsx
+src/components/ui/scroll-area.tsx
+src/components/ui/select.tsx
+src/components/ui/separator.tsx
+src/components/ui/sheet.tsx
+src/components/ui/sidebar.tsx
+src/components/ui/slider.tsx
+src/components/ui/switch.tsx
+src/components/ui/tabs.tsx
+src/components/ui/three-d-button.tsx
+src/components/ui/toggle-group.tsx
+src/components/ui/toggle.tsx
+src/components/ui/tooltip.tsx
