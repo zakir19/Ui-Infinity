@@ -737,7 +737,7 @@ const Index = () => {
                  <div className="flex justify-center items-center gap-4 mb-6">
                     <Heart className="text-blue-500" />
                      <a href="https://github.com/zakir19" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 font-semibold transition-colors">
-                         Crafted by Zakir Husain Patel
+                         Crafted by Zakir Husain and AI
                      </a>
                  </div>
                  <div className="flex justify-center gap-6 mb-8">
