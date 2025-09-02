@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { usePageTitle } from './hooks/usePageTitle';
 import Index from './pages/Index';
 import Components from './pages/Components';
 import ButtonComponents from './pages/ButtonComponents';
@@ -27,19 +28,29 @@ import Preloader from './components/Preloader';
 import PageTransition from './components/PageTransition';
 import Cursor from './components/Cursor';
 import ExperimentalLab from './pages/ExperimentalLab';
-import { Toaster as ShadcnToaster } from '@/components/ui/toaster';
-import { Toaster as SonnerToaster } from 'sonner';
+import { Toaster } from 'sonner';
 
 function App() {
+  usePageTitle('React Components');
+  
   return (
     <Router>
-      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white">
+      <div className="min-h-screen bg-gradient-to-br from-purple-900 via-black to-pink-900 text-white">
         {/* Global overlays */}
         <Preloader />
         <PageTransition />
         <Cursor />
-        <ShadcnToaster />
-        <SonnerToaster position="top-right" richColors />
+        <Toaster 
+          position="top-right" 
+          richColors 
+          toastOptions={{
+            style: {
+              background: 'rgba(0, 0, 0, 0.9)',
+              border: '1px solid rgba(168, 85, 247, 0.3)',
+              backdropFilter: 'blur(10px)',
+            },
+          }}
+        />
         
         <Navbar />
         <Routes>

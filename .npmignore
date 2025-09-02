@@ -1,0 +1,60 @@
+# Source files
+src/
+*.ts
+*.tsx
+!dist/**/*.d.ts
+
+# Development files
+.vscode/
+.idea/
+*.log
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Build files
+vite.config.ts
+vite.lib.config.ts
+tsconfig.json
+tsconfig.app.json
+tsconfig.node.json
+postcss.config.js
+tailwind.config.ts
+eslint.config.js
+
+# Documentation
+docs/
+*.md
+!README.md
+
+# Testing
+__tests__/
+*.test.*
+*.spec.*
+
+# Examples
+examples/
+demo/
+storybook/
+
+# Git
+.git/
+.gitignore
+
+# Dependencies
+node_modules/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+*.swp
+*.swo
+*~
+
+# Temporary files
+*.tmp
+*.temp

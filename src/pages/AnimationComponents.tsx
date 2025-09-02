@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { CopyButton } from '@/components/ui/copy-button';
 import Footer from '@/components/Footer';
@@ -189,21 +188,29 @@ const ComponentShowcase = ({
   code: string;
 }) => {
   return (
-    <div className="glass-morphism rounded-xl overflow-hidden hover:border-neon-purple/30 transition-colors group relative">
-      {/* Copy Code Button */}
-      <CopyButton code={code} className="opacity-0 group-hover:opacity-100" />
-      
+    <div className="glass-morphism rounded-xl overflow-hidden hover:border-neon-purple/30 transition-colors relative">
       {/* Component info */}
       <div className="p-4 border-b border-white/10">
         <h3 className="text-white font-medium">{title}</h3>
         <p className="text-gray-400 text-sm">{description}</p>
       </div>
-      
+
       {/* Component preview */}
       <div className="p-8 flex items-center justify-center bg-black/20 h-48">
         <div className="flex flex-col gap-4 items-center">
           {children}
         </div>
+      </div>
+
+      {/* Code block with copy button */}
+      <div className="border-t border-white/10">
+        <div className="flex items-center justify-between px-3 py-2">
+          <span className="text-xs text-gray-400">Code</span>
+          <CopyButton code={code} />
+        </div>
+        <pre className="text-xs text-gray-100 bg-[#0b1120] p-3 overflow-x-auto border-t border-white/10">
+          <code>{code}</code>
+        </pre>
       </div>
     </div>
   );
