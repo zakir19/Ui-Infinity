@@ -21,13 +21,14 @@
   ],
   "scripts": {
     "dev": "vite",
-    "build": "vite build && tsc --emitDeclarationOnly",
+    "build": "vite build",
     "build:lib": "vite build --config vite.lib.config.ts && tsc --project tsconfig.lib.json --emitDeclarationOnly --noEmitOnError false",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
     "preview": "vite preview",
     "start": "node yourEntryFile.js",
-    "prepublishOnly": "echo 'Package already built'"
+    "prepublishOnly": "echo 'Package already built'",
+    "vercel-build": "npm install --legacy-peer-deps && npm run build"
   },
   "keywords": [
     "react",
