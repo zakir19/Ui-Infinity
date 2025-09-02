@@ -16,5 +16,13 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  base: "./",
+  base: mode === "production" ? "/" : "./", // Use "/" for production to match Vercel’s hosting
+  build: {
+    outDir: "dist", // Explicitly set output directory
+    sourcemap: true, // Optional: for debugging
+    rollupOptions: {
+      // Ensure no external modules unless explicitly needed
+      external: [],
+    },
+  },
 }));
