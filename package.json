@@ -28,7 +28,7 @@
     "preview": "vite preview",
     "start": "node yourEntryFile.js",
     "prepublishOnly": "echo 'Package already built'",
-    "vercel-build": "vite build" 
+    "vercel-build": "npm install --legacy-peer-deps && vite build" 
   },
   "keywords": [
     "react",
