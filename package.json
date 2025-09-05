@@ -27,8 +27,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "start": "node yourEntryFile.js",
-    "prepublishOnly": "echo 'Package already built'",
-    "vercel-build": "npm install --legacy-peer-deps && vite build" 
+    "prepublishOnly": "echo 'Package already built'"
   },
   "keywords": [
     "react",
@@ -111,6 +110,6 @@
     "vite-plugin-dts": "^3.9.1"
   },
   "engines": {
-    "node": ">=20" 
+    "node": ">=20"
   }
 }
