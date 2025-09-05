@@ -2,7 +2,7 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
 
-// https://vitejs.dev/config/
+
 export default defineConfig(({ mode }) => ({
   server: {
     host: "::",
@@ -16,12 +16,10 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  base: mode === "production" ? "/" : "./", // Use "/" for production to match Vercel’s hosting
   build: {
-    outDir: "dist", // Explicitly set output directory
-    sourcemap: true, // Optional: for debugging
+    outDir: "dist", 
+    sourcemap: true, 
     rollupOptions: {
-      // Ensure no external modules unless explicitly needed
       external: [],
     },
   },
