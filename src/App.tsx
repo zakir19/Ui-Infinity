@@ -28,7 +28,7 @@ import Preloader from './components/Preloader';
 import PageTransition from './components/PageTransition';
 import Cursor from './components/Cursor';
 import ExperimentalLab from './pages/ExperimentalLab';
-import { Toaster } from 'sonner';
+// import { Toaster } from 'sonner';
 
 function App() {
   usePageTitle('React Components');
@@ -40,7 +40,7 @@ function App() {
         <Preloader />
         <PageTransition />
         <Cursor />
-        <Toaster 
+        {/* <Toaster 
           position="top-right" 
           richColors 
           toastOptions={{
@@ -50,7 +50,7 @@ function App() {
               backdropFilter: 'blur(10px)',
             },
           }}
-        />
+        /> */}
         
         <Navbar />
         <Routes>
