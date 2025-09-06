@@ -23,7 +23,9 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "vercel-build": "vite build"
+    "vercel-build": "vite build",
+    "start": "vite preview",
+    "build:test": "node build-test.js"
   },
   "keywords": [
     "react",

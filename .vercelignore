@@ -1,17 +1,13 @@
-# Source files (not needed for production)
-src/
+# Development files (keep source files for build)
 tsconfig*.json
-vite.config.ts
 vite.lib.config.ts
 postcss.config.js
-tailwind.config.ts
 eslint.config.js
 components.json
 
 # Development files
-*.ts
-*.tsx
-!*.d.ts
+!src/**/*.ts
+!src/**/*.tsx
 
 # Build configuration
 scripts/
