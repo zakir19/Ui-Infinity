@@ -716,7 +716,7 @@ const Index = () => {
                     Get Started Free
                   </motion.button>
                 </Link>
-                <a href="https://github.com/zakir19/uiinfinity-components" target="_blank" rel="noopener noreferrer">
+                <a href="https://github.com/zakir19/Ui-Infinity" target="_blank" rel="noopener noreferrer">
                   <motion.button
                     whileHover={{ scale: 1.05, y: -2 }}
                     whileTap={{ scale: 0.95 }}
@@ -741,7 +741,7 @@ const Index = () => {
                      </a>
                  </div>
                  <div className="flex justify-center gap-6 mb-8">
-                     <motion.a href="https://github.com/zakir19/uiinfinity-components" whileHover={{ scale: 1.1, y: -2 }} className="text-gray-500 hover:text-white transition-colors"><Github /></motion.a>
+                     <motion.a href="https://github.com/zakir19/Ui-Infinity" whileHover={{ scale: 1.1, y: -2 }} className="text-gray-500 hover:text-white transition-colors"><Github /></motion.a>
                      <motion.a href="https://www.npmjs.com/package/uiinfinity-components" whileHover={{ scale: 1.1, y: -2 }} className="text-gray-500 hover:text-white transition-colors"><Package /></motion.a>
                  </div>
                  <p className="text-gray-600">&copy; 2025 UIinfinity. All rights reserved.</p>

@@ -58,10 +58,10 @@ const Navbar = () => {
         <nav className="hidden md:flex items-center gap-8">
           <NavLink to="/">Home</NavLink>
           <NavLink to="/components">Components</NavLink>
-          <NavLink to="/lab">Lab</NavLink>
+          <NavLink to="/">Lab</NavLink>
           
           <motion.a 
-            href="https://github.com/zakir19/uiinfinity-components" 
+            href="https://github.com/zakir19/Ui-Infinity" 
             target="_blank" 
             rel="noopener noreferrer" 
             className="text-gray-400 hover:text-purple-400 transition-colors p-2 rounded-lg hover:bg-purple-500/10"
@@ -143,7 +143,7 @@ const Navbar = () => {
               
               <div className="flex gap-4 pt-4">
                 <motion.a 
-                  href="https://github.com/zakir19/uiinfinity-components" 
+                  href="https://github.com/zakir19/Ui-Infinity" 
                   target="_blank" 
                   rel="noopener noreferrer" 
                   className="flex-1 px-4 py-3 bg-gray-800 rounded-lg text-center text-gray-400 hover:text-purple-400 transition-colors"
