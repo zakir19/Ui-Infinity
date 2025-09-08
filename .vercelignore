@@ -1,16 +1,4 @@
-# Development files (keep source files for build)
-tsconfig*.json
-vite.lib.config.ts
-postcss.config.js
-eslint.config.js
-components.json
-
-# Development files
-!src/**/*.css
-!src/**/*.ts
-!src/**/*.tsx
-
-# Build configuration
+# Build configuration (keep configs, don't ignore them)
 scripts/
 examples/
 docs/
