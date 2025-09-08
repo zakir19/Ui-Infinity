@@ -6,6 +6,7 @@ eslint.config.js
 components.json
 
 # Development files
+!src/**/*.css
 !src/**/*.ts
 !src/**/*.tsx
 
