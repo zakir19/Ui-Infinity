@@ -36,6 +36,39 @@
     --ring: 240 4.9% 83.9%;
 
     --radius: 0.75rem;
+
+    /* Chart palette (light/default) */
+    --chart-1: 222 89% 56%;
+    --chart-2: 160 84% 39%;
+    --chart-3: 26 95% 53%;
+    --chart-4: 277 83% 67%;
+    --chart-5: 341 79% 58%;
+    --chart-6: 199 89% 48%;
+    --chart-7: 45 93% 47%;
+    --chart-8: 140 71% 45%;
+    --chart-9: 12 88% 59%;
+    --chart-10: 250 84% 67%;
+    --chart-11: 190 90% 42%;
+    --chart-12: 300 76% 60%;
+  }
+}
+
+/* Dark theme overrides */
+@layer base {
+  .dark {
+    /* You likely already toggle .dark on html/body; override only chart palette here */
+    --chart-1: 210 96% 72%;
+    --chart-2: 160 84% 60%;
+    --chart-3: 28 95% 65%;
+    --chart-4: 277 83% 78%;
+    --chart-5: 341 79% 72%;
+    --chart-6: 199 89% 68%;
+    --chart-7: 45 93% 64%;
+    --chart-8: 140 71% 62%;
+    --chart-9: 12 88% 70%;
+    --chart-10: 250 84% 79%;
+    --chart-11: 190 90% 64%;
+    --chart-12: 300 76% 75%;
   }
 }
 

@@ -66,11 +66,9 @@ const ChartContainer = React.forwardRef<
 ChartContainer.displayName = "Chart"
 
 const ChartStyle = ({ id, config }: { id: string; config: ChartConfig }) => {
-  const colorConfig = Object.entries(config).filter(
-    ([_, config]) => config.theme || config.color
-  )
+  const entries = Object.entries(config)
 
-  if (!colorConfig.length) {
+  if (!entries.length) {
     return null
   }
 
@@ -81,12 +79,14 @@ const ChartStyle = ({ id, config }: { id: string; config: ChartConfig }) => {
           .map(
             ([theme, prefix]) => `
 ${prefix} [data-chart=${id}] {
-${colorConfig
-  .map(([key, itemConfig]) => {
-    const color =
+${entries
+  .map(([key, itemConfig], idx) => {
+    const providedColor =
       itemConfig.theme?.[theme as keyof typeof itemConfig.theme] ||
       itemConfig.color
-    return color ? `  --color-${key}: ${color};` : null
+    const fallbackColor = `hsl(var(--chart-${(idx % 12) + 1}))`
+    const color = providedColor || fallbackColor
+    return `  --color-${key}: ${color};`
   })
   .join("\n")}
 }

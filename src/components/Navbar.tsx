@@ -58,6 +58,7 @@ const Navbar = () => {
         <nav className="hidden md:flex items-center gap-8">
           <NavLink to="/">Home</NavLink>
           <NavLink to="/components">Components</NavLink>
+          <NavLink to="/charts">Charts</NavLink>
           <NavLink to="/">Lab</NavLink>
           
           <motion.a 
@@ -135,6 +136,10 @@ const Navbar = () => {
               <MobileNavLink to="/components" onClick={() => setIsMenuOpen(false)}>
                 <Package size={16} />
                 Components
+              </MobileNavLink>
+              <MobileNavLink to="/charts" onClick={() => setIsMenuOpen(false)}>
+                <Sparkles size={16} />
+                Charts
               </MobileNavLink>
               <MobileNavLink to="/lab" onClick={() => setIsMenuOpen(false)}>
                 <Sparkles size={16} />

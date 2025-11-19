@@ -24,6 +24,7 @@ import CustomUI from './pages/CustomUI';
 import NotFound from './pages/NotFound';
 import Navbar from './components/Navbar';
 import CardLibrary from './pages/CardLibrary';
+import ChartComponents from './pages/ChartComponents';
 import Preloader from './components/Preloader';
 import PageTransition from './components/PageTransition';
 import Cursor from './components/Cursor';
@@ -59,6 +60,7 @@ function App() {
           <Route path="/buttons" element={<ButtonComponents />} />
           <Route path="/cards" element={<CardComponents />} />
           <Route path="/card-library" element={<CardLibrary />} />
+          <Route path="/charts" element={<ChartComponents />} />
           <Route path="/modals" element={<ModalComponents />} />
           <Route path="/forms" element={<FormComponents />} />
           <Route path="/navigation" element={<NavigationComponents />} />
